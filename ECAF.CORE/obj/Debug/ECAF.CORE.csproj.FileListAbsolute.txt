@@ -1,2 +1,0 @@
-C:\Users\HP\source\repos\ECAF\ECAF.CORE\obj\Debug\ECAF.CORE.csproj.AssemblyReference.cache
-C:\Users\HP\source\repos\ECAF\ECAF.CORE\obj\Debug\ECAF.CORE.csproj.CoreCompileInputs.cache

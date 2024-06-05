@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --primary: #C39639;
+    --primaryLit: #e1c687;
+    --secondary: #00334C;
+    --secondaryDark: #102031;
+}
+body, html {
+    font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
+}
+@media (min-width: 1024px)
+{
+    body, html {
+        /* overflow-y: hidden; */
+    }
+}
+body {
+    background: var(--secondaryDark);
+    color: #fff;
+}
+input:focus {
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(to top, #C39639, #e8d29c) 1;
+}
+@media (min-width: 1280px)
+{
+    .container {
+        max-width: 1240px !important;
+    }
+}
+.bgGredient {
+    background: linear-gradient(90deg, rgba(237,216,163,1) 0%, rgba(195,150,57,1) 100%);
+}
+.sideNavLinks li:hover {
+    background: linear-gradient(90deg, rgba(237,216,163,1) 0%, rgba(195,150,57,1) 100%);
+    border-radius: 8px;
+}
+.sideNavLinks li:hover a svg path{
+    fill: var(--secondaryDark);
+}
+.sideNavLinks li:hover a span{
+    color: var(--secondaryDark);
+    font-weight: 500;
+}
+.sideNavLinks li.active {
+    background: linear-gradient(90deg, rgba(237,216,163,1) 0%, rgba(195,150,57,1) 100%);
+    border-radius: 8px;
+}
+.sideNavLinks li.active a svg path{
+    fill: var(--secondaryDark);
+}
+.sideNavLinks li.active a span{
+    color: var(--secondaryDark);
+    font-weight: 500;
+}
+.formBookList:hover,
+.amendmendBx:hover 
+{
+    background: linear-gradient(90deg, rgba(237,216,163,1) 0%, rgba(195,150,57,1) 100%);
+}
+.formBookList:hover svg path {
+    fill:#000
+}
+.formBookList:hover h3 {
+    color: #102031
+}
+.formBookList.active{
+    background: linear-gradient(90deg, rgba(237,216,163,1) 0%, rgba(195,150,57,1) 100%);
+}
+.formBookList.active svg path {
+    fill:#000
+}
+.formBookList.active h3 {
+    color: #102031
+}
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #d8d8d8; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #C39639; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C39639; 
+  }
+
+  .mainMenuDropBox {
+    display: none;
+    height: 100vh;
+}
+.mainMenuDropBox.active {
+    display: block;
+}
+.amendmendBx:hover svg path  {
+    fill: #102031;
+}
+.amendmendBx:hover h3  {
+    color: #102031;
+}
+
+/* Updating Step Form */
+.steps {
+    display: flex;
+    column-gap: 10px;
+}
+
+.step-header {
+    flex-grow: 1;
+    background-color: white;
+    text-align: center;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.step-header.filled {
+    background-color: #C39639;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+#attached_adhocPop {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+}
+
+/* Accoridan Style */
+.accordion-title {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    column-gap: 6px;
+}
+.accordion-content {
+    display: none;
+}
+.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+#commentPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+
+
+/* Calender */
+#caldr-prev,
+#caldr-next {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#caldr-prev:hover,
+#caldr-next:hover {
+    background: var(--secondaryDark);
+    
+}
+.headerWeekDays ul, 
+.bodyDates ul
+{
+    display: grid;
+    grid-template-columns: repeat(7, minmax(10px, 1fr));
+    grid-gap: 10px;
+}
+.headerWeekDays ul li {
+    font-size: 10px;
+    color: #71717A;
+    text-align: center;
+}
+.bodyDates ul li {
+    font-size: 10px;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+}
+.bodyDates ul li.inactive {
+    color: #71717A;
+}
+.bodyDates ul li.active {
+    background: var(--secondaryDark);
+    
+}
+.eventDots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 3px;
+}
+.eventDots .gren,
+.eventDots .prple,
+.eventDots .blu {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    display: block;
+}
+
+.eventDots .gren {
+    background: #2DD4BF;
+}
+.eventDots .prple {
+    background: #A855F7;
+}
+.eventDots .blu {
+    background: #3B82F6;
+}
+.daysFilter .active {
+    background: #dc2626;
+    border-radius: 6px;
+    padding: 5px 12px;
+    color: #fff;
+}
+.blueActive {
+    background: #e3f2f9;
+    border-left: 3px solid #0ea5e9;
+    /* border-radius: 4px 0 0 4px; */
+    
+    
+}
+.blueActive * {
+    color: #0369a1 !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+}
+.greenActive {
+    background: #e8f8f3;
+    border-left: 3px solid #10b935;
+    
+    
+}
+.greenActive * {
+    color: #03a109 !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+}
+.redActive {
+    background: #eae0e8;
+    border-left: 3px solid #d92828;
+    
+    
+}
+.redActive * {
+    color: #d92828 !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+}

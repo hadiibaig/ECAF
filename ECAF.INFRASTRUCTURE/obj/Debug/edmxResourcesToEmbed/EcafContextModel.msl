@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ECAFModelStoreContainer" CdmEntityContainer="ECAFEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.Category)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.Comment)">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="FormId" ColumnName="FormId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerFinances">
+      <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.CustomerFinance)">
+        <MappingFragment StoreEntitySet="CustomerFinances">
+          <ScalarProperty Name="CustomerFinanceId" ColumnName="CustomerFinanceId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.Customer)">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="InvoiceAddress" ColumnName="InvoiceAddress" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
+          <ScalarProperty Name="FinanceName" ColumnName="FinanceName" />
+          <ScalarProperty Name="FinanceNumber" ColumnName="FinanceNumber" />
+          <ScalarProperty Name="FinanceContactEmail" ColumnName="FinanceContactEmail" />
+          <ScalarProperty Name="SiteCardId" ColumnName="SiteCardId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EcafForms">
+      <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.EcafForm)">
+        <MappingFragment StoreEntitySet="EcafForms">
+          <ScalarProperty Name="EcafFormId" ColumnName="EcafFormId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PinNumber" ColumnName="PinNumber" />
+          <ScalarProperty Name="NewContract" ColumnName="NewContract" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Promotion" ColumnName="Promotion" />
+          <ScalarProperty Name="WeeklyHours" ColumnName="WeeklyHours" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="BranchManager" ColumnName="BranchManager" />
+          <ScalarProperty Name="HolidayManager" ColumnName="HolidayManager" />
+          <ScalarProperty Name="HolidayYear" ColumnName="HolidayYear" />
+          <ScalarProperty Name="HolidayRule" ColumnName="HolidayRule" />
+          <ScalarProperty Name="HolidayEntitlement" ColumnName="HolidayEntitlement" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="FormId" ColumnName="FormId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacilitiesManagers">
+      <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.FacilitiesManager)">
+        <MappingFragment StoreEntitySet="FacilitiesManagers">
+          <ScalarProperty Name="FacilitiesManagerId" ColumnName="FacilitiesManagerId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SiteCardId" ColumnName="SiteCardId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Forms">
+      <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.Form)">
+        <MappingFragment StoreEntitySet="Forms">
+          <ScalarProperty Name="FormId" ColumnName="FormId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="AssignedToMe" ColumnName="AssignedToMe" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="SiteCardId" ColumnName="SiteCardId" />
+          <ScalarProperty Name="EcafFormId" ColumnName="EcafFormId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteCardAmounts">
+      <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.SiteCardAmount)">
+        <MappingFragment StoreEntitySet="SiteCardAmounts">
+          <ScalarProperty Name="SiteCardAmountId" ColumnName="SiteCardAmountId" />
+          <ScalarProperty Name="BillingType" ColumnName="BillingType" />
+          <ScalarProperty Name="AnnualCharge" ColumnName="AnnualCharge" />
+          <ScalarProperty Name="AnnualBHCharge" ColumnName="AnnualBHCharge" />
+          <ScalarProperty Name="TotalAnnual" ColumnName="TotalAnnual" />
+          <ScalarProperty Name="ChargePerPeriod" ColumnName="ChargePerPeriod" />
+          <ScalarProperty Name="SiteCardId" ColumnName="SiteCardId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteCardCharges">
+      <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.SiteCardCharge)">
+        <MappingFragment StoreEntitySet="SiteCardCharges">
+          <ScalarProperty Name="SiteCardChargesId" ColumnName="SiteCardChargesId" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="WeeklyHours" ColumnName="WeeklyHours" />
+          <ScalarProperty Name="ChargeRate" ColumnName="ChargeRate" />
+          <ScalarProperty Name="PayRate" ColumnName="PayRate" />
+          <ScalarProperty Name="AdHocChargeRate" ColumnName="AdHocChargeRate" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="SiteCardId" ColumnName="SiteCardId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteCardDatas">
+      <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.SiteCardData)">
+        <MappingFragment StoreEntitySet="SiteCardDatas">
+          <ScalarProperty Name="SiteCardDataId" ColumnName="SiteCardDataId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SiteCardId" ColumnName="SiteCardId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteCards">
+      <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.SiteCard)">
+        <MappingFragment StoreEntitySet="SiteCards">
+          <ScalarProperty Name="SiteCardId" ColumnName="SiteCardId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="SiteCardType" ColumnName="SiteCardType" />
+          <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+          <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+          <ScalarProperty Name="IsAdHocCardsAttatched" ColumnName="IsAdHocCardsAttatched" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="FormId" ColumnName="FormId" />
+          <ScalarProperty Name="SiteCardAmountId" ColumnName="SiteCardAmountId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="FacilitiesManagerId" ColumnName="FacilitiesManagerId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="ECAFModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="C__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="ECAFModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="ECAFModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="ECAFModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="ECAFModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="ECAFModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

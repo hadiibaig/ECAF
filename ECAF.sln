@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34902.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECAF.WEB", "ECAF\ECAF.WEB.csproj", "{B11F1BE4-D1C6-46EA-9060-DC9282004113}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECAF.INFRASTRUCTURE", "ECAF.INFRASTRUCTURE\ECAF.INFRASTRUCTURE.csproj", "{FCA1D908-D339-42AD-B06F-8A26E7CC1FF9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B11F1BE4-D1C6-46EA-9060-DC9282004113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11F1BE4-D1C6-46EA-9060-DC9282004113}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11F1BE4-D1C6-46EA-9060-DC9282004113}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11F1BE4-D1C6-46EA-9060-DC9282004113}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCA1D908-D339-42AD-B06F-8A26E7CC1FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCA1D908-D339-42AD-B06F-8A26E7CC1FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCA1D908-D339-42AD-B06F-8A26E7CC1FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCA1D908-D339-42AD-B06F-8A26E7CC1FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4F76B39-5B0E-47D8-9D28-1C54EAA8378B}
+	EndGlobalSection
+EndGlobal

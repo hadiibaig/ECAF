@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ECAFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FormId" Type="Int64" />
+    <NavigationProperty Name="Form" Relationship="ECAFModel.FK_Comments_Forms" FromRole="Comment" ToRole="Form" />
+  </EntityType>
+  <EntityType Name="CustomerFinance">
+    <Key>
+      <PropertyRef Name="CustomerFinanceId" />
+    </Key>
+    <Property Name="CustomerFinanceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerId" Type="Int64" />
+    <NavigationProperty Name="Customer" Relationship="ECAFModel.FK_CustomerFinances_Customers" FromRole="CustomerFinance" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InvoiceAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerType" Type="Int32" />
+    <Property Name="FinanceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FinanceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FinanceContactEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SiteCardId" Type="Int64" />
+    <NavigationProperty Name="CustomerFinances" Relationship="ECAFModel.FK_CustomerFinances_Customers" FromRole="Customer" ToRole="CustomerFinance" />
+    <NavigationProperty Name="SiteCard" Relationship="ECAFModel.FK_Customers_SiteCards" FromRole="Customer" ToRole="SiteCard" />
+  </EntityType>
+  <EntityType Name="EcafForm">
+    <Key>
+      <PropertyRef Name="EcafFormId" />
+    </Key>
+    <Property Name="EcafFormId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PinNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NewContract" Type="Boolean" />
+    <Property Name="SiteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Promotion" Type="Boolean" />
+    <Property Name="WeeklyHours" Type="Int32" />
+    <Property Name="Salary" Type="Int32" />
+    <Property Name="BranchManager" Type="Boolean" />
+    <Property Name="HolidayManager" Type="Boolean" />
+    <Property Name="HolidayYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HolidayRule" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HolidayEntitlement" Type="Int32" />
+    <Property Name="EffectiveDate" Type="DateTime" Precision="3" />
+    <Property Name="FormId" Type="Int64" />
+    <NavigationProperty Name="Form" Relationship="ECAFModel.FK_EcafForms_Forms" FromRole="EcafForm" ToRole="Form" />
+  </EntityType>
+  <EntityType Name="FacilitiesManager">
+    <Key>
+      <PropertyRef Name="FacilitiesManagerId" />
+    </Key>
+    <Property Name="FacilitiesManagerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SiteCardId" Type="Int64" />
+    <NavigationProperty Name="SiteCard" Relationship="ECAFModel.FK_FacilitiesManagers_SiteCards" FromRole="FacilitiesManager" ToRole="SiteCard" />
+  </EntityType>
+  <EntityType Name="Form">
+    <Key>
+      <PropertyRef Name="FormId" />
+    </Key>
+    <Property Name="FormId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="AssignedToMe" Type="Boolean" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="SiteCardId" Type="Int64" />
+    <Property Name="EcafFormId" Type="Int64" />
+    <Property Name="UserId" Type="Int64" />
+    <NavigationProperty Name="Forms1" Relationship="Self.FK_Forms_Forms" FromRole="Forms" ToRole="Forms1" />
+    <NavigationProperty Name="Form1" Relationship="Self.FK_Forms_Forms" FromRole="Forms1" ToRole="Forms" />
+    <NavigationProperty Name="Comments" Relationship="ECAFModel.FK_Comments_Forms" FromRole="Form" ToRole="Comment" />
+    <NavigationProperty Name="EcafForms" Relationship="ECAFModel.FK_EcafForms_Forms" FromRole="Form" ToRole="EcafForm" />
+  </EntityType>
+  <EntityType Name="SiteCardAmount">
+    <Key>
+      <PropertyRef Name="SiteCardAmountId" />
+    </Key>
+    <Property Name="SiteCardAmountId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BillingType" Type="Int32" />
+    <Property Name="AnnualCharge" Type="Int32" />
+    <Property Name="AnnualBHCharge" Type="Int32" />
+    <Property Name="TotalAnnual" Type="Int32" />
+    <Property Name="ChargePerPeriod" Type="Int32" />
+    <Property Name="SiteCardId" Type="Int64" />
+    <NavigationProperty Name="SiteCard" Relationship="ECAFModel.FK_SiteCardAmounts_SiteCards" FromRole="SiteCardAmount" ToRole="SiteCard" />
+  </EntityType>
+  <EntityType Name="SiteCardCharge">
+    <Key>
+      <PropertyRef Name="SiteCardChargesId" />
+    </Key>
+    <Property Name="SiteCardChargesId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WeeklyHours" Type="Int32" />
+    <Property Name="ChargeRate" Type="Int32" />
+    <Property Name="PayRate" Type="Int32" />
+    <Property Name="AdHocChargeRate" Type="Int32" />
+    <Property Name="EffectiveDate" Type="DateTime" Precision="3" />
+    <Property Name="SiteCardId" Type="Int64" />
+    <NavigationProperty Name="SiteCard" Relationship="ECAFModel.FK_SiteCardCharges_SiteCards" FromRole="SiteCardCharge" ToRole="SiteCard" />
+  </EntityType>
+  <EntityType Name="SiteCardData">
+    <Key>
+      <PropertyRef Name="SiteCardDataId" />
+    </Key>
+    <Property Name="SiteCardDataId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SiteCardId" Type="Int64" />
+    <NavigationProperty Name="SiteCard" Relationship="ECAFModel.FK_SiteCardDatas_SiteCards" FromRole="SiteCardData" ToRole="SiteCard" />
+  </EntityType>
+  <EntityType Name="SiteCard">
+    <Key>
+      <PropertyRef Name="SiteCardId" />
+    </Key>
+    <Property Name="SiteCardId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SiteCardType" Type="Int32" />
+    <Property Name="ReferenceNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TerminationDate" Type="DateTime" Precision="3" />
+    <Property Name="IsAdHocCardsAttatched" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="FormId" Type="Int64" />
+    <Property Name="SiteCardAmountId" Type="Int64" />
+    <Property Name="CustomerId" Type="Int64" />
+    <Property Name="FacilitiesManagerId" Type="Int64" />
+    <Property Name="UserId" Type="Int64" />
+    <Property Name="CategoryId" Type="Int32" />
+    <NavigationProperty Name="Customers" Relationship="ECAFModel.FK_Customers_SiteCards" FromRole="SiteCard" ToRole="Customer" />
+    <NavigationProperty Name="FacilitiesManagers" Relationship="ECAFModel.FK_FacilitiesManagers_SiteCards" FromRole="SiteCard" ToRole="FacilitiesManager" />
+    <NavigationProperty Name="SiteCardAmounts" Relationship="ECAFModel.FK_SiteCardAmounts_SiteCards" FromRole="SiteCard" ToRole="SiteCardAmount" />
+    <NavigationProperty Name="SiteCardCharges" Relationship="ECAFModel.FK_SiteCardCharges_SiteCards" FromRole="SiteCard" ToRole="SiteCardCharge" />
+    <NavigationProperty Name="SiteCardDatas" Relationship="ECAFModel.FK_SiteCardDatas_SiteCards" FromRole="SiteCard" ToRole="SiteCardData" />
+    <NavigationProperty Name="SiteCards1" Relationship="ECAFModel.FK_SiteCards_SiteCards" FromRole="SiteCard" ToRole="SiteCard1" />
+    <NavigationProperty Name="SiteCard1" Relationship="ECAFModel.FK_SiteCards_SiteCards" FromRole="SiteCard1" ToRole="SiteCard" />
+  </EntityType>
+  <Association Name="FK_Forms_Forms">
+    <End Role="Forms" Type="Self.Form" Multiplicity="1" />
+    <End Role="Forms1" Type="Self.Form" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Forms">
+        <PropertyRef Name="FormId" />
+      </Principal>
+      <Dependent Role="Forms1">
+        <PropertyRef Name="FormId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ECAFEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="CustomerFinances" EntityType="Self.CustomerFinance" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="EcafForms" EntityType="Self.EcafForm" />
+    <EntitySet Name="FacilitiesManagers" EntityType="Self.FacilitiesManager" />
+    <EntitySet Name="Forms" EntityType="Self.Form" />
+    <EntitySet Name="SiteCardAmounts" EntityType="Self.SiteCardAmount" />
+    <EntitySet Name="SiteCardCharges" EntityType="Self.SiteCardCharge" />
+    <EntitySet Name="SiteCardDatas" EntityType="Self.SiteCardData" />
+    <EntitySet Name="SiteCards" EntityType="Self.SiteCard" />
+    <AssociationSet Name="FK_Forms_Forms" Association="Self.FK_Forms_Forms">
+      <End Role="Forms" EntitySet="Forms" />
+      <End Role="Forms1" EntitySet="Forms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comments_Forms" Association="ECAFModel.FK_Comments_Forms">
+      <End Role="Form" EntitySet="Forms" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerFinances_Customers" Association="ECAFModel.FK_CustomerFinances_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CustomerFinance" EntitySet="CustomerFinances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_SiteCards" Association="ECAFModel.FK_Customers_SiteCards">
+      <End Role="SiteCard" EntitySet="SiteCards" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EcafForms_Forms" Association="ECAFModel.FK_EcafForms_Forms">
+      <End Role="Form" EntitySet="Forms" />
+      <End Role="EcafForm" EntitySet="EcafForms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FacilitiesManagers_SiteCards" Association="ECAFModel.FK_FacilitiesManagers_SiteCards">
+      <End Role="SiteCard" EntitySet="SiteCards" />
+      <End Role="FacilitiesManager" EntitySet="FacilitiesManagers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteCardAmounts_SiteCards" Association="ECAFModel.FK_SiteCardAmounts_SiteCards">
+      <End Role="SiteCard" EntitySet="SiteCards" />
+      <End Role="SiteCardAmount" EntitySet="SiteCardAmounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteCardCharges_SiteCards" Association="ECAFModel.FK_SiteCardCharges_SiteCards">
+      <End Role="SiteCard" EntitySet="SiteCards" />
+      <End Role="SiteCardCharge" EntitySet="SiteCardCharges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteCardDatas_SiteCards" Association="ECAFModel.FK_SiteCardDatas_SiteCards">
+      <End Role="SiteCard" EntitySet="SiteCards" />
+      <End Role="SiteCardData" EntitySet="SiteCardDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteCards_SiteCards" Association="ECAFModel.FK_SiteCards_SiteCards">
+      <End Role="SiteCard" EntitySet="SiteCards" />
+      <End Role="SiteCard1" EntitySet="SiteCards" />
+    </AssociationSet>
+    <EntitySet Name="C__MigrationHistory" EntityType="ECAFModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="ECAFModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="ECAFModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="ECAFModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="ECAFModel.AspNetUser" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ECAFModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ECAFModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="ECAFModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_Comments_Forms">
+    <End Type="ECAFModel.Form" Role="Form" Multiplicity="0..1" />
+    <End Type="ECAFModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Form">
+        <PropertyRef Name="FormId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="FormId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerFinances_Customers">
+    <End Type="ECAFModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="ECAFModel.CustomerFinance" Role="CustomerFinance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CustomerFinance">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_SiteCards">
+    <End Type="ECAFModel.SiteCard" Role="SiteCard" Multiplicity="0..1" />
+    <End Type="ECAFModel.Customer" Role="Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiteCard">
+        <PropertyRef Name="SiteCardId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="SiteCardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EcafForms_Forms">
+    <End Type="ECAFModel.Form" Role="Form" Multiplicity="0..1" />
+    <End Type="ECAFModel.EcafForm" Role="EcafForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Form">
+        <PropertyRef Name="FormId" />
+      </Principal>
+      <Dependent Role="EcafForm">
+        <PropertyRef Name="FormId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FacilitiesManagers_SiteCards">
+    <End Type="ECAFModel.SiteCard" Role="SiteCard" Multiplicity="0..1" />
+    <End Type="ECAFModel.FacilitiesManager" Role="FacilitiesManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiteCard">
+        <PropertyRef Name="SiteCardId" />
+      </Principal>
+      <Dependent Role="FacilitiesManager">
+        <PropertyRef Name="SiteCardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteCardAmounts_SiteCards">
+    <End Type="ECAFModel.SiteCard" Role="SiteCard" Multiplicity="0..1" />
+    <End Type="ECAFModel.SiteCardAmount" Role="SiteCardAmount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiteCard">
+        <PropertyRef Name="SiteCardId" />
+      </Principal>
+      <Dependent Role="SiteCardAmount">
+        <PropertyRef Name="SiteCardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteCardCharges_SiteCards">
+    <End Type="ECAFModel.SiteCard" Role="SiteCard" Multiplicity="0..1" />
+    <End Type="ECAFModel.SiteCardCharge" Role="SiteCardCharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiteCard">
+        <PropertyRef Name="SiteCardId" />
+      </Principal>
+      <Dependent Role="SiteCardCharge">
+        <PropertyRef Name="SiteCardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteCardDatas_SiteCards">
+    <End Type="ECAFModel.SiteCard" Role="SiteCard" Multiplicity="0..1" />
+    <End Type="ECAFModel.SiteCardData" Role="SiteCardData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiteCard">
+        <PropertyRef Name="SiteCardId" />
+      </Principal>
+      <Dependent Role="SiteCardData">
+        <PropertyRef Name="SiteCardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteCards_SiteCards">
+    <End Type="ECAFModel.SiteCard" Role="SiteCard" Multiplicity="1" />
+    <End Type="ECAFModel.SiteCard" Role="SiteCard1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SiteCard">
+        <PropertyRef Name="SiteCardId" />
+      </Principal>
+      <Dependent Role="SiteCard1">
+        <PropertyRef Name="SiteCardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="ECAFModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="ECAFModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="ECAFModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="ECAFModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="ECAFModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="ECAFModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="ECAFModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ECAFModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="ECAFModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ECAFModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="ECAFModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="ECAFModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+</Schema>

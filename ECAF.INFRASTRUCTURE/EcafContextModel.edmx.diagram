@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cada91afdcd24f7ea5ab30a2a9f634b9" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="ECAFModel.Category" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECAFModel.Comment" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECAFModel.CustomerFinance" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECAFModel.Customer" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECAFModel.EcafForm" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECAFModel.FacilitiesManager" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECAFModel.Form" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECAFModel.SiteCardAmount" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECAFModel.SiteCardCharge" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECAFModel.SiteCardData" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECAFModel.SiteCard" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="ECAFModel.FK_Forms_Forms" ManuallyRouted="false" />
+        <AssociationConnector Association="ECAFModel.FK_Comments_Forms" />
+        <AssociationConnector Association="ECAFModel.FK_CustomerFinances_Customers" />
+        <AssociationConnector Association="ECAFModel.FK_Customers_SiteCards" />
+        <AssociationConnector Association="ECAFModel.FK_EcafForms_Forms" />
+        <AssociationConnector Association="ECAFModel.FK_FacilitiesManagers_SiteCards" />
+        <AssociationConnector Association="ECAFModel.FK_SiteCardAmounts_SiteCards" />
+        <AssociationConnector Association="ECAFModel.FK_SiteCardCharges_SiteCards" />
+        <AssociationConnector Association="ECAFModel.FK_SiteCardDatas_SiteCards" />
+        <AssociationConnector Association="ECAFModel.FK_SiteCards_SiteCards" />
+        <EntityTypeShape EntityType="ECAFModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ECAFModel.AspNetRole" Width="1.5" PointX="13.375" PointY="2.5" />
+        <EntityTypeShape EntityType="ECAFModel.AspNetUserClaim" Width="1.5" PointX="17.875" PointY="1" />
+        <EntityTypeShape EntityType="ECAFModel.AspNetUserLogin" Width="1.5" PointX="17.875" PointY="3.75" />
+        <EntityTypeShape EntityType="ECAFModel.AspNetUser" Width="1.5" PointX="15.625" PointY="1.375" />
+        <AssociationConnector Association="ECAFModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ECAFModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ECAFModel.AspNetUserRoles" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

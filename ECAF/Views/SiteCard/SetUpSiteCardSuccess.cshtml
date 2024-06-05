@@ -1,0 +1,162 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutSetupSiteCardSuccess.cshtml";
+}
+
+<div class="lg:w-[100%] w-full">
+    <header class="bg-secondary lg:px-12 px-4 border-b border-secondaryDark">
+        <div class="container relative">
+            <div class="grid grid-cols-12 gap-x-4 h-[60px]">
+                <div class="col-span-6">
+                    <div class="bg-secondary p-3 inline-block md:absolute bottom-[-10px] left-0 z-10 md:shadow-lg">
+                        <img src="~/Assets/img/logo.jpg" class="md:w-[200px] w-[160px]" alt="Logo">
+                    </div>
+                </div>
+                <div class="col-span-6 my-auto ml-auto">
+                    <div class="flex items-center gap-x-4">
+                        <h2 class="text-lg font-semibold text-primary">Hello Recce</h2>
+                        <!-- Mobile Navbar -->
+                        <div class="lg:hidden block">
+                            <svg id="mainMenuDrop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                 width="18" height="18" fill="rgba(255,255,255,1)">
+                                <path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z"></path>
+                            </svg>
+                            <div class="mainMenuDropBox w-full bg-secondaryDark absolute top-0 left-0 z-10 p-6">
+                                <div class="text-end">
+                                    <svg class="mainMenuCloseIcon cursor-pointer ml-auto"
+                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+                                         height="24" fill="#fff">
+                                        <path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <ul>
+                                    <li class="border-b border-primaryBL py-3 py-3">
+                                        <a href="#" class="headLinks text-base block font-semibold text-white">
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li class="border-b border-primaryBL py-3">
+                                        <a href="#" class="headLinks text-base block font-semibold text-white">
+                                            Calender
+                                        </a>
+                                    </li>
+                                    <li class="border-b border-primaryBL py-3">
+                                        <a href="#" class="headLinks text-base block font-semibold text-white">
+                                            Forms
+                                        </a>
+                                    </li>
+                                    <li class="border-b border-primaryBL py-3">
+                                        <a href="#" class="headLinks text-base block font-semibold text-white">
+                                            Setting
+                                        </a>
+                                    </li>
+                                    <li class="border-b border-primaryBL py-3">
+                                        <a href="#" class="headLinks text-base block font-semibold text-white">
+                                            Return
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container mx-auto lg:px-2 px-4 relative">
+        <div class="pb-12">
+            <div class="flex md:flex-row flex-col md:items-start items-center my-16">
+                <div class="w-[20%]">
+                    <a href="#">
+                        <div class="flex items-center items-center gap-x-2">
+                            <svg width="14" height="14" viewBox="0 0 21 21" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.9861 9.15357H4.44295L10.7966 2.79989C11.3044 2.29211 11.3044 1.45884 10.7966 0.951069C10.6762 0.830371 10.5331 0.734613 10.3756 0.669278C10.2181 0.603942 10.0492 0.570313 9.87873 0.570312C9.70821 0.570312 9.53936 0.603942 9.38186 0.669278C9.22435 0.734613 9.08128 0.830371 8.96083 0.951069L0.380758 9.53114C0.260059 9.65159 0.164301 9.79467 0.0989659 9.95217C0.0336305 10.1097 0 10.2785 0 10.449C0 10.6196 0.0336305 10.7884 0.0989659 10.9459C0.164301 11.1034 0.260059 11.2465 0.380758 11.3669L8.96083 19.947C9.08137 20.0675 9.22447 20.1632 9.38196 20.2284C9.53946 20.2936 9.70826 20.3272 9.87873 20.3272C10.0492 20.3272 10.218 20.2936 10.3755 20.2284C10.533 20.1632 10.6761 20.0675 10.7966 19.947C10.9172 19.8265 11.0128 19.6834 11.078 19.5259C11.1433 19.3684 11.1768 19.1996 11.1768 19.0291C11.1768 18.8586 11.1433 18.6898 11.078 18.5323C11.0128 18.3749 10.9172 18.2318 10.7966 18.1112L4.44295 11.7575H18.9861C19.7022 11.7575 20.2881 11.1716 20.2881 10.4555C20.2881 9.73946 19.7022 9.15357 18.9861 9.15357Z"
+                                      fill="#C59C42" />
+                            </svg>
+                            <span class="md:text-lg text-base font-medium text-primary">Back</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="w-[80%]">
+                    <h1 class="md:text-3xl text-xl font-bold text-primary text-center md:pt-0 pt-3 mx-auto">
+                        Set up Site Cards
+                    </h1>
+                </div>
+            </div>
+            <div class="">
+                <div class="multiform bg-secondary p-8">
+                    <div class="lg:col-span-4 md:col-span-6 col-span-12">
+                        <div class="md:flex-row flex-col md:items-center gap-x-2">
+                            <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">You have completed the form for 'Setting up Site Cards'.</h4>
+                            <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Your reference number is '@ViewBag.ReferenceNumber'.</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="attached_adhocPop" class="bg-secondary border border-primary md:w-[90%] w-full p-5"
+             style="display: none;">
+            <div class="bg-secondaryDark md:px-12 px-6 py-6">
+                <h2 class="text-3xl font-bold text-center mb-12">
+                    ECAF GUIDANCE
+                </h2>
+                <div class="">
+                    <p class="text-base font-semibold underline leading-tight mb-2">
+                        Please ensure you read the following instructions carefully to enable your ECAF to be
+                        actioned accordingly:
+                    </p>
+                    <p class="text-base leading-tight mb-2">
+                        <span class="font-semibold">Abbreviations Policy:</span>
+                        Under no circumstances will abbreviations be accepted. For example, please type
+                        'Security Officer' NOT 'SO'.
+                    </p>
+                    <p class="text-base leading-tight mb-2">
+                        <span class="font-semibold">ECAF Template Usage:</span>
+                        This ECAF form is ONLY for updating pay/charge rates against an EXISTING site card.
+                    </p>
+                    <p class="text-base leading-tight mb-2">
+                        <span class="font-semibold"> ADHOC Cards Limit:</span>
+                        You can add up to 3 ADHOC cards that have the same rates, as long as they are attached
+                        to the main card. If more than 3, another ECAF will need to be completed.
+                    </p>
+                    <p class="text-base leading-tight mb-2">
+                        <span class="font-semibold">Detailed Information Requirement:</span>
+                        ALL ADHOC cards must be detailed for them to be updated.
+                    </p>
+                    <p class="text-base leading-tight mb-2">
+                        <span class="font-semibold">Employee Details Inclusion: </span>
+                        ALL permanent employees affected by a pay rate change MUST be detailed on the ECAF in
+                        the relevant section. The only exceptions are response officers.
+                    </p>
+                    <p class="text-base leading-tight mb-2">
+                        <span class="font-semibold">SALARY and HOURLY Employees:</span>
+                        If an employee is SALARIED, only put their salary in the 'Payrate/Salary' section.
+                        Please add the correct one. If an employee is HOURLY, only put their pay rate in the
+                        'Payrate/Salary' section. Please add the correct one.
+                    </p>
+                    <p class="text-base leading-tight mb-2">
+                        <span class="font-semibold">Completion Requirement:</span>
+                        Any sections not filled out as required will result in the ECAF being declined.
+                    </p>
+
+                </div>
+                <div class="flex justify-end pt-5">
+                    <button id="attached_adhocCont"
+                            class="ml-auto flex items-center justify-center gap-x-6 bg-secondary px-4 py-2 rounded-full next-btn">
+                        <span class="md:text-lg text-base font-medium ">Continue</span>
+                        <svg width="24" height="25" viewBox="0 0 41 25" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M3.29395 14.2085L32.4621 14.2085L23.5309 21.6569C22.6607 22.3812 22.8033 23.4592 23.8456 24.0622C24.8904 24.6669 26.4392 24.5679 27.3069 23.8435L39.5986 13.5935C39.6945 13.5132 39.7437 13.4193 39.8149 13.3304C39.8739 13.2587 39.9452 13.1972 39.9895 13.1186C40.1001 12.9222 40.1665 12.7154 40.1665 12.507C40.1665 12.5053 40.1689 12.5019 40.1689 12.5002C40.1689 12.4985 40.1665 12.4951 40.1665 12.4934C40.1665 12.2849 40.1001 12.0782 39.9895 11.8818C39.9452 11.8032 39.8739 11.7417 39.8149 11.6699C39.7437 11.5811 39.6945 11.4872 39.5986 11.4069L27.3069 1.15686C26.8202 0.751984 26.122 0.541858 25.4189 0.541858C24.8634 0.541858 24.3053 0.671692 23.8456 0.938192C22.8033 1.54123 22.6607 2.61919 23.5309 3.34353L32.4621 10.7919L3.29395 10.7919C1.93695 10.7919 0.835616 11.5572 0.835616 12.5002C0.835616 13.4432 1.93695 14.2085 3.29395 14.2085"
+                                  fill="white" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

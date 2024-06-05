@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link href="~/Content/tailwind.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="flex">
+        @RenderBody()
+    </div>
+    @*@section Scripts {
+        @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
+        @Scripts.Render("~/bundles/jqueryval")
+
+
+
+        <script type="text/javascript">
+            $(function () {
+                $('#SetUpSiteCard').click(function () {
+                    console.log("asdasdas")
+                });
+            });
+        </script>
+    }*@
+</body>
+
+</html>

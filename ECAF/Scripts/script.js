@@ -11,6 +11,9 @@ $(document).ready(function () {
 
 /* Updating Step Form */
 $(document).ready(function () {
+
+
+
     function validateRequired() {
         let errors = [];
         $('.required').each(function () {
@@ -54,12 +57,6 @@ $(document).ready(function () {
             CustomerType: $('#SetupSiteCard_CustomerTypeId').val(), Name: $('#SetupSiteCard_CustomerBillingNameId').val(), InvoiceAddress: $('#SetupSiteCard_InvoicingAddressId').val(), PostCode: $('#SetupSiteCard_PostCodeId').val(),
             FinanceContactName: $('#SetupSiteCard_FinanceContactNameId').val(), FinanceContactNumber: $('#SetupSiteCard_FinanceContactNumberId').val(), FinanceContactEmail: $('#SetupSiteCard_FinanceContactEmailId').val()
         }
-
-        //let siteCardDetails = {
-        //    siteName: $('#SetupSiteCard_SiteNameId').val(), customerBillingName: $('#SetupSiteCard_CustomerBillingNameId_SD').val(), siteAddress: $('#SetupSiteCard_SiteAddressId').val(), postCode: $('#SetupSiteCard_PostCodeId_SD').val(),
-        //    facilitiesMangerName: $('#SetupSiteCard_FacilitiesMangaerNameId').val(), facilitiesMangerNumber: $('#SetupSiteCard_FacilitiesMangaerNumberId').val(), facilitiesMangerEmail: $('#SetupSiteCard_FacilitiesMangaerEmailId').val()
-
-        //}
         let siteCardCharges = []
         $('.SiteCard_EmoloyeesContainer').each(function (i, obj) {
             if (obj) {
@@ -88,11 +85,6 @@ $(document).ready(function () {
                 siteCardCharge = {}
             }
         });
-        //let siteCardCharges = {
-        //    Position: $('#SetupSiteCard_PositionId').val(), WeeklyHours: $('#SetupSiteCard_WeeklyHoursId').val(), PayRate: $('#SetupSiteCard_PayRateId').val(),
-        //    AdHocChargeRate: $('#SetupSiteCard_AdHocChargeRateId').val(), EffectiveDate: $('#SetupSiteCard_EffectiveDateId').val()
-
-        //}
         let siteCardAmount = {
             BillingType: $('#SetupSiteCard_BillingTypeId').val(), AnnualCharge: $('#SetupSiteCard_AnnualChargeId').val(), AnnualBHCharge: $('#SetupSiteCard_AnnualBHChargeId').val(), TotalAmount: $('#SetupSiteCard_TotalAnnualId').val(),
             ChargePerPeriod: $('#SetupSiteCard_ChargePerPeriodId').val()
@@ -111,7 +103,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 if (data != '') {
-                    window.location.href = '/SiteCard/SetupSiteCardSiteCardSuccess?referenceNumber=' + data
+                    window.location.href = '/SiteCard/SetupSiteSuccess?referenceNumber=' + data
                 }
             },
             error: function (e) {
@@ -120,6 +112,154 @@ $(document).ready(function () {
             }
         });
        
+    });
+    $("#submitUpdateSiteCard").click(function (e) {
+        e.preventDefault();
+
+        let validate = validateRequired()
+        if (validate.length > 0) {
+            alert(validate[0]);
+            return;
+        }
+        let siteCardCodes = []
+        $('.UpdateSiteCard_SiteCodeContainer').each(function (i, obj) {
+            if (obj) {
+                var inputs = $(obj).find('input');
+                let siteCardCode = {}
+                $(inputs).each(function (i, input) {
+                    if (input) {
+                        if ($(input).prop('name') == 'SiteCardCode') {
+                            siteCardCode.SiteCardCode = $(input).val() || ''
+                        }
+                        if ($(input).prop('name') == 'SiteCardName') {
+                            siteCardCode.SiteCardName = $(input).val() || ''
+                        }
+                    }
+                });
+                siteCardCodes.push(siteCardCode)
+                siteCardCode = {}
+            }
+        });
+        let siteCardCharges = []
+        $('.SiteCard_EmoloyeesContainer').each(function (i, obj) {
+            if (obj) {
+                var inputs = $(obj).find('input');
+                let siteCardCharge = {}
+                $(inputs).each(function (i, input) {
+                    if (input) {
+                        if ($(input).prop('name') == 'Position') {
+                            siteCardCharge.Position = $(input).val() || ''
+                        }
+                        if ($(input).prop('name') == 'SelectEmployees') {
+                            siteCardCharge.EmployeeId = parseInt($(input).val() || '0')
+                        }
+                        if ($(input).prop('name') == 'PayRate') {
+                            siteCardCharge.PayRate = parseInt($(input).val() || '0')
+                        }
+                        if ($(input).prop('name') == 'EffectiveDate') {
+                            siteCardCharge.EffectiveDate = $(input).val() || ''
+                        }
+                    }
+                });
+                siteCardCharges.push(siteCardCharge)
+                siteCardCharge = {}
+            }
+        });
+        let siteCard = {
+            SiteCardCharge: siteCardCharges, SiteCardCodes: siteCardCodes
+        }
+        $.ajax({
+            type: "POST",
+            url: '/SiteCard/UpdateSiteCard',
+            data: JSON.stringify(siteCard),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (data != '') {
+                    window.location.href = '/SiteCard/SetupSiteSuccess?referenceNumber=' + data
+                }
+            },
+            error: function (e) {
+
+                console.log(e)
+            }
+        });
+
+    });
+
+
+
+    $("#submitTerminateSiteCard").click(function (e) {
+        e.preventDefault();
+
+        let validate = validateRequired()
+        if (validate.length > 0) {
+            alert(validate[0]);
+            return;
+        }     
+        let siteCard = {
+            SiteCardName: $('#TerminateSiteCard_SiteCardNameId').val(), SiteCardTerminatioDate: $('#TerminateSiteCard_TerminationDateId').val()
+        }
+        $.ajax({
+            type: "POST",
+            url: '/SiteCard/TerminateSiteCard',
+            data: JSON.stringify(siteCard),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (data != '') {
+                    window.location.href = '/SiteCard/SetupSiteSuccess?referenceNumber=' + data
+                }
+            },
+            error: function (e) {
+
+                console.log(e)
+            }
+        });
+
+    });
+    $("#submitECAF").click(function (e) {
+        e.preventDefault();
+
+        let validate = validateRequired()
+        if (validate.length > 0) {
+            alert(validate[0]);
+            return;
+        }
+        let siteCard = {
+            Name: $('#ECAF_EmployeeNameId').val(), PinNumber: $('#ECAF_PINNumberId').val()?.toString(), NewContract: $("input[name='NewContract']").prop('checked'), SiteName: $('#ECAF_SiteNameId').val(),
+            Position: $('#ECAF_PositionId').val(), Promotion: $("input[name='Promotion']").prop('checked'), WeeklyHours: $('#ECAF_WeeklyHoursId').val()?.toString(), Salary: $('#ECAF_PayRateId').val()?.toString(),
+            BranchManager: $("input[name='BranchManager']").prop('checked'), HolidayManager: $("input[name='HolidayManager']").prop('checked'), HolidayYear: $('#ECAF_HolidayYearId').val(), HolidayRule: $('#ECAF_HolidayRuleId').val(),
+            HolidayEntitlement: $('#ECAF_HolidayEntitlementId').val()?.toString(), EffectiveDate: $('#ECAF_EffectiveDateId').val()
+        }
+        $.ajax({
+            type: "POST",
+            url: '/SiteCard/CreateECAF',
+            data: JSON.stringify(siteCard),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (data != '') {
+                    window.location.href = '/SiteCard/SetupSiteSuccess?referenceNumber=' + data
+                }
+            },
+            error: function (e) {
+
+                console.log(e)
+            }
+        });
+
+    });
+    $('#toggleAdHocCheckbox').change(function () {
+        if (this.checked) {
+            for (let i = 0; i < 3; i++) {
+                var clonedDiv = $('.UpdateSiteCard_SiteCodeContainer').first().clone();
+                $('#UpdateSiteCard_IsAdHocAttacthedContainer').append(clonedDiv);
+            }
+        }
+        else {
+            $('#UpdateSiteCard_IsAdHocAttacthedContainer .UpdateSiteCard_SiteCodeContainer').remove();
+        }
     });
     $("#SiteCard_AddAdditionalEmployees").click(function (e) {
         e.preventDefault();
@@ -131,10 +271,23 @@ $(document).ready(function () {
             }
         });
         $('#SiteCard_Container').append(clonedDiv);
+        updateRemoveButton();
 
     });
+    $('#SiteCard_RemoveEmployees').click(function (e) {
+        e.preventDefault();
+        $('#SiteCard_Container .SiteCard_EmoloyeesContainer').last().remove();
+        updateRemoveButton();
+    });
 
-   
+    function updateRemoveButton() {
+        if ($('#SiteCard_Container .SiteCard_EmoloyeesContainer').length > 1) {
+            $('#SiteCard_RemoveEmployees').show();
+        } else {
+            $('#SiteCard_RemoveEmployees').hide();
+        }
+    }
+    updateRemoveButton();
 });
 
 // Assgined Form Accordion Form

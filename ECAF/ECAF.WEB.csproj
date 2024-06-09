@@ -243,9 +243,12 @@
     <Content Include="Views\Shared\_LayoutMainNav.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\SiteCard\SetUpSiteCard.cshtml" />
-    <Content Include="Views\Shared\_LayoutSetupSiteCard.cshtml" />
+    <Content Include="Views\Shared\_LayoutSiteCard.cshtml" />
     <Content Include="Views\SiteCard\SetUpSiteCardSuccess.cshtml" />
     <Content Include="Views\Shared\_LayoutSetupSiteCardSuccess.cshtml" />
+    <Content Include="Views\SiteCard\UpdateSiteCard.cshtml" />
+    <Content Include="Views\SiteCard\TerminatingSiteCard.cshtml" />
+    <Content Include="Views\SiteCard\ECAFForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

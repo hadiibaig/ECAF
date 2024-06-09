@@ -223,7 +223,6 @@
       <End Role="SiteCard" EntitySet="SiteCards" />
       <End Role="SiteCard1" EntitySet="SiteCards" />
     </AssociationSet>
-    <EntitySet Name="C__MigrationHistory" EntityType="ECAFModel.C__MigrationHistory" />
     <EntitySet Name="AspNetRoles" EntityType="ECAFModel.AspNetRole" />
     <EntitySet Name="AspNetUserClaims" EntityType="ECAFModel.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="ECAFModel.AspNetUserLogin" />
@@ -236,6 +235,7 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
     </AssociationSet>
+    <EntitySet Name="C__MigrationHistory" EntityType="ECAFModel.C__MigrationHistory" />
     <AssociationSet Name="AspNetUserRoles" Association="ECAFModel.AspNetUserRoles">
       <End Role="AspNetRole" EntitySet="AspNetRoles" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
@@ -349,16 +349,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="C__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="AspNetRole">
     <Key>
       <PropertyRef Name="Id" />
@@ -436,6 +426,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
   <Association Name="AspNetUserRoles">
     <End Type="ECAFModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="ECAFModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />

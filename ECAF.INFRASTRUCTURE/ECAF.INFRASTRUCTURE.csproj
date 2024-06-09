@@ -103,6 +103,9 @@
       <DependentUpon>EcafContextModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CreateSiteCard.cs" />
+    <Compile Include="Models\SiteCardCodes.cs" />
+    <Compile Include="Models\TerminateSiteCard.cs" />
+    <Compile Include="Models\UpdateSiteCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\SiteCardRepository.cs" />
     <Compile Include="SiteCard.cs">

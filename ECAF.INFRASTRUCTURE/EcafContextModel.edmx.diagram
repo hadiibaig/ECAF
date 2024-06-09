@@ -26,13 +26,13 @@
         <AssociationConnector Association="ECAFModel.FK_SiteCardCharges_SiteCards" />
         <AssociationConnector Association="ECAFModel.FK_SiteCardDatas_SiteCards" />
         <AssociationConnector Association="ECAFModel.FK_SiteCards_SiteCards" />
-        <EntityTypeShape EntityType="ECAFModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="ECAFModel.AspNetRole" Width="1.5" PointX="13.375" PointY="2.5" />
         <EntityTypeShape EntityType="ECAFModel.AspNetUserClaim" Width="1.5" PointX="17.875" PointY="1" />
         <EntityTypeShape EntityType="ECAFModel.AspNetUserLogin" Width="1.5" PointX="17.875" PointY="3.75" />
         <EntityTypeShape EntityType="ECAFModel.AspNetUser" Width="1.5" PointX="15.625" PointY="1.375" />
         <AssociationConnector Association="ECAFModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="ECAFModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <EntityTypeShape EntityType="ECAFModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="ECAFModel.AspNetUserRoles" />
         </Diagram>
     </edmx:Diagrams>

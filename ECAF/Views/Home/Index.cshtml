@@ -88,7 +88,7 @@
             </div>
             <div class="grid grid-cols-12 gap-6">
                 <!-- Column #1 -->
-                <div class="lg:col-span-4 md:col-span-6 col-span-12">
+                <div class="lg:col-span-4 md:col-span-6 col-span-12" id="ECAF_Form">
                     <div class="amendmendBx border border-primary p-6 h-[200px] flex justify-center items-center">
                         <div class="">
                             <svg class="mx-auto" width="50" height="60" viewBox="0 0 63 72" fill="none"
@@ -162,7 +162,7 @@
                     </div>
                 </div>
                 <!-- Column #3 -->
-                <div class="lg:col-span-4 md:col-span-6 col-span-12">
+                <div class="lg:col-span-4 md:col-span-6 col-span-12" id="TerminatingSiteCard">
                     <div class="amendmendBx border border-primary p-6 h-[200px] flex justify-center items-center">
                         <div class="">
                             <svg class="mx-auto" width="50" height="50" viewBox="0 0 72 72" fill="none"
@@ -220,7 +220,7 @@
                     </div>
                 </div>
                 <!-- Column #4 -->
-                <div class="lg:col-span-4 md:col-span-6 col-span-12">
+                <div class="lg:col-span-4 md:col-span-6 col-span-12" id="UpdateSiteCard">
                     <div class="amendmendBx border border-primary p-6 h-[200px] flex justify-center items-center">
                         <div class="">
                             <svg class="mx-auto" width="50" height="50" viewBox="0 0 54 72" fill="none"
@@ -399,6 +399,69 @@
 
 </div>
 
+
+<div id="attached_adhocPop" class="bg-secondary border border-primary md:w-[90%] w-full p-5"
+     style="display: none;">
+    <div class="bg-secondaryDark md:px-12 px-6 py-6">
+        <h2 class="text-3xl font-bold text-center mb-12">
+            ECAF GUIDANCE
+        </h2>
+        <div class="">
+            <p class="text-base font-semibold underline leading-tight mb-2">
+                Please ensure you read the following instructions carefully to enable your ECAF to be
+                actioned accordingly:
+            </p>
+            <p class="text-base leading-tight mb-2">
+                <span class="font-semibold">Abbreviations Policy:</span>
+                Under no circumstances will abbreviations be accepted. For example, please type
+                'Security Officer' NOT 'SO'.
+            </p>
+            <p class="text-base leading-tight mb-2">
+                <span class="font-semibold">ECAF Template Usage:</span>
+                This ECAF form is ONLY for updating pay/charge rates against an EXISTING site card.
+            </p>
+            <p class="text-base leading-tight mb-2">
+                <span class="font-semibold"> ADHOC Cards Limit:</span>
+                You can add up to 3 ADHOC cards that have the same rates, as long as they are attached
+                to the main card. If more than 3, another ECAF will need to be completed.
+            </p>
+            <p class="text-base leading-tight mb-2">
+                <span class="font-semibold">Detailed Information Requirement:</span>
+                ALL ADHOC cards must be detailed for them to be updated.
+            </p>
+            <p class="text-base leading-tight mb-2">
+                <span class="font-semibold">Employee Details Inclusion: </span>
+                ALL permanent employees affected by a pay rate change MUST be detailed on the ECAF in
+                the relevant section. The only exceptions are response officers.
+            </p>
+            <p class="text-base leading-tight mb-2">
+                <span class="font-semibold">SALARY and HOURLY Employees:</span>
+                If an employee is SALARIED, only put their salary in the 'Payrate/Salary' section.
+                Please add the correct one. If an employee is HOURLY, only put their pay rate in the
+                'Payrate/Salary' section. Please add the correct one.
+            </p>
+            <p class="text-base leading-tight mb-2">
+                <span class="font-semibold">Completion Requirement:</span>
+                Any sections not filled out as required will result in the ECAF being declined.
+            </p>
+
+        </div>
+        <div class="flex justify-end pt-5">
+            <button id="attached_adhocCont"
+                    class="ml-auto flex items-center justify-center gap-x-6 bg-secondary px-4 py-2 rounded-full next-btn">
+                <span class="md:text-lg text-base font-medium ">Continue</span>
+                <svg width="24" height="25" viewBox="0 0 41 25" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M3.29395 14.2085L32.4621 14.2085L23.5309 21.6569C22.6607 22.3812 22.8033 23.4592 23.8456 24.0622C24.8904 24.6669 26.4392 24.5679 27.3069 23.8435L39.5986 13.5935C39.6945 13.5132 39.7437 13.4193 39.8149 13.3304C39.8739 13.2587 39.9452 13.1972 39.9895 13.1186C40.1001 12.9222 40.1665 12.7154 40.1665 12.507C40.1665 12.5053 40.1689 12.5019 40.1689 12.5002C40.1689 12.4985 40.1665 12.4951 40.1665 12.4934C40.1665 12.2849 40.1001 12.0782 39.9895 11.8818C39.9452 11.8032 39.8739 11.7417 39.8149 11.6699C39.7437 11.5811 39.6945 11.4872 39.5986 11.4069L27.3069 1.15686C26.8202 0.751984 26.122 0.541858 25.4189 0.541858C24.8634 0.541858 24.3053 0.671692 23.8456 0.938192C22.8033 1.54123 22.6607 2.61919 23.5309 3.34353L32.4621 10.7919L3.29395 10.7919C1.93695 10.7919 0.835616 11.5572 0.835616 12.5002C0.835616 13.4432 1.93695 14.2085 3.29395 14.2085"
+                          fill="white" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+</div>
+
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/bundles/jqueryval"></script>
 <script>
@@ -412,6 +475,19 @@
         });
         $('#SetUpSiteCard').click(function () {
             window.location.href = '/SiteCard/SetUpSiteCard';
+        });
+        $('#UpdateSiteCard').click(function () {
+            
+            $('#attached_adhocPop').show()
+        });
+        $('#attached_adhocCont').click(function () {
+              window.location.href = '/SiteCard/UpdateSiteCard';
+        });
+        $('#TerminatingSiteCard').click(function () {
+            window.location.href = '/SiteCard/TerminatingSiteCard';
+        });
+        $('#ECAF_Form').click(function () {
+            window.location.href = '/SiteCard/ECAFForm';
         });
     });
 </script>

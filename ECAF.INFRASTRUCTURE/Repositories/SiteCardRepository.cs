@@ -76,6 +76,95 @@ namespace ECAF.INFRASTRUCTURE.Repositories
             }
 
         }
+        public string UpdateSiteCard(UpdateSiteCard updateSiteCard)
+        {
+            using (DbContextTransaction transaction = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    Random random = new Random();
+                    string referenceNumber = random.Next(1000, 10000).ToString();
+
+                    string mainSiteCard = string.Empty;
+                    foreach (var SiteCardCode in updateSiteCard.SiteCardCodes)
+                    {
+                        var existingSiteCard = _db.SiteCards.FirstOrDefault(x => x.ReferenceNumber == SiteCardCode.SiteCardCode);
+                        if(existingSiteCard != null)
+                        {
+                            mainSiteCard = existingSiteCard.ReferenceNumber;
+                            existingSiteCard.Name = SiteCardCode.SiteCardName;
+                            foreach (var siteCardCharge in updateSiteCard.SiteCardCharge)
+                            {
+                                siteCardCharge.SiteCardId = existingSiteCard.SiteCardId;
+                                _db.SiteCardCharges.Add(siteCardCharge);
+                            }
+                        }
+                    }
+                    _db.SaveChanges();
+                    transaction.Commit();
+                    return referenceNumber;
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return "";
+                }
+            }
+
+        }
+        public string TerminateSiteCard(TerminateSiteCard terminateSiteCard)
+        {
+            using (DbContextTransaction transaction = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var existingSiteCard = _db.SiteCards.FirstOrDefault(x => x.Name == terminateSiteCard.SiteCardName);
+                    existingSiteCard.TerminationDate = DateTime.Parse(terminateSiteCard.SiteCardTerminatioDate);
+                    existingSiteCard.CategoryId =(int) Categories.Terminated;
+                    _db.SaveChanges();
+                    transaction.Commit();
+                    return existingSiteCard.ReferenceNumber;
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return "";
+                }
+            }
+
+        }
+        public string CreateECAF(EcafForm ecaf)
+        {
+            using (DbContextTransaction transaction = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    Random random = new Random();
+                    string referenceNumber = random.Next(1000, 10000).ToString();
+                    _db.EcafForms.Add(ecaf);
+                    _db.SaveChanges();
+                    transaction.Commit();
+                    return referenceNumber;
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return "";
+                }
+            }
+
+        }
+        public List<EcafForm> GetEmployeesList()
+        {
+                try
+                {
+                    return _db.EcafForms.ToList();
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
 
     }
 }

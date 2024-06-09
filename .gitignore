@@ -1,0 +1,9 @@
+
+/.vs
+*.cache
+/ECAF.INFRASTRUCTURE/bin
+/ECAF.INFRASTRUCTURE/obj
+/ECAF/App_Data
+/ECAF/bin
+/ECAF/obj
+/packages

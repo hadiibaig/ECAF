@@ -1,0 +1,25 @@
+﻿@model ECAF.INFRASTRUCTURE.Models.DashboardViewModel
+@{
+    ViewBag.Title = "Dashboard Page";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dashboard</title>
+</head>
+<body>
+    <div>
+        @Html.Partial("Partial_Home", Model)
+    </div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+
+    });
+</script>

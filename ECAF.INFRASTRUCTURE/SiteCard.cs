@@ -39,7 +39,7 @@ namespace ECAF.INFRASTRUCTURE
         public Nullable<long> SiteCardAmountId { get; set; }
         public Nullable<long> CustomerId { get; set; }
         public Nullable<long> FacilitiesManagerId { get; set; }
-        public Nullable<long> UserId { get; set; }
+        public string UserId { get; set; }
         public Nullable<int> CategoryId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -52,7 +52,5 @@ namespace ECAF.INFRASTRUCTURE
         public virtual ICollection<SiteCardCharge> SiteCardCharges { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SiteCardData> SiteCardDatas { get; set; }
-        public virtual SiteCard SiteCards1 { get; set; }
-        public virtual SiteCard SiteCard1 { get; set; }
     }
 }

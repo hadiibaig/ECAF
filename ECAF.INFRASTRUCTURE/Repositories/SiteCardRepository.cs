@@ -36,6 +36,7 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                         ReferenceNumber = referenceNumber,
                         IsDeleted = false,
                         PostCode = createSiteCard.PostCode,
+                        UserId = createSiteCard.UserId
                     };
 
                     _db.SiteCards.Add(siteCard);
@@ -164,7 +165,20 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                 {
                     return null;
                 }
+        }
+        public DashboardViewModel LoadDashboardData()
+        {
+            try
+            {
+                var comments = _db.Comments.AsEnumerable();
+                var siteCards = _db.SiteCards.AsEnumerable();
+                return new DashboardViewModel() { Comments = comments.Count() > 0 ? comments.ToList() : null , SiteCards = siteCards.Count() > 0 ? siteCards.ToList() : null };
             }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
 
     }
 }

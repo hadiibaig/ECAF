@@ -39,6 +39,7 @@ namespace ECAF.Controllers
         [HttpPost]
         public string CreateSiteCard(CreateSiteCard siteCard)
         {
+            siteCard.UserId = User.Identity.GetUserId();
             var referenceNumber = siteCardRepository.CreateSiteCard(siteCard);
             return referenceNumber;
 

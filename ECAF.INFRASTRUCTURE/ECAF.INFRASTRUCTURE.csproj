@@ -96,6 +96,7 @@
       <DependentUpon>EcafContextModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Enums\Categories.cs" />
+    <Compile Include="Enums\EventStatus.cs" />
     <Compile Include="FacilitiesManager.cs">
       <DependentUpon>EcafContextModel.tt</DependentUpon>
     </Compile>
@@ -103,6 +104,8 @@
       <DependentUpon>EcafContextModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CreateSiteCard.cs" />
+    <Compile Include="Models\DashboardViewModel.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\SiteCardCodes.cs" />
     <Compile Include="Models\TerminateSiteCard.cs" />
     <Compile Include="Models\UpdateSiteCard.cs" />
@@ -120,6 +123,7 @@
     <Compile Include="SiteCardData.cs">
       <DependentUpon>EcafContextModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="utils\Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EcafContextModel.edmx">

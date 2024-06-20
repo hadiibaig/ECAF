@@ -202,7 +202,7 @@
           <Property Name="SiteCardAmountId" Type="bigint" />
           <Property Name="CustomerId" Type="bigint" />
           <Property Name="FacilitiesManagerId" Type="bigint" />
-          <Property Name="UserId" Type="bigint" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="CategoryId" Type="int" />
         </EntityType>
         <Association Name="FK_AspNetUserRoles_AspNetRoles">
@@ -365,18 +365,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SiteCards_SiteCards">
-          <End Role="SiteCards" Type="Self.SiteCards" Multiplicity="1" />
-          <End Role="SiteCards1" Type="Self.SiteCards" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="SiteCards">
-              <PropertyRef Name="SiteCardId" />
-            </Principal>
-            <Dependent Role="SiteCards1">
-              <PropertyRef Name="SiteCardId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ECAFModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -446,10 +434,6 @@
           <AssociationSet Name="FK_SiteCardDatas_SiteCards" Association="Self.FK_SiteCardDatas_SiteCards">
             <End Role="SiteCards" EntitySet="SiteCards" />
             <End Role="SiteCardDatas" EntitySet="SiteCardDatas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SiteCards_SiteCards" Association="Self.FK_SiteCards_SiteCards">
-            <End Role="SiteCards" EntitySet="SiteCards" />
-            <End Role="SiteCards1" EntitySet="SiteCards" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -605,15 +589,13 @@
           <Property Name="SiteCardAmountId" Type="Int64" />
           <Property Name="CustomerId" Type="Int64" />
           <Property Name="FacilitiesManagerId" Type="Int64" />
-          <Property Name="UserId" Type="Int64" />
+          <Property Name="UserId" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
           <Property Name="CategoryId" Type="Int32" />
           <NavigationProperty Name="Customers" Relationship="ECAFModel.FK_Customers_SiteCards" FromRole="SiteCard" ToRole="Customer" />
           <NavigationProperty Name="FacilitiesManagers" Relationship="ECAFModel.FK_FacilitiesManagers_SiteCards" FromRole="SiteCard" ToRole="FacilitiesManager" />
           <NavigationProperty Name="SiteCardAmounts" Relationship="ECAFModel.FK_SiteCardAmounts_SiteCards" FromRole="SiteCard" ToRole="SiteCardAmount" />
           <NavigationProperty Name="SiteCardCharges" Relationship="ECAFModel.FK_SiteCardCharges_SiteCards" FromRole="SiteCard" ToRole="SiteCardCharge" />
           <NavigationProperty Name="SiteCardDatas" Relationship="ECAFModel.FK_SiteCardDatas_SiteCards" FromRole="SiteCard" ToRole="SiteCardData" />
-          <NavigationProperty Name="SiteCards1" Relationship="ECAFModel.FK_SiteCards_SiteCards" FromRole="SiteCard" ToRole="SiteCard1" />
-          <NavigationProperty Name="SiteCard1" Relationship="ECAFModel.FK_SiteCards_SiteCards" FromRole="SiteCard1" ToRole="SiteCard" />
         </EntityType>
         <Association Name="FK_Forms_Forms">
           <End Role="Forms" Type="Self.Form" Multiplicity="1" />

@@ -149,15 +149,13 @@
     <Property Name="SiteCardAmountId" Type="Int64" />
     <Property Name="CustomerId" Type="Int64" />
     <Property Name="FacilitiesManagerId" Type="Int64" />
-    <Property Name="UserId" Type="Int64" />
+    <Property Name="UserId" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
     <Property Name="CategoryId" Type="Int32" />
     <NavigationProperty Name="Customers" Relationship="ECAFModel.FK_Customers_SiteCards" FromRole="SiteCard" ToRole="Customer" />
     <NavigationProperty Name="FacilitiesManagers" Relationship="ECAFModel.FK_FacilitiesManagers_SiteCards" FromRole="SiteCard" ToRole="FacilitiesManager" />
     <NavigationProperty Name="SiteCardAmounts" Relationship="ECAFModel.FK_SiteCardAmounts_SiteCards" FromRole="SiteCard" ToRole="SiteCardAmount" />
     <NavigationProperty Name="SiteCardCharges" Relationship="ECAFModel.FK_SiteCardCharges_SiteCards" FromRole="SiteCard" ToRole="SiteCardCharge" />
     <NavigationProperty Name="SiteCardDatas" Relationship="ECAFModel.FK_SiteCardDatas_SiteCards" FromRole="SiteCard" ToRole="SiteCardData" />
-    <NavigationProperty Name="SiteCards1" Relationship="ECAFModel.FK_SiteCards_SiteCards" FromRole="SiteCard" ToRole="SiteCard1" />
-    <NavigationProperty Name="SiteCard1" Relationship="ECAFModel.FK_SiteCards_SiteCards" FromRole="SiteCard1" ToRole="SiteCard" />
   </EntityType>
   <Association Name="FK_Forms_Forms">
     <End Role="Forms" Type="Self.Form" Multiplicity="1" />

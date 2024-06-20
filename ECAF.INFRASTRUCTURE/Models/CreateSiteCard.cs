@@ -11,6 +11,7 @@ namespace ECAF.INFRASTRUCTURE.Models
         public string Name { get; set; }
         public string Address { get; set; }
         public string PostCode { get; set; }
+        public string UserId { get; set; }
         public Customer Customer { get; set; }
         public FacilitiesManager FacilitiesManager { get; set; }
         public SiteCardAmount SiteCardAmount { get; set; }

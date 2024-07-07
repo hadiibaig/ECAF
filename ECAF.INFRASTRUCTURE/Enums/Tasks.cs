@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace ECAF.INFRASTRUCTURE.Enums
 {
-    public enum EventStatus
+    public enum Tasks
     {
-        [Description("green:ENQUIRY")]
-        Enquiry = 1,
-        [Description("orange:BOOKED")]
-        Booked,
-        [Description("red:CONFIRMED")]
-        Confrmed
+        [Description("GREEN")]
+        Green = 1,
+        [Description("RED")]
+        RED,
+        [Description("BLUE")]
+        Red
     }
 }

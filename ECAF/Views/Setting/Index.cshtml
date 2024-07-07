@@ -1,0 +1,83 @@
+﻿@model List<string>
+
+<div class="flex h-[100vh]" id="partialForms">
+    <div class="lg:w-[100%] w-full">
+        <div class="grid grid-cols-12 gap-6" style="margin-left:5%;margin-top:5%">
+            <div class="lg:col-span-4 md:col-span-6 col-span-12">
+                <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Email:</h4>
+                    <input type="text" id="createUser_EmailId"
+                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                           name="Email">
+                </div>
+            </div>
+            <div class="lg:col-span-5 md:col-span-6 col-span-12">
+                <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Password:</h4>
+                    <input type="password" id="createUser_PasswordId"
+                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                           name="Password">
+                    <input type="checkbox" onclick="togglePassword()">Show Password
+                </div>
+            </div>
+            <div class="lg:col-span-5 md:col-span-6 col-span-12">
+                <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                    <select class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                            id="createUser_RoleId" name="SelectRoles">
+                        <option value="">Select an employee</option>
+                        @foreach (var item in Model)
+                        {
+                    <option value="@item">@item</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="lg:col-span-5 md:col-span-6 col-span-12">
+                <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                    <button id="createUserId" class="md:w-auto w-full ml-auto flex items-center justify-center gap-x-6 bg-secondaryDark px-4 py-2 rounded-full submit-btn">
+                        <span class="md:text-lg text-base font-medium ">Register</span>
+                        <svg width="24" height="25" viewBox="0 0 41 25" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M3.29395 14.2085L32.4621 14.2085L23.5309 21.6569C22.6607 22.3812 22.8033 23.4592 23.8456 24.0622C24.8904 24.6669 26.4392 24.5679 27.3069 23.8435L39.5986 13.5935C39.6945 13.5132 39.7437 13.4193 39.8149 13.3304C39.8739 13.2587 39.9452 13.1972 39.9895 13.1186C40.1001 12.9222 40.1665 12.7154 40.1665 12.507C40.1665 12.5053 40.1689 12.5019 40.1689 12.5002C40.1689 12.4985 40.1665 12.4951 40.1665 12.4934C40.1665 12.2849 40.1001 12.0782 39.9895 11.8818C39.9452 11.8032 39.8739 11.7417 39.8149 11.6699C39.7437 11.5811 39.6945 11.4872 39.5986 11.4069L27.3069 1.15686C26.8202 0.751984 26.122 0.541858 25.4189 0.541858C24.8634 0.541858 24.3053 0.671692 23.8456 0.938192C22.8033 1.54123 22.6607 2.61919 23.5309 3.34353L32.4621 10.7919L3.29395 10.7919C1.93695 10.7919 0.835616 11.5572 0.835616 12.5002C0.835616 13.4432 1.93695 14.2085 3.29395 14.2085"
+                                  fill="white" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#createUserId').click(function () {
+            var id = $(this).data('id');
+            var data = { Email: $('#createUser_EmailId').val(), Password: $('#createUser_PasswordId').val(), Role: $('#createUser_RoleId').val() }
+            $.ajax({
+                url: '@Url.Action("CreateUser", "Account")',
+                type: 'Post',
+                data: data,
+                success: function(result) {
+                    if (result) {
+                        alert("New User has been created")
+                    }
+                    else {
+                        alert("User could not be created")
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error : " + error);
+                }
+            });
+        });
+    });
+    function togglePassword() {
+        var x = document.getElementById("createUser_PasswordId");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>

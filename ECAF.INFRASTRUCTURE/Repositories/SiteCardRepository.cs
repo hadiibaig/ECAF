@@ -1,5 +1,6 @@
 ﻿using ECAF.INFRASTRUCTURE.Enums;
 using ECAF.INFRASTRUCTURE.Models;
+using ECAF.INFRASTRUCTURE.utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace ECAF.INFRASTRUCTURE.Repositories
 {
-   public class SiteCardRepository
+    public class SiteCardRepository
     {
 
-        private readonly  ECAFEntities _db;
+        private readonly ECAFEntities _db;
 
         public SiteCardRepository()
         {
@@ -66,6 +67,16 @@ namespace ECAF.INFRASTRUCTURE.Repositories
 
                     }
                     _db.SaveChanges();
+                    Form form = new Form()
+                    {
+                        Description = siteCard.Name,
+                        Status = (int)FormStatus.InProgress,
+                        AssignedToMe = false,
+                        DueDate = siteCard.CreatedDate.Value.AddDays(2),
+                        SiteCardId = siteCard.SiteCardId
+                    };
+                    _db.Forms.Add(form);
+                    _db.SaveChanges();
                     transaction.Commit();
                     return referenceNumber;
                 }
@@ -90,7 +101,7 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                     foreach (var SiteCardCode in updateSiteCard.SiteCardCodes)
                     {
                         var existingSiteCard = _db.SiteCards.FirstOrDefault(x => x.ReferenceNumber == SiteCardCode.SiteCardCode);
-                        if(existingSiteCard != null)
+                        if (existingSiteCard != null)
                         {
                             mainSiteCard = existingSiteCard.ReferenceNumber;
                             existingSiteCard.Name = SiteCardCode.SiteCardName;
@@ -121,7 +132,7 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                 {
                     var existingSiteCard = _db.SiteCards.FirstOrDefault(x => x.Name == terminateSiteCard.SiteCardName);
                     existingSiteCard.TerminationDate = DateTime.Parse(terminateSiteCard.SiteCardTerminatioDate);
-                    existingSiteCard.CategoryId =(int) Categories.Terminated;
+                    existingSiteCard.CategoryId = (int)Categories.Terminated;
                     _db.SaveChanges();
                     transaction.Commit();
                     return existingSiteCard.ReferenceNumber;
@@ -157,14 +168,14 @@ namespace ECAF.INFRASTRUCTURE.Repositories
         }
         public List<EcafForm> GetEmployeesList()
         {
-                try
-                {
-                    return _db.EcafForms.ToList();
-                }
-                catch (Exception e)
-                {
-                    return null;
-                }
+            try
+            {
+                return _db.EcafForms.ToList();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
         public DashboardViewModel LoadDashboardData()
         {
@@ -172,13 +183,73 @@ namespace ECAF.INFRASTRUCTURE.Repositories
             {
                 var comments = _db.Comments.AsEnumerable();
                 var siteCards = _db.SiteCards.AsEnumerable();
-                return new DashboardViewModel() { Comments = comments.Count() > 0 ? comments.ToList() : null , SiteCards = siteCards.Count() > 0 ? siteCards.ToList() : null };
+                return new DashboardViewModel() { Comments = comments.Count() > 0 ? comments.ToList() : null, SiteCards = siteCards.Count() > 0 ? siteCards.ToList() : null };
             }
             catch (Exception e)
             {
                 return null;
             }
         }
+        public FormsViewModel LoadFormsData()
+        {
+            try
+            {
+                var forms = _db.EcafForms.AsEnumerable();
+                var siteCards = _db.SiteCards.AsEnumerable();
+                return new FormsViewModel() { EcafForms = forms.Count() > 0 ? forms.ToList() : null, SiteCards = siteCards.Count() > 0 ? siteCards.ToList() : null };
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public FormDetailsViewModel GetFormBYCardId(long Id)
+        {
+            try
+            {
+                var form = _db.Forms.FirstOrDefault(x => x.SiteCardId == Id);
+                var comments = _db.Comments.Where(commet => commet.FormId == form.FormId);
+                var siteCard = _db.SiteCards.FirstOrDefault(x => x.SiteCardId == Id);
+                var questions = _db.Questions.Where(x => x.FormId == form.FormId);
+                return new FormDetailsViewModel()
+                {
+                    Form = form,
+                    Comments = comments != null && comments.Count() > 0 ? comments.ToList() : null,
+                    Category = Helpers.GetEnumDescription<Categories>(siteCard?.CategoryId ?? 1),
+                    Name = siteCard.Name,
+                    Status = Helpers.GetEnumDescription<FormStatus>(form?.Status ?? 1),
+                    Questions = questions != null && questions.Count() > 0 ? questions.ToList() : null
+                };
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public bool SaveComment(long id, string text, string userId)
+        {
+            using (DbContextTransaction transaction = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    Comment comment = new Comment()
+                    {
+                        Text = text,
+                        FormId = id,
+                        UserId = userId
+                    };
+                    _db.Comments.Add(comment);
+                    _db.SaveChanges();
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return false;
+                }
+            }
 
+        }
     }
 }

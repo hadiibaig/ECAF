@@ -1,67 +1,33 @@
-﻿@*<div>
-        <div id="calendar"></div>
-    </div>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/bundles/jqueryval"></script>
-    <script src="~/Scripts/fullcalendar/index.global.js"></script>
-    <script>
-        $(document).ready(function () {
-            debugger;
-            const calendarEl = document.getElementById('calendar')
-            const calendar = new FullCalendar.Calendar(calendarEl, {
-                theme: true,
-                header: {
-                    left: '',
-                    center: '',
-                    right: ''
-                },
-                defaultView: 'agendaDay',
-                editable: false,
-                events: "/Calendar/GetEvents/"
-            })
-            calendar.render()
-            //$('#calendar').fullCalendar({
-            //    theme: true,
-            //    header: {
-            //        left: '',
-            //        center: '',
-            //        right: ''
-            //    },
-            //    defaultView: 'agendaDay',
-            //    editable: false,
-            //    events: "/Calendar/GetEvents/"
-            //});
-        });
-    </script>*@
+﻿@model List<ECAF.INFRASTRUCTURE.Models.EventViewModel>
 
 @{
     ViewBag.Title = "Calender";
     Layout = "~/Views/Shared/_LayoutCalender.cshtml";
+
 }
 
 <style>
-    /* General button styles */
     .fc-button {
-        background: none !important; /* Remove background */
-        border: none !important; /* Remove border */
-        color: inherit; /* Inherit text color */
-        border-radius: 5px !important; /* Adjust the value as needed */
+        background: none !important;
+        border: none !important;
+        color: inherit;
+        border-radius: 5px !important;
     }
 
-    /* Target the active button in the header */
+
     .fc-state-active, .fc-state-active:hover {
-        background-color: red !important; /* Change background color to red */
-        border: none !important; /* Remove border */
-        color: white !important; /* Change text color to white */
-        font-weight: bold; /* Make text bold */
+        background-color: red !important;
+        border: none !important;
+        color: white !important;
+        font-weight: bold;
     }
+
     .ENQUIRY {
         background-color: #FF9933;
         border-color: #C0C0C0;
         color: White;
         background-position: 1px 1px;
         background-repeat: no-repeat;
-    /*    background-image: url('Bubble.png');*/
         padding-left: 50px;
     }
 
@@ -71,9 +37,9 @@
         color: White;
         background-position: 1px 1px;
         background-repeat: no-repeat;
-        /*background-image: url('ok.png');*/
         padding-left: 50px;
     }
+
     .GREEN {
         border: none !important;
         border-left: 4px solid #6bad3c80 !important;
@@ -82,6 +48,7 @@
         backdrop-filter: blur(5px) !important;
         font-weight: bold !important;
     }
+
     .RED {
         border: none !important;
         border-left: 4px solid #ff000080 !important;
@@ -90,6 +57,7 @@
         backdrop-filter: blur(5px) !important;
         font-weight: bold !important;
     }
+
     .BLUE {
         border: none !important;
         border-left: 4px solid #001fff80 !important;
@@ -103,23 +71,83 @@
 <div class="flex h-[100vh]">
     <div class="lg:w-[20%] w-full bg-secondary lg:block hidden">
         <div class="pt-17 px-6">
-                <div class="bg-secondary p-3 inline-block md:shadow-lg" style="margin-bottom:9%">
-                    <img src="~/Assets/img/logo.jpg" class="md:w-[200px] w-[160px]" alt="Logo">
-                </div>
+            <div class="bg-secondary p-3 inline-block md:shadow-lg" style="margin-bottom:9%">
+                <img src="~/Assets/img/logo.jpg" class="md:w-[200px] w-[160px]" alt="Logo">
+            </div>
             <ul class="">
                 <li>
                     <div id="datepicker">
 
                     </div>
-                    @*<a data-url="@Url.Action("Home", "Dashboard")" href="#" class="flex items-center gap-x-2 px-4 py-2 rounded-lg">
-                        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.41874 6.24367V0.730713H16.7693V6.24367H9.41874ZM0.230469 9.91898V0.730713H7.58108V9.91898H0.230469ZM9.41874 17.2696V8.08133H16.7693V17.2696H9.41874ZM0.230469 17.2696V11.7566H7.58108V17.2696H0.230469Z"
-                                  fill="white" />
-                        </svg>
-                        <span class="text-base font-medium">Home</span>
-                    </a>*@
-                </li>                        
+                </li>
             </ul>
+        </div>
+
+        <div class="px-3 lg:mt-4 mt-8">
+            <div class="flex items-center justify-between">
+                <button id="addTask"
+                        class="ml-auto flex items-center justify-center gap-x-6 bg-primary px-4 py-2 rounded-full">
+                    <span class="md:text-lg text-base font-medium ">Add Task</span>
+                </button>
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="mb-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-md text-clrBlue">
+                            @{
+
+                                var start = DateTime.Parse(item.start);
+                                if (start.Day == DateTime.Now.Day)
+                                {
+                                    <span class="font-semibold uppercase pr-2">Today</span>
+                                }
+                                else if (start.Day == DateTime.Now.AddDays(1).Day)
+                                {
+                                    <span class="font-semibold uppercase pr-2">Tomorrow</span>
+                                }
+                                else
+                                {
+                                    <span class="font-semibold uppercase pr-2">@start.DayOfWeek</span>
+                                }
+
+                            }
+
+                            @DateTime.Parse(item.start).ToString("dd/MM/yyyy")
+                        </h3>
+                        <div class="flex items-center gap-x-2">
+                            <h3 class="text-md text-white">
+                                <span class="font-semibold">50°</span>/44
+                            </h3>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C10.2652 2 10.5196 2.10536 10.7071 2.29289C10.8946 2.48043 11 2.73478 11 3V4C11 4.26522 10.8946 4.51957 10.7071 4.70711C10.5196 4.89464 10.2652 5 10 5C9.73478 5 9.48043 4.89464 9.29289 4.70711C9.10536 4.51957 9 4.26522 9 4V3C9 2.73478 9.10536 2.48043 9.29289 2.29289C9.48043 2.10536 9.73478 2 10 2ZM14 10C14 11.0609 13.5786 12.0783 12.8284 12.8284C12.0783 13.5786 11.0609 14 10 14C8.93913 14 7.92172 13.5786 7.17157 12.8284C6.42143 12.0783 6 11.0609 6 10C6 8.93913 6.42143 7.92172 7.17157 7.17157C7.92172 6.42143 8.93913 6 10 6C11.0609 6 12.0783 6.42143 12.8284 7.17157C13.5786 7.92172 14 8.93913 14 10ZM13.536 14.95L14.243 15.657C14.4316 15.8392 14.6842 15.94 14.9464 15.9377C15.2086 15.9354 15.4594 15.8302 15.6448 15.6448C15.8302 15.4594 15.9354 15.2086 15.9377 14.9464C15.94 14.6842 15.8392 14.4316 15.657 14.243L14.95 13.536C14.7614 13.3538 14.5088 13.253 14.2466 13.2553C13.9844 13.2576 13.7336 13.3628 13.5482 13.5482C13.3628 13.7336 13.2576 13.9844 13.2553 14.2466C13.253 14.5088 13.3538 14.7614 13.536 14.95ZM15.656 4.343C15.8435 4.53053 15.9488 4.78484 15.9488 5.05C15.9488 5.31516 15.8435 5.56947 15.656 5.757L14.95 6.464C14.8578 6.55951 14.7474 6.63569 14.6254 6.6881C14.5034 6.74051 14.3722 6.7681 14.2394 6.76925C14.1066 6.7704 13.9749 6.7451 13.852 6.69482C13.7291 6.64454 13.6175 6.57029 13.5236 6.4764C13.4297 6.3825 13.3555 6.27085 13.3052 6.14795C13.2549 6.02506 13.2296 5.89338 13.2307 5.7606C13.2319 5.62782 13.2595 5.4966 13.3119 5.3746C13.3643 5.25259 13.4405 5.14225 13.536 5.05L14.243 4.343C14.4305 4.15553 14.6848 4.05021 14.95 4.05021C15.2152 4.05021 15.4695 4.15553 15.657 4.343H15.656ZM17 11C17.2652 11 17.5196 10.8946 17.7071 10.7071C17.8946 10.5196 18 10.2652 18 10C18 9.73478 17.8946 9.48043 17.7071 9.29289C17.5196 9.10536 17.2652 9 17 9H16C15.7348 9 15.4804 9.10536 15.2929 9.29289C15.1054 9.48043 15 9.73478 15 10C15 10.2652 15.1054 10.5196 15.2929 10.7071C15.4804 10.8946 15.7348 11 16 11H17ZM10 15C10.2652 15 10.5196 15.1054 10.7071 15.2929C10.8946 15.4804 11 15.7348 11 16V17C11 17.2652 10.8946 17.5196 10.7071 17.7071C10.5196 17.8946 10.2652 18 10 18C9.73478 18 9.48043 17.8946 9.29289 17.7071C9.10536 17.5196 9 17.2652 9 17V16C9 15.7348 9.10536 15.4804 9.29289 15.2929C9.48043 15.1054 9.73478 15 10 15ZM5.05 6.464C5.14284 6.55691 5.25308 6.63062 5.37441 6.68093C5.49574 6.73124 5.6258 6.75716 5.75715 6.7572C5.88849 6.75725 6.01857 6.73142 6.13993 6.6812C6.2613 6.63098 6.37159 6.55734 6.4645 6.4645C6.55741 6.37166 6.63112 6.26142 6.68143 6.14009C6.73174 6.01876 6.75766 5.8887 6.7577 5.75735C6.75775 5.62601 6.73192 5.49593 6.6817 5.37457C6.63148 5.2532 6.55784 5.14291 6.465 5.05L5.757 4.343C5.5684 4.16084 5.3158 4.06005 5.0536 4.06233C4.7914 4.0646 4.54059 4.16977 4.35518 4.35518C4.16977 4.54059 4.0646 4.7914 4.06233 5.0536C4.06005 5.3158 4.16084 5.5684 4.343 5.757L5.05 6.464ZM6.464 14.95L5.757 15.657C5.5684 15.8392 5.3158 15.94 5.0536 15.9377C4.7914 15.9354 4.54059 15.8302 4.35518 15.6448C4.16977 15.4594 4.0646 15.2086 4.06233 14.9464C4.06005 14.6842 4.16084 14.4316 4.343 14.243L5.05 13.536C5.2386 13.3538 5.4912 13.253 5.7534 13.2553C6.0156 13.2576 6.26641 13.3628 6.45182 13.5482C6.63723 13.7336 6.7424 13.9844 6.74467 14.2466C6.74695 14.5088 6.64616 14.7614 6.464 14.95ZM4 11C4.26522 11 4.51957 10.8946 4.70711 10.7071C4.89464 10.5196 5 10.2652 5 10C5 9.73478 4.89464 9.48043 4.70711 9.29289C4.51957 9.10536 4.26522 9 4 9H3C2.73478 9 2.48043 9.10536 2.29289 9.29289C2.10536 9.48043 2 9.73478 2 10C2 10.2652 2.10536 10.5196 2.29289 10.7071C2.48043 10.8946 2.73478 11 3 11H4Z"
+                                      fill="#FDE047" />
+                            </svg>
+                        </div>
+                    </div>
+                    @*<h4 class="bg-clrpurple rounded-lg inline-block text-sm font-medium mt-2 px-3 py-[2px]">
+                        All-Hands Company
+                        Meeting
+                    </h4>*@
+                    <div class="flex mt-3 gap-x-3 mb-3">
+                        <svg class="mt-1" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="6" r="6" fill="#3B82F6" />
+                        </svg>
+                        <div class="">
+                            <div class="flex items-center gap-x-3">
+
+                                <h3 class="text-clrGray text-sm font-semibold leading-tight">@DateTime.Parse(item.start).ToShortTimeString() - @DateTime.Parse(item.end).ToShortTimeString()</h3>
+                                <svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="12" height="12" rx="6" fill="#A1A1AA" />
+                                    <path d="M2.7998 4.40001C2.7998 4.18783 2.88409 3.98435 3.03412 3.83432C3.18415 3.68429 3.38763 3.60001 3.5998 3.60001H5.9998C6.21198 3.60001 6.41546 3.68429 6.56549 3.83432C6.71552 3.98435 6.7998 4.18783 6.7998 4.40001V7.60001C6.7998 7.81218 6.71552 8.01566 6.56549 8.16569C6.41546 8.31572 6.21198 8.40001 5.9998 8.40001H3.5998C3.38763 8.40001 3.18415 8.31572 3.03412 8.16569C2.88409 8.01566 2.7998 7.81218 2.7998 7.60001V4.40001ZM7.821 4.84241C7.75457 4.8756 7.69869 4.92664 7.65963 4.9898C7.62056 5.05295 7.59984 5.12574 7.5998 5.20001V6.80001C7.59984 6.87427 7.62056 6.94706 7.65963 7.01022C7.69869 7.07337 7.75457 7.12441 7.821 7.15761L8.621 7.55761C8.68197 7.58807 8.74971 7.60245 8.8178 7.59939C8.88589 7.59632 8.95206 7.57591 9.01005 7.54008C9.06803 7.50426 9.1159 7.45422 9.14911 7.3947C9.18232 7.33518 9.19977 7.26816 9.1998 7.20001V4.80001C9.19977 4.73185 9.18232 4.66483 9.14911 4.60531C9.1159 4.5458 9.06803 4.49575 9.01005 4.45993C8.95206 4.4241 8.88589 4.40369 8.8178 4.40062C8.74971 4.39756 8.68197 4.41194 8.621 4.44241L7.821 4.84241Z"
+                                          fill="#18181B" />
+                                </svg>
+                            </div>
+                            <h3 class="text-sm font-medium">@item.title</h3>
+                        </div>
+                    </div>
+                </div>
+                                    }
         </div>
     </div>
     <div class="lg:w-[80%] w-full">
@@ -127,6 +155,90 @@
             <div id="calendar"></div>
         </div>
     </div>
+</div>
+<div id="attached_adhocPop" class="bg-secondary border border-primary md:w-[90%] w-full p-5"
+     style="display: none;">
+    <div class="bg-secondaryDark md:px-12 px-6 py-6">
+        <h2 class="text-3xl font-bold text-center mb-12">
+            Add New Task
+        </h2>
+        <div class="">
+            <form id="EventForm" class="well">
+                <div class="lg:col-span-4 md:col-span-6 col-span-12">
+                    <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                        <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Title:</h4>
+                        <input type="text" id="eventTitle"
+                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                               name="Title">
+                    </div>
+                </div>
+                <br />
+                <div class="lg:col-span-5 md:col-span-6 col-span-12">
+                    <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                        <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Scheduled date:</h4>
+                        <input type="date" id="eventDate"
+                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                               name="Scheduled date">
+                    </div>
+                </div>
+                <br />
+                <div class="lg:col-span-4 md:col-span-6 col-span-12">
+                    <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                        <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Scheduled time:</h4>
+                        <input type="time" id="eventTime"
+                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                               name="Scheduled time">
+                    </div>
+                </div>
+                <br />
+                <div class="lg:col-span-4 md:col-span-6 col-span-12">
+                    <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                        <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Duration (minutes):</h4>
+                        <input type="number" id="eventDuration"
+                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                               name="Title here">
+                    </div>
+                </div>
+                <br />
+                <div class="lg:col-span-4 md:col-span-6 col-span-12">
+                    <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                        <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Select Status:</h4>
+                        <select id="taskDropdown" class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]">
+                            <option value="">Select a Task</option>
+
+                            @{
+                                var taskDescriptions = ViewBag.TaskDescriptions as System.Web.Mvc.SelectList;
+
+                                foreach (var item in taskDescriptions)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+
+                                }
+
+
+
+                            }
+
+
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <input type="hidden" id="eventID">
+            </form>
+        </div>
+        <div class="flex justify-end pt-5">
+            <button id="btnPopupSave"
+                    class="ml-auto flex items-center justify-center gap-x-6 bg-secondary px-4 py-2 rounded-full">
+                <span class="md:text-lg text-base font-medium ">Save event</span>
+            </button>
+            <button id="btnPopupCancel"
+                    class="ml-auto flex items-center justify-center gap-x-6 bg-primary px-4 py-2 rounded-full">
+                <span class="md:text-lg text-base font-medium ">Cancel</span>
+            </button>
+        </div>
+    </div>
+
 </div>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
@@ -137,110 +249,3 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.css" integrity="sha512-SFutyRVkNFPzEilFBl0u3CTz6JV2Lyv+28u9bwPT3uxHLbLw2Yhh7f306NVcgpNjtrVDCGt7aDP+JkWovHe5ag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.js" integrity="sha512-07hnByUhfU6LOpRPr66pVyvDMzC5YbG0ZovJy9sG7jRFuyyomTgS9N/cVsmb534lTyP5tNbnKAyzTDhAUokLvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="~/Scripts/myCalender.js"></script>
-@*<script>
-        $(document).ready(function () {
-            //debugger;
-            //const calendarEl = document.getElementById('calendar')
-            //const calendar = new FullCalendar.Calendar(calendarEl, {
-            //    theme: true,
-            //    header: {
-            //        left: '',
-            //        center: '',
-            //        right: ''
-            //    },
-            //    defaultView: 'agendaDay',
-            //    editable: false,
-            //    events: "/Calendar/GetEvents/"
-            //})
-            //calendar.render()
-            $('#calendar').fullCalendar({
-                theme: true,
-                header: {
-                    left: '',
-                    center: '',
-                    right: ''
-                },
-                defaultView: 'agendaDay',
-                editable: false,
-                events: "/Calendar/GetEvents/"
-            });
-        });
-    </script>*@
-
-<!--<section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="sticky-top mb-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Draggable Events</h4>
-                        </div>
-                        <div class="card-body">-->
-<!-- the events -->
-<!--<div id="external-events">
-        <div class="external-event bg-success">Lunch</div>
-        <div class="external-event bg-warning">Go home</div>
-        <div class="external-event bg-info">Do homework</div>
-        <div class="external-event bg-primary">Work on UI design</div>
-        <div class="external-event bg-danger">Sleep tight</div>
-        <div class="checkbox">
-            <label for="drop-remove">
-                <input type="checkbox" id="drop-remove">
-                remove after drop
-            </label>
-        </div>
-    </div>
-</div>-->
-<!-- /.card-body -->
-<!--</div>-->
-<!-- /.card -->
-<!--<div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Create Event</h3>
-    </div>
-    <div class="card-body">
-        <div class="btn-group" style="width: 100%; margin-bottom: 10px;">-->
-<!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
-<!--<ul class="fc-color-picker" id="color-chooser">
-        <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
-        <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
-        <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
-        <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
-        <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
-    </ul>
-</div>-->
-<!-- /btn-group -->
-<!--<div class="input-group">
-    <input id="new-event" type="text" class="form-control" placeholder="Event Title">
-    <div class="input-group-append">
-        <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
-    </div>-->
-<!-- /btn-group -->
-<!--</div>-->
-<!-- /input-group -->
-<!--</div>
-        </div>
-    </div>
-</div>-->
-<!-- /.col -->
-<!--<div class="col-md-9">
-    <div class="card card-primary">
-        <div class="card-body p-0">-->
-<!-- THE CALENDAR -->
-<!--<div id="calendar"></div>
-</div>-->
-<!-- /.card-body -->
-<!--</div>-->
-<!-- /.card -->
-<!--</div>-->
-<!-- /.col -->
-<!--</div>-->
-<!-- /.row -->
-<!--</div>--><!-- /.container-fluid -->
-<!--</section>
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/bundles/jqueryval"></script>
-<script src="~/Scripts/fullcalendar/index.global.js"></script>
-<script src="~/Scripts/myCalender.js"></script>
-<script src="~/Scripts/moment.min.js"></script>-->

@@ -30,11 +30,20 @@ namespace ECAF.Controllers
             ViewBag.UserId = userId;
             string username = User.Identity.Name;
             ViewBag.Username = username;
-            return PartialView("Partial_Home");
+            var data = siteCardRepository.LoadDashboardData();
+            return PartialView("Partial_Home" , data);
         }
         public PartialViewResult LoadDashboardData()
         {
             return PartialView("Partial_Home");
+        }
+        [Authorize(Roles = "payroll,payroll1,payroll2")]
+        public PartialViewResult Forms()
+        {
+            string userId = User.Identity.GetUserId();
+            ViewBag.UserId = userId;
+            var data = siteCardRepository.LoadFormsData();
+            return PartialView("Partial_Forms" , data);
         }
     }
 }

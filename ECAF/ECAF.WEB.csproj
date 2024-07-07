@@ -170,8 +170,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalenderController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SiteCardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -265,6 +267,9 @@
     <Content Include="Views\Dashboard\Partial_Home.cshtml" />
     <Content Include="Views\Shared\_LayoutCalender.cshtml" />
     <Content Include="Views\Calender\Index.cshtml" />
+    <Content Include="Views\Dashboard\Partial_Forms.cshtml" />
+    <Content Include="Views\Form\Partial_ViewForms.cshtml" />
+    <Content Include="Views\Setting\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

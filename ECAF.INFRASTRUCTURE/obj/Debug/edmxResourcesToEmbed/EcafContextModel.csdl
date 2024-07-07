@@ -15,6 +15,7 @@
     <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="FormId" Type="Int64" />
     <NavigationProperty Name="Form" Relationship="ECAFModel.FK_Comments_Forms" FromRole="Comment" ToRole="Form" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="CustomerFinance">
     <Key>
@@ -238,6 +239,8 @@
       <End Role="AspNetRole" EntitySet="AspNetRoles" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="Events" EntityType="ECAFModel.Event" />
+    <EntitySet Name="Questions" EntityType="ECAFModel.Question" />
   </EntityContainer>
   <Association Name="FK_Comments_Forms">
     <End Type="ECAFModel.Form" Role="Form" Multiplicity="0..1" />
@@ -438,4 +441,22 @@
     <End Type="ECAFModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="ECAFModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
   </Association>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ScheduledDate" Type="DateTime" Precision="3" />
+    <Property Name="EventLength" Type="Int32" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FormId" Type="Int64" />
+  </EntityType>
 </Schema>

@@ -75,6 +75,7 @@
     <Property Name="CommentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Text" Type="nvarchar(max)" />
     <Property Name="FormId" Type="bigint" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="CustomerFinances">
     <Key>
@@ -121,6 +122,16 @@
     <Property Name="EffectiveDate" Type="datetime" />
     <Property Name="FormId" Type="bigint" />
   </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="ScheduledDate" Type="datetime" />
+    <Property Name="EventLength" Type="int" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
   <EntityType Name="FacilitiesManagers">
     <Key>
       <PropertyRef Name="FacilitiesManagerId" />
@@ -143,6 +154,14 @@
     <Property Name="SiteCardId" Type="bigint" />
     <Property Name="EcafFormId" Type="bigint" />
     <Property Name="UserId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" />
+    <Property Name="FormId" Type="bigint" />
   </EntityType>
   <EntityType Name="SiteCardAmounts">
     <Key>
@@ -372,8 +391,10 @@
     <EntitySet Name="CustomerFinances" EntityType="Self.CustomerFinances" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EcafForms" EntityType="Self.EcafForms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FacilitiesManagers" EntityType="Self.FacilitiesManagers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Forms" EntityType="Self.Forms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SiteCardAmounts" EntityType="Self.SiteCardAmounts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SiteCardCharges" EntityType="Self.SiteCardCharges" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SiteCardDatas" EntityType="Self.SiteCardDatas" Schema="dbo" store:Type="Tables" />

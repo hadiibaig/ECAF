@@ -34,6 +34,8 @@
         <AssociationConnector Association="ECAFModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <EntityTypeShape EntityType="ECAFModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="ECAFModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="ECAFModel.Event" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ECAFModel.Question" Width="1.5" PointX="0.75" PointY="3.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

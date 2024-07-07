@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ECAF.Models;
+using ECAF.INFRASTRUCTURE.Models;
 
 namespace ECAF.Controllers
 {
@@ -171,7 +172,21 @@ namespace ECAF.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        public async Task<JsonResult> CreateUser(CreateUserViewModel model)
+        {
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var result = await UserManager.CreateAsync(user, model.Password);
 
+            if (result.Succeeded)
+            {
+                UserManager.AddToRole(user.Id, model.Role);
+                return Json(result.Succeeded);
+            }
+            else
+            {
+                return Json(false);
+            }
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

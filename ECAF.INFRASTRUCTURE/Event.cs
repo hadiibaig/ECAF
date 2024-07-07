@@ -12,13 +12,12 @@ namespace ECAF.INFRASTRUCTURE
     using System;
     using System.Collections.Generic;
     
-    public partial class Comment
+    public partial class Event
     {
-        public long CommentId { get; set; }
-        public string Text { get; set; }
-        public Nullable<long> FormId { get; set; }
-        public string UserId { get; set; }
-    
-        public virtual Form Form { get; set; }
+        public long EventId { get; set; }
+        public string Title { get; set; }
+        public Nullable<System.DateTime> ScheduledDate { get; set; }
+        public Nullable<int> EventLength { get; set; }
+        public Nullable<int> Status { get; set; }
     }
 }

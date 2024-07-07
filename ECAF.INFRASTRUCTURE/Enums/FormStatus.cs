@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace ECAF.INFRASTRUCTURE.Enums
 {
-    public enum EventStatus
+    public enum FormStatus
+
     {
-        [Description("green:ENQUIRY")]
-        Enquiry = 1,
-        [Description("orange:BOOKED")]
-        Booked,
-        [Description("red:CONFIRMED")]
-        Confrmed
+        [Description("InProgress")]
+        InProgress = 1,
+        [Description("Completed")]
+        Completed,
     }
 }

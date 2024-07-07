@@ -12,6 +12,7 @@
     <EntitySetMapping Name="Comments">
       <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.Comment)">
         <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="CommentId" ColumnName="CommentId" />
           <ScalarProperty Name="Text" ColumnName="Text" />
           <ScalarProperty Name="FormId" ColumnName="FormId" />
@@ -214,5 +215,25 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="ECAFModel.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EventLength" ColumnName="EventLength" />
+          <ScalarProperty Name="ScheduledDate" ColumnName="ScheduledDate" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="ECAFModel.Question">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="FormId" ColumnName="FormId" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

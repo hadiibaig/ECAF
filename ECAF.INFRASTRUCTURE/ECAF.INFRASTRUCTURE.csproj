@@ -158,6 +158,7 @@
     <Compile Include="SiteCardData.cs">
       <DependentUpon>EcafContextModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="utils\EmailService.cs" />
     <Compile Include="utils\Helpers.cs" />
   </ItemGroup>
   <ItemGroup>

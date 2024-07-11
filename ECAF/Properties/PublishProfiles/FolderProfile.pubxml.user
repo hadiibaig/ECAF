@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\ecaf\ecaf\Publish</_PublishTargetUrl>
-    <History>True|2024-06-30T22:44:04.6915572Z;True|2024-06-26T14:36:24.0503463-07:00;True|2024-06-26T14:34:21.1790331-07:00;True|2024-06-20T13:07:43.6828044-07:00;</History>
+    <History>True|2024-07-11T21:13:16.0588959Z;True|2024-07-06T17:50:45.3102492-07:00;True|2024-06-30T15:44:04.6915572-07:00;True|2024-06-26T14:36:24.0503463-07:00;True|2024-06-26T14:34:21.1790331-07:00;True|2024-06-20T13:07:43.6828044-07:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Assets/img/logo.jpg">
@@ -18,19 +18,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/05/2024 15:09:52</publishTime>
     </File>
     <File Include="bin/ECAF.dll">
-      <publishTime>06/30/2024 15:45:35</publishTime>
+      <publishTime>07/11/2024 14:13:14</publishTime>
     </File>
     <File Include="bin/ECAF.INFRASTRUCTURE.dll">
-      <publishTime>06/30/2024 15:44:01</publishTime>
+      <publishTime>07/11/2024 14:13:13</publishTime>
     </File>
     <File Include="bin/ECAF.INFRASTRUCTURE.dll.config">
       <publishTime>06/05/2024 15:09:51</publishTime>
     </File>
     <File Include="bin/ECAF.INFRASTRUCTURE.pdb">
-      <publishTime>06/30/2024 15:44:01</publishTime>
+      <publishTime>07/11/2024 14:13:13</publishTime>
     </File>
     <File Include="bin/ECAF.pdb">
-      <publishTime>06/30/2024 15:45:35</publishTime>
+      <publishTime>07/11/2024 14:13:14</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>06/05/2024 15:09:52</publishTime>
@@ -420,10 +420,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/29/2024 06:24:42</publishTime>
     </File>
     <File Include="Views/Dashboard/Partial_Forms.cshtml">
-      <publishTime>06/29/2024 07:58:51</publishTime>
+      <publishTime>07/06/2024 16:16:55</publishTime>
     </File>
     <File Include="Views/Dashboard/Partial_Home.cshtml">
       <publishTime>06/20/2024 12:58:40</publishTime>
+    </File>
+    <File Include="Views/Form/Partial_ViewForms.cshtml">
+      <publishTime>07/06/2024 18:00:00</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>06/05/2024 15:09:52</publishTime>
@@ -435,7 +438,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/12/2024 10:38:53</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/22/2024 07:23:56</publishTime>
+      <publishTime>07/06/2024 17:22:43</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>06/05/2024 15:09:52</publishTime>
@@ -455,6 +458,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
       <publishTime>06/05/2024 15:09:52</publishTime>
     </File>
+    <File Include="Views/Setting/Index.cshtml">
+      <publishTime>07/06/2024 18:03:50</publishTime>
+    </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>06/05/2024 15:09:52</publishTime>
     </File>
@@ -468,7 +474,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/17/2024 09:29:37</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutDashboard.cshtml">
-      <publishTime>06/29/2024 03:51:36</publishTime>
+      <publishTime>07/06/2024 17:22:43</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutLogin.cshtml">
       <publishTime>06/05/2024 15:07:46</publishTime>
@@ -507,7 +513,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/05/2024 15:09:52</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/30/2024 15:44:03</publishTime>
+      <publishTime>07/11/2024 14:13:14</publishTime>
     </File>
   </ItemGroup>
 </Project>

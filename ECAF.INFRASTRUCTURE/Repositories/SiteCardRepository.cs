@@ -78,6 +78,8 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                     _db.Forms.Add(form);
                     _db.SaveChanges();
                     transaction.Commit();
+                    ;
+                    EmailService.SendEmail(_db.AspNetUsers.FirstOrDefault(x => x.Id == createSiteCard.UserId).Email , "New Site Card has been created"  , "New Site card has been created in ECAF with reference no# : " + referenceNumber);
                     return referenceNumber;
                 }
                 catch (Exception e)
@@ -94,8 +96,7 @@ namespace ECAF.INFRASTRUCTURE.Repositories
             {
                 try
                 {
-                    Random random = new Random();
-                    string referenceNumber = random.Next(1000, 10000).ToString();
+                    string referenceNumber = "";
 
                     string mainSiteCard = string.Empty;
                     foreach (var SiteCardCode in updateSiteCard.SiteCardCodes)
@@ -111,6 +112,8 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                                 _db.SiteCardCharges.Add(siteCardCharge);
                             }
                         }
+                        referenceNumber = existingSiteCard.ReferenceNumber;
+                        EmailService.SendEmail(_db.AspNetUsers.FirstOrDefault(x => x.Id == existingSiteCard.UserId).Email, "Site Card has been Updated", "Site card has been updated in ECAF with reference no# : " + existingSiteCard.ReferenceNumber);
                     }
                     _db.SaveChanges();
                     transaction.Commit();

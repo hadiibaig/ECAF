@@ -19,217 +19,219 @@
         resize: none; /* Prevent resizing of textareas */
     }
 </style>
-<div class="lg:w-[80%] w-full h-full" id="partialFormDetails">
-    <div class="p-4 h-full">
-        <div class="bg-secondary h-full px-4 relative">
-            <div class="flex md:flex-row flex-col md:items-start items-center px-4 py-8">
-                <div class="lg:w-[10%] md:w-[20%] w-full">
-                    <a href="#">
-                        <div class="flex items-center items-center gap-x-2">
-                            <svg width="14" height="14" viewBox="0 0 21 21" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18.9861 9.15357H4.44295L10.7966 2.79989C11.3044 2.29211 11.3044 1.45884 10.7966 0.951069C10.6762 0.830371 10.5331 0.734613 10.3756 0.669278C10.2181 0.603942 10.0492 0.570313 9.87873 0.570312C9.70821 0.570312 9.53936 0.603942 9.38186 0.669278C9.22435 0.734613 9.08128 0.830371 8.96083 0.951069L0.380758 9.53114C0.260059 9.65159 0.164301 9.79467 0.0989659 9.95217C0.0336305 10.1097 0 10.2785 0 10.449C0 10.6196 0.0336305 10.7884 0.0989659 10.9459C0.164301 11.1034 0.260059 11.2465 0.380758 11.3669L8.96083 19.947C9.08137 20.0675 9.22447 20.1632 9.38196 20.2284C9.53946 20.2936 9.70826 20.3272 9.87873 20.3272C10.0492 20.3272 10.218 20.2936 10.3755 20.2284C10.533 20.1632 10.6761 20.0675 10.7966 19.947C10.9172 19.8265 11.0128 19.6834 11.078 19.5259C11.1433 19.3684 11.1768 19.1996 11.1768 19.0291C11.1768 18.8586 11.1433 18.6898 11.078 18.5323C11.0128 18.3749 10.9172 18.2318 10.7966 18.1112L4.44295 11.7575H18.9861C19.7022 11.7575 20.2881 11.1716 20.2881 10.4555C20.2881 9.73946 19.7022 9.15357 18.9861 9.15357Z">
-                                </path>
-                            </svg>
-                            <span class="md:text-lg text-base font-medium text-primary">Back</span>
+<div class="flex h-[100vh]" id="partialFormDetails">
+    <div class="lg:w-[100%] w-full">
+        <div class="p-4">
+            <div class="bg-secondary h-full px-4 relative">
+                <div class="flex md:flex-row flex-col md:items-start items-center px-4 py-8">
+                    <div class="lg:w-[10%] md:w-[20%] w-full">
+                        <a href="#">
+                            <div class="flex items-center items-center gap-x-2">
+                                <svg width="14" height="14" viewBox="0 0 21 21" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.9861 9.15357H4.44295L10.7966 2.79989C11.3044 2.29211 11.3044 1.45884 10.7966 0.951069C10.6762 0.830371 10.5331 0.734613 10.3756 0.669278C10.2181 0.603942 10.0492 0.570313 9.87873 0.570312C9.70821 0.570312 9.53936 0.603942 9.38186 0.669278C9.22435 0.734613 9.08128 0.830371 8.96083 0.951069L0.380758 9.53114C0.260059 9.65159 0.164301 9.79467 0.0989659 9.95217C0.0336305 10.1097 0 10.2785 0 10.449C0 10.6196 0.0336305 10.7884 0.0989659 10.9459C0.164301 11.1034 0.260059 11.2465 0.380758 11.3669L8.96083 19.947C9.08137 20.0675 9.22447 20.1632 9.38196 20.2284C9.53946 20.2936 9.70826 20.3272 9.87873 20.3272C10.0492 20.3272 10.218 20.2936 10.3755 20.2284C10.533 20.1632 10.6761 20.0675 10.7966 19.947C10.9172 19.8265 11.0128 19.6834 11.078 19.5259C11.1433 19.3684 11.1768 19.1996 11.1768 19.0291C11.1768 18.8586 11.1433 18.6898 11.078 18.5323C11.0128 18.3749 10.9172 18.2318 10.7966 18.1112L4.44295 11.7575H18.9861C19.7022 11.7575 20.2881 11.1716 20.2881 10.4555C20.2881 9.73946 19.7022 9.15357 18.9861 9.15357Z">
+                                    </path>
+                                </svg>
+                                <span class="md:text-lg text-base font-medium text-primary">Back</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="lg:w-[90%] md:w-[80%] w-full">
+                        <h1 class="md:text-3xl text-xl font-bold text-primary text-center md:pt-0 pt-3 mx-auto">
+                            @Model.Name
+                        </h1>
+                    </div>
+                </div>
+                <div class="pb-28" id="firstScreen">
+                    <div class="text-primary md:pt-0 pt-3 mx-auto" style="padding-left:4%">
+                        <h3 style="margin-bottom:3%">Category: &nbsp; <span style="font-weight:bold">@Model.Category</span></h3>
+                        <h3 style="margin-bottom:3%">Status : &nbsp;<span style="font-weight:bold">@Model.Status</span></h3>
+                        <h3 style="margin-bottom:3%">Due : &nbsp;<span style="font-weight:bold">@Model.Form.DueDate.Value.ToString("dd/MM/yyyy")</span></h3>
+                    </div>
+                </div>
+                <div class="pb-28" id="secondScreen" style="display: none;">
+                    <div class="grid grid-cols-2 gap-4" style="margin-left:20%">
+                        <div class="col-span-2 flex items-center" style="margin-bottom:5%">
+                            <h3 style="font-weight:bold">Category</h3> : &nbsp; <p>@Model.Category</p>
                         </div>
-                    </a>
-                </div>
-                <div class="lg:w-[90%] md:w-[80%] w-full">
-                    <h1 class="md:text-3xl text-xl font-bold text-primary text-center md:pt-0 pt-3 mx-auto">
-                        @Model.Name
-                    </h1>
-                </div>
-            </div>
-            <div class="pb-28" id="firstScreen">
-                <div class="text-primary md:pt-0 pt-3 mx-auto" style="padding-left:4%">
-                    <h3 style="margin-bottom:3%">Category: &nbsp; <span style="font-weight:bold">@Model.Category</span></h3>
-                    <h3 style="margin-bottom:3%">Status : &nbsp;<span style="font-weight:bold">@Model.Status</span></h3>
-                    <h3 style="margin-bottom:3%">Due : &nbsp;<span style="font-weight:bold">@Model.Form.DueDate.Value.ToString("dd/MM/yyyy")</span></h3>
-                </div>
-            </div>
-            <div class="pb-28" id="secondScreen" style="display: none;">
-                <div class="grid grid-cols-2 gap-4" style="margin-left:20%">
-                    <div class="col-span-2 flex items-center" style="margin-bottom:5%">
-                        <h3 style="font-weight:bold">Category</h3> : &nbsp; <p>@Model.Category</p>
+                        <div class="col-span-2 flex items-center">
+                            <h3 style="font-weight:bold">Form ID</h3> : &nbsp; <p>@Model.Form.FormId</p>
+                        </div>
+                        <div class="col-span-2 flex items-center" style="margin-bottom:5%">
+                            <h3 style="font-weight:bold">Status</h3> : &nbsp; <p>@Model.Status</p>
+                        </div>
+                        <div class="col-span-2 flex items-center">
+                            <h3 style="font-weight:bold">Description</h3> : &nbsp; <p>@Model.Form.Description</p>
+                        </div>
                     </div>
-                    <div class="col-span-2 flex items-center">
-                        <h3 style="font-weight:bold">Form ID</h3> : &nbsp; <p>@Model.Form.FormId</p>
-                    </div>
-                    <div class="col-span-2 flex items-center" style="margin-bottom:5%">
-                        <h3 style="font-weight:bold">Status</h3> : &nbsp; <p>@Model.Status</p>
-                    </div>
-                    <div class="col-span-2 flex items-center">
-                        <h3 style="font-weight:bold">Description</h3> : &nbsp; <p>@Model.Form.Description</p>
-                    </div>
-                </div>
-                <div style="margin-top:10%">
-                    <div class="flex" style="padding-left: 5%; margin-bottom:5%">
-                        <span style="font-weight:bold ; font-size:larger; margin-right:2%"> Comments : </span>
-                        <button id="commentPopupId" class="text-base font-semibold bg-secondaryDark px-8 py-2 rounded-full">
-                            <span class="md:text-lg text-base font-medium ">add comment</span>
-                        </button>
-                    </div>
-                    <div style="max-height: 400px; overflow-y: auto; padding-left: 5%; padding-right: 5%;">
-                        <ul>
-                            @{ if (Model.Comments != null && Model.Comments.Count > 0)
-                                {
-                                    foreach (var item in Model.Comments)
+                    <div style="margin-top:10%">
+                        <div class="flex" style="padding-left: 5%; margin-bottom:5%">
+                            <span style="font-weight:bold ; font-size:larger; margin-right:2%"> Comments : </span>
+                            <button id="commentPopupId" class="text-base font-semibold bg-secondaryDark px-8 py-2 rounded-full">
+                                <span class="md:text-lg text-base font-medium ">add comment</span>
+                            </button>
+                        </div>
+                        <div style="max-height: 400px; overflow-y: auto; padding-left: 5%; padding-right: 5%;">
+                            <ul>
+                                @{ if (Model.Comments != null && Model.Comments.Count > 0)
                                     {
-                                        <li style="margin-bottom: 1rem;">
-                                            <textarea disabled class="rounded-lg bg-secondaryDark w-full placeholder:text-secondaryDark h-[125px] text-white px-3 py-[4px]"
-                                                      placeholder="comment">
+                                        foreach (var item in Model.Comments)
+                                        {
+                                            <li style="margin-bottom: 1rem;">
+                                                <textarea disabled class="rounded-lg bg-secondaryDark w-full placeholder:text-secondaryDark h-[125px] text-white px-3 py-[4px]"
+                                                          placeholder="comment">
                                 @item.Text
                             </textarea>
-                                        </li>
+                                            </li>
+                                        }
                                     }
+
                                 }
-                                
-                                }
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="pb-28" id="thirdScreen" style="display: none;">
-                <div class="accordion">
-                    <div class="accordion-item mb-6">
-                        <div class="accordion-title bg-secondaryDark rounded-[12px] px-4 py-2 inline-block relative z-10 mb-[-20px]">
-                            Question 1
-                            <span class="accordion-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
-                                     height="32" fill="rgba(255,255,255,1)">
-                                    <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
-                                    </path>
-                                </svg>
-                            </span>
+                <div class="pb-28" id="thirdScreen" style="display: none;">
+                    <div class="accordion">
+                        <div class="accordion-item mb-6">
+                            <div class="accordion-title bg-secondaryDark rounded-[12px] px-4 py-2 inline-block relative z-10 mb-[-20px]">
+                                Question 1
+                                <span class="accordion-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                         height="32" fill="rgba(255,255,255,1)">
+                                        <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
+                                        </path>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="accordion-content bg-secondaryDark rounded-[12px] px-6 pb-6">
+                                <div class="pt-8">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                        tempor
+                                        incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet,
+                                        consectetur
+                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                        aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                        eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                    <div class="text-end pt-2">
+                                        <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="accordion-content bg-secondaryDark rounded-[12px] px-6 pb-6">
-                            <div class="pt-8">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor
-                                    incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet,
-                                    consectetur
-                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.
-                                </p>
-                                <div class="text-end pt-2">
-                                    <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
+                        <div class="accordion-item mb-6">
+                            <div class="accordion-title bg-secondaryDark rounded-[12px] px-4 py-2 inline-block relative z-10 mb-[-20px]">
+                                Question 2
+                                <span class="accordion-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                         height="32" fill="rgba(255,255,255,1)">
+                                        <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
+                                        </path>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="accordion-content bg-secondaryDark rounded-[12px] px-6 pb-6">
+                                <div class="pt-8">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                        tempor
+                                        incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet,
+                                        consectetur
+                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                        aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                        eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                    <div class="text-end pt-2">
+                                        <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item mb-6">
+                            <div class="accordion-title bg-secondaryDark rounded-[12px] px-4 py-2 inline-block relative z-10 mb-[-20px]">
+                                Question 3
+                                <span class="accordion-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                         height="32" fill="rgba(255,255,255,1)">
+                                        <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
+                                        </path>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="accordion-content bg-secondaryDark rounded-[12px] px-6 pb-6">
+                                <div class="pt-8">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                        tempor
+                                        incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet,
+                                        consectetur
+                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                        aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                        eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                    <div class="text-end pt-2">
+                                        <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item mb-6">
-                        <div class="accordion-title bg-secondaryDark rounded-[12px] px-4 py-2 inline-block relative z-10 mb-[-20px]">
-                            Question 2
-                            <span class="accordion-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
-                                     height="32" fill="rgba(255,255,255,1)">
-                                    <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
-                                    </path>
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="accordion-content bg-secondaryDark rounded-[12px] px-6 pb-6">
-                            <div class="pt-8">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor
-                                    incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet,
-                                    consectetur
-                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.
-                                </p>
-                                <div class="text-end pt-2">
-                                    <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="grid grid-cols-12 absolute bottom-0 left-0 w-full">
+                    <div class="md:col-span-4 col-span-6">
+                        <a href="javascript:void(0);" id="overviewBtn">
+                            <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
+                                Overview
+                            </h3>
+                        </a>
                     </div>
-                    <div class="accordion-item mb-6">
-                        <div class="accordion-title bg-secondaryDark rounded-[12px] px-4 py-2 inline-block relative z-10 mb-[-20px]">
-                            Question 3
-                            <span class="accordion-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
-                                     height="32" fill="rgba(255,255,255,1)">
-                                    <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
-                                    </path>
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="accordion-content bg-secondaryDark rounded-[12px] px-6 pb-6">
-                            <div class="pt-8">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor
-                                    incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet,
-                                    consectetur
-                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.
-                                </p>
-                                <div class="text-end pt-2">
-                                    <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="md:col-span-4 col-span-6">
+                        <a href="javascript:void(0);" id="detailBtn">
+                            <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
+                                Details
+                            </h3>
+                        </a>
                     </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-12 absolute bottom-0 left-0 w-full">
-                <div class="md:col-span-4 col-span-6">
-                    <a href="javascript:void(0);" id="overviewBtn">
-                        <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
-                            Overview
-                        </h3>
-                    </a>
-                </div>
-                <div class="md:col-span-4 col-span-6">
-                    <a href="javascript:void(0);" id="detailBtn">
-                        <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
-                            Details
-                        </h3>
-                    </a>
-                </div>
-                <div class="md:col-span-4 col-span-12">
-                    <a href="javascript:void(0);" id="signOffBtn">
-                        <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
-                            Sign Off
-                        </h3>
-                    </a>
+                    <div class="md:col-span-4 col-span-12">
+                        <a href="javascript:void(0);" id="signOffBtn">
+                            <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
+                                Sign Off
+                            </h3>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="lg:w-[80%] md:w-[90%] w-[98%] border border-primary bg-secondaryDark rounded-lg lg:px-24 md:px-16 px-6 lg:pt-24 md:pt-16 pt-12 pb-12" id="commentPopup">
-    <div class="">
-        <div class="flex items-center gap-x-2 mb-16">
-            <h4 class="text-base font-medium whitespace-nowrap">Notify:</h4>
-            <input type="text"
-                   class="rounded-lg bg-white w-full placeholder:text-secondaryDark text-black px-3 py-2"
-                   name="name">
-        </div>
-        <div class="flex items-center gap-x-2 mb-6">
-            <textarea class="rounded-lg bg-white w-full placeholder:text-secondaryDark h-[250px] placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                      name="" placeholder="comment" id="commentTextArea"></textarea>
-        </div>
-        <div class="flex md:flex-row flex-col gap-x-4 justify-center gap-x-8">
-            <button class="text-base font-semibold bg-secondary px-8 py-2 rounded-full md:mb-0 mb-3" id="commentPopupClose">
-                Cancel
-            </button>
-            <button class="text-base font-semibold bg-secondary px-8 py-2 rounded-full" data-id="@Model.Form.FormId" id="saveComment">
-                <span class="md:text-lg text-base font-medium ">Add Comment</span>
-            </button>
+    </div>
+    <div class="lg:w-[80%] md:w-[90%] w-[98%] border border-primary bg-secondaryDark rounded-lg lg:px-24 md:px-16 px-6 lg:pt-24 md:pt-16 pt-12 pb-12" id="commentPopup">
+        <div class="">
+            <div class="flex items-center gap-x-2 mb-16">
+                <h4 class="text-base font-medium whitespace-nowrap">Notify:</h4>
+                <input type="text"
+                       class="rounded-lg bg-white w-full placeholder:text-secondaryDark text-black px-3 py-2"
+                       name="name">
+            </div>
+            <div class="flex items-center gap-x-2 mb-6">
+                <textarea class="rounded-lg bg-white w-full placeholder:text-secondaryDark h-[250px] placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                          name="" placeholder="comment" id="commentTextArea"></textarea>
+            </div>
+            <div class="flex md:flex-row flex-col gap-x-4 justify-center gap-x-8">
+                <button class="text-base font-semibold bg-secondary px-8 py-2 rounded-full md:mb-0 mb-3" id="commentPopupClose">
+                    Cancel
+                </button>
+                <button class="text-base font-semibold bg-secondary px-8 py-2 rounded-full" data-id="@Model.Form.FormId" id="saveComment">
+                    <span class="md:text-lg text-base font-medium ">Add Comment</span>
+                </button>
+            </div>
         </div>
     </div>
-</div>
-<script>
+    <script>
     $(document).ready(function () {
         $('.accordion-title').on('click', function () {
             $(this).next('.accordion-content').slideToggle();

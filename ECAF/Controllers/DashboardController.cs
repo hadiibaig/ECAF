@@ -37,7 +37,7 @@ namespace ECAF.Controllers
         {
             return PartialView("Partial_Home");
         }
-        [Authorize(Roles = "payroll,payroll1,payroll2")]
+        [Authorize(Roles = "payroll,payroll1,payroll2,Admin")]
         public PartialViewResult Forms()
         {
             string userId = User.Identity.GetUserId();

@@ -19,9 +19,10 @@ namespace ECAF.Controllers
         {
             return View();
         }
-        public PartialViewResult ViewForm(long Id)
+        public PartialViewResult ViewForm(long Id , string section = "")
         {
             var data = siteCardRepository.GetFormBYCardId(Id);
+            ViewBag.section = section;
             return PartialView("Partial_ViewForms" , data);
         }
         public JsonResult SaveForm(long Id , string text)

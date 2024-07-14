@@ -27,7 +27,7 @@ namespace ECAF
             var context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            string[] roleNames = { "payroll", "payroll1", "payroll2", "HR1", "AccountManager", "AppraisalManager" };
+            string[] roleNames = { "payroll", "payroll1", "payroll2", "HR1", "AccountManager", "AppraisalManager","Admin" };
 
             foreach (var roleName in roleNames)
             {

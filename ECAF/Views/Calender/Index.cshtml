@@ -74,6 +74,20 @@
             <div class="bg-secondary p-3 inline-block md:shadow-lg" style="margin-bottom:9%">
                 <img src="~/Assets/img/logo.jpg" class="md:w-[200px] w-[160px]" alt="Logo">
             </div>
+            <div class="flex md:flex-row flex-col md:items-start items-center px-4 py-8">
+                <div class="lg:w-[10%] md:w-[20%] w-full">
+                    <a href="@Url.Action("Index" ,"Dashboard")">
+                        <div class="flex items-center items-center gap-x-2">
+                            <svg width="14" height="14" viewBox="0 0 21 21" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.9861 9.15357H4.44295L10.7966 2.79989C11.3044 2.29211 11.3044 1.45884 10.7966 0.951069C10.6762 0.830371 10.5331 0.734613 10.3756 0.669278C10.2181 0.603942 10.0492 0.570313 9.87873 0.570312C9.70821 0.570312 9.53936 0.603942 9.38186 0.669278C9.22435 0.734613 9.08128 0.830371 8.96083 0.951069L0.380758 9.53114C0.260059 9.65159 0.164301 9.79467 0.0989659 9.95217C0.0336305 10.1097 0 10.2785 0 10.449C0 10.6196 0.0336305 10.7884 0.0989659 10.9459C0.164301 11.1034 0.260059 11.2465 0.380758 11.3669L8.96083 19.947C9.08137 20.0675 9.22447 20.1632 9.38196 20.2284C9.53946 20.2936 9.70826 20.3272 9.87873 20.3272C10.0492 20.3272 10.218 20.2936 10.3755 20.2284C10.533 20.1632 10.6761 20.0675 10.7966 19.947C10.9172 19.8265 11.0128 19.6834 11.078 19.5259C11.1433 19.3684 11.1768 19.1996 11.1768 19.0291C11.1768 18.8586 11.1433 18.6898 11.078 18.5323C11.0128 18.3749 10.9172 18.2318 10.7966 18.1112L4.44295 11.7575H18.9861C19.7022 11.7575 20.2881 11.1716 20.2881 10.4555C20.2881 9.73946 19.7022 9.15357 18.9861 9.15357Z">
+                                </path>
+                            </svg>
+                            <span class="md:text-lg text-base font-medium text-primary">Back</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
             <ul class="">
                 <li>
                     <div id="datepicker">
@@ -126,9 +140,9 @@
                         </div>
                     </div>
                     @*<h4 class="bg-clrpurple rounded-lg inline-block text-sm font-medium mt-2 px-3 py-[2px]">
-                        All-Hands Company
-                        Meeting
-                    </h4>*@
+                            All-Hands Company
+                            Meeting
+                        </h4>*@
                     <div class="flex mt-3 gap-x-3 mb-3">
                         <svg class="mt-1" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="6" cy="6" r="6" fill="#3B82F6" />
@@ -147,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-                                    }
+            }
         </div>
     </div>
     <div class="lg:w-[80%] w-full">

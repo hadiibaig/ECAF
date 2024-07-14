@@ -1,6 +1,6 @@
 ﻿@model ECAF.INFRASTRUCTURE.Models.DashboardViewModel
 
-<div style="width:63%;margin:3%" class="p-4 bg-secondary">
+<div style="width: 63%; margin: 3%; height: 250px; overflow-y: scroll" class="p-4 bg-secondary">
     <h2 class="text-2xl font-semibold text-primary pb-2">Recent Messages.</h2>
     <div class="grid">
         <ul>
@@ -10,12 +10,12 @@
                 {
                     <li>
 
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="sectionRow" style="display: flex; justify-content: space-between; align-items: center;" data-id="@item.Form.SiteCardId" data-title="comments">
                             <div>
                                 <h4 class="font-semibold text-primary pb-2">@ViewBag.Username</h4>
                                 <h4>@item.Text</h4>
                             </div>
-                            <a href="#" class="font-bold text-primary text-center underline">View Comment</a>
+                            <button class="font-bold text-primary text-center underline">View Comment</button>
                         </div>
 
                     </li>
@@ -27,7 +27,7 @@
 </div>
 
 <div style="display:flex;">
-    <div style="width:70%;margin:2%" class="p-4 bg-secondary col-lg-6">
+    <div style="width: 70%; margin: 2%; overflow-y: scroll" class="p-4 bg-secondary col-lg-6">
         <h2 class="text-2xl font-semibold text-primary pb-2">Assigned To You</h2>
         <div class="grid">
             <ul>
@@ -36,7 +36,7 @@
                     foreach (var item in Model.SiteCards.Where(x => x.UserId?.ToString() == ViewBag.UserId))
                     {
                         <li>
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="sectionRow" style="display: flex; justify-content: space-between; align-items: center;" data-id="@item.SiteCardId">
                                 <div style="display:flex;">
                                     <div>
                                         <svg class="mx-auto" width="25" height="25" viewBox="0 0 72 72" fill="none"
@@ -100,7 +100,7 @@
     </div>
 
 
-    <div style="width:70%; margin:2%;" class="p-4 bg-secondary col-lg-6">
+    <div style="width: 70%; margin: 2%; overflow-y: scroll" class="p-4 bg-secondary col-lg-6">
         <h2 class="text-2xl font-semibold text-primary pb-2">Open Forms</h2>
         <div class="grid">
             <ul>
@@ -109,7 +109,7 @@
                     foreach (var item in Model.SiteCards.Where(x => x.UserId?.ToString() != ViewBag.UserId))
                     {
                         <li>
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="sectionRow" style="display: flex; justify-content: space-between; align-items: center;" data-id="@item.SiteCardId">
                                 <div style="display:flex;">
                                     <div>
                                         <svg class="mx-auto" width="25" height="25" viewBox="0 0 72 72" fill="none"

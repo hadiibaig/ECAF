@@ -1,4 +1,5 @@
 ﻿using ECAF.INFRASTRUCTURE.Enums;
+using ECAF.INFRASTRUCTURE.Hubs;
 using ECAF.INFRASTRUCTURE.Models;
 using ECAF.INFRASTRUCTURE.utils;
 using System;
@@ -14,10 +15,12 @@ namespace ECAF.INFRASTRUCTURE.Repositories
     {
 
         private readonly ECAFEntities _db;
+        private readonly NotificationHub _notificationHub;
 
         public SiteCardRepository()
         {
             _db = new ECAFEntities();
+            _notificationHub = new NotificationHub();
         }
         public string CreateSiteCard(CreateSiteCard createSiteCard)
         {
@@ -78,7 +81,7 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                     _db.Forms.Add(form);
                     _db.SaveChanges();
                     transaction.Commit();
-                    ;
+                    _notificationHub.SendNotification("New Site card has been created in ECAF with reference no# : " + referenceNumber);
                     EmailService.SendEmail(_db.AspNetUsers.FirstOrDefault(x => x.Id == createSiteCard.UserId).Email , "New Site Card has been created"  , "New Site card has been created in ECAF with reference no# : " + referenceNumber);
                     return referenceNumber;
                 }
@@ -113,7 +116,8 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                             }
                         }
                         referenceNumber = existingSiteCard.ReferenceNumber;
-                        EmailService.SendEmail(_db.AspNetUsers.FirstOrDefault(x => x.Id == existingSiteCard.UserId).Email, "Site Card has been Updated", "Site card has been updated in ECAF with reference no# : " + existingSiteCard.ReferenceNumber);
+                        _notificationHub.SendNotification("Site card has been updated in ECAF with reference no# : " + referenceNumber);
+                        EmailService.SendEmail(_db.AspNetUsers.FirstOrDefault(x => x.Id == existingSiteCard.UserId).Email, "Site Card has been Updated", "Site card has been updated in ECAF with reference no# : " + referenceNumber);
                     }
                     _db.SaveChanges();
                     transaction.Commit();
@@ -138,6 +142,8 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                     existingSiteCard.CategoryId = (int)Categories.Terminated;
                     _db.SaveChanges();
                     transaction.Commit();
+                    _notificationHub.SendNotification("Site card has been terminated in ECAF with reference no# : " + existingSiteCard.ReferenceNumber);
+                    EmailService.SendEmail(_db.AspNetUsers.FirstOrDefault(x => x.Id == existingSiteCard.UserId).Email, "Site Card has been Terminated", "Site card has been terminated in ECAF with reference no# : " + existingSiteCard.ReferenceNumber);
                     return existingSiteCard.ReferenceNumber;
                 }
                 catch (Exception e)

@@ -20,7 +20,7 @@ namespace ECAF.Controllers
         // GET: Calender
         public ActionResult Index()
         {
-            var taskDescriptions = Helpers.GetEnumSelectList<Tasks>();
+            var taskDescriptions = Helpers.GetEnumSelectListWithStatus<Tasks>();
             ViewBag.TaskDescriptions = taskDescriptions;
             var events = _eventsRepository.LoadEvents(DateTime.Now.ToString(), DateTime.Now.AddDays(7).ToString()).OrderBy(x => DateTime.Parse(x.start)).ToList();
             return View(events);

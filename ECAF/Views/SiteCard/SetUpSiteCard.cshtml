@@ -110,13 +110,13 @@
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Customer Type:</h4>
                                     <input type="text" id="SetupSiteCard_CustomerTypeId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="CustomerType">
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="Customer Type">
                                 </div>
                             </div>
                             <div class="lg:col-span-5 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
-                                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Customer Billing Name:*</h4>
+                                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Customer Billing Name:</h4>
                                     <input type="text" id="SetupSiteCard_CustomerBillingNameId"
                                            class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
                                            name="Customer Billing Name">
@@ -125,16 +125,16 @@
                             <div class="lg:col-span-5 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Invoicing Address:</h4>
-                                    <textarea id="SetupSiteCard_InvoicingAddressId"
-                                              class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                              name="InvoicingAddress"> </textarea>
+                                    <textarea id="SetupSiteCard_InvoicingAddressId" 
+                                              class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                              name="Invoicing Address"> </textarea>
                                 </div>
                             </div>
                             <div class="lg:col-span-5 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Post Code:</h4>
-                                    <input type="text" id="SetupSiteCard_PostCodeId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                                    <input type="text" id="SetupSiteCard_PostCodeId" 
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
                                            name="PostCode">
                                 </div>
                             </div>
@@ -145,25 +145,25 @@
                             <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Finance Contact Name:</h4>
-                                    <input type="text" id="SetupSiteCard_FinanceContactNameId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="FinanceContactName">
+                                    <input type="text" id="SetupSiteCard_FinanceContactNameId" required
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="Finance Contact Name">
                                 </div>
                             </div>
                             <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Finance Contact Number:</h4>
                                     <input type="text" id="SetupSiteCard_FinanceContactNumberId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="FinanceContactNumber">
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="Finance Contact Number">
                                 </div>
                             </div>
                             <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Finance Contact Email:</h4>
-                                    <input type="text" id="SetupSiteCard_FinanceContactEmailId"
+                                    <input type="text" id="SetupSiteCard_FinanceContactEmailId required"
                                            class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="FinanceContactEmail">
+                                           name="Finance Contact Email">
                                 </div>
                             </div>
 
@@ -189,7 +189,7 @@
                         <div class="grid grid-cols-12 gap-6">
                             <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
-                                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Site Name:*</h4>
+                                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Site Name:</h4>
                                     <input type="text" id="SetupSiteCard_SiteNameId"
                                            class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
                                            name="Site name">
@@ -197,7 +197,7 @@
                             </div>
                             <div class="lg:col-span-5 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
-                                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Customer Billing Name:*</h4>
+                                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Customer Billing Name:</h4>
                                     <input type="text" id="SetupSiteCard_CustomerBillingNameId_SD"
                                            class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
                                            name="Customer Billing Name">
@@ -207,16 +207,16 @@
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Site Address:</h4>
                                     <textarea id="SetupSiteCard_SiteAddressId"
-                                              class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                              name="SiteAddress"> </textarea>
+                                              class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                              name="Site Address"> </textarea>
                                 </div>
                             </div>
                             <div class="lg:col-span-5 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Post Code:</h4>
                                     <input type="text" id="SetupSiteCard_PostCodeId_SD"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="PostCode_SD">
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="PostCode">
                                 </div>
                             </div>
 
@@ -227,24 +227,24 @@
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Facilities Mangaer Name:</h4>
                                     <input type="text" id="SetupSiteCard_FacilitiesMangaerNameId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="FacilitiesMangaerName">
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="Facilities Mangaer Name">
                                 </div>
                             </div>
                             <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Facilities Mangaer Number:</h4>
                                     <input type="text" id="SetupSiteCard_FacilitiesMangaerNumberId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="FacilitiesMangaerNumber">
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="Facilities Mangaer Number">
                                 </div>
                             </div>
                             <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Facilities Mangaer Email:</h4>
                                     <input type="text" id="SetupSiteCard_FacilitiesMangaerEmailId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="FacilitiesMangaerEmail">
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="Facilities Mangaer Email">
                                 </div>
                             </div>
 
@@ -279,7 +279,7 @@
                                         <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Weekly Hours:</h4>
                                         <input type="number"
                                                class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges" 
-                                               name="WeeklyHours">
+                                               name="Weekly Hours">
                                     </div>
                                 </div>
                                 <div class="lg:col-span-4 md:col-span-6 col-span-12">
@@ -287,7 +287,7 @@
                                         <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Pay Rate:</h4>
                                         <input type="number"
                                                class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges"
-                                               name="PayRate">
+                                               name="Pay Rate">
                                     </div>
                                 </div>
                                 <div class="lg:col-span-4 md:col-span-6 col-span-12">
@@ -295,7 +295,7 @@
                                         <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">AdHoc Charge Rate:</h4>
                                         <input type="number" 
                                                class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges siteCardCharges"
-                                               name="AdHocChargeRate">
+                                               name="AdHoc Charge Rate">
                                     </div>
                                 </div>
                                 <div class="lg:col-span-4 md:col-span-6 col-span-12">
@@ -303,7 +303,7 @@
                                         <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Effective Date:</h4>
                                         <input type="date" 
                                                class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges"
-                                               name="EffectiveDate">
+                                               name="Effective Date">
                                     </div>
                                 </div>
                             </div>
@@ -328,40 +328,40 @@
                                 <div class="md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Billing Type:</h4>
                                     <input type="text" id="SetupSiteCard_BillingTypeId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="BillingType">
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="Billing Type">
                                 </div>
                             </div>
                             <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div class="md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Annual Charge:</h4>
                                     <input type="number" id="SetupSiteCard_AnnualChargeId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="AnnualCharge">
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="Annual Charge">
                                 </div>
                             </div>
                             <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div class="md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Annual BH Charge:</h4>
                                     <input type="number" id="SetupSiteCard_AnnualBHChargeId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="AnnualBHCharge">
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="Annual BH Charge">
                                 </div>
                             </div>
                             <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div class="md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Total Annual:</h4>
                                     <input type="number" id="SetupSiteCard_TotalAnnualId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="TotalAnnual">
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="Total Annual">
                                 </div>
                             </div>
                             <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div class="md:flex-row flex-col md:items-center gap-x-2">
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Charge Per Period:</h4>
                                     <input type="number" id="SetupSiteCard_ChargePerPeriodId"
-                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                                           name="ChargePerPeriod">
+                                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
+                                           name="Charge Per Period">
                                 </div>
                             </div>
                         </div>

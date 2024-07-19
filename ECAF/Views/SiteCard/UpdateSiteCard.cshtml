@@ -102,10 +102,10 @@
                         <div class="grid grid-cols-12 gap-6 UpdateSiteCard_SiteCodeContainer" style="padding-top:4%;">
                             <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div class="flex md:flex-row flex-col md:items-center gap-x-2">
-                                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Site Card Code:*</h4>
+                                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Site Card Code:</h4>
                                     <input type="text" id="UpdateSiteCard_SiteCardCodeId"
                                            class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
-                                           name="SiteCardCode">
+                                           name="Site Card Code">
                                 </div>
                             </div>
                             <div class="lg:col-span-5 md:col-span-6 col-span-12">
@@ -113,13 +113,13 @@
                                     <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Site Card Name:*</h4>
                                     <input type="text" id="UpdateSiteCard_SiteCardNameId"
                                            class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required"
-                                           name="SiteCardName">
+                                           name="Site Card Name">
                                 </div>
                             </div>
                         </div>
                         <div class="gap-6" style="padding-top:4%; display:flex">
                             <h6>Are there any ADHOC cards attatched to the above site?</h6>
-                            <input type="checkbox" id="toggleAdHocCheckbox"
+                            <input type="checkbox" id="toggleAdHocCheckbox required"
                                    class="px-3 py-[16px] rounded-full" style="height : 20px ; width : 40px;">
                         </div>
                         <div id="UpdateSiteCard_IsAdHocAttacthedContainer">
@@ -143,8 +143,8 @@
                                 <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                     <div class="md:flex-row flex-col md:items-center gap-x-2">
 
-                                        <select class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges"
-                                                id="employeeDropdown" name="SelectEmployees">
+                                        <select class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges required"
+                                                id="employeeDropdown" name="Select Employees">
                                             <option value="">Select an employee</option>
                                         </select>
                                         @*<h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Select Employees:</h4>
@@ -157,7 +157,7 @@
                                     <div class="md:flex-row flex-col md:items-center gap-x-2">
                                         <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Position:</h4>
                                         <input type="text"
-                                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges"
+                                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges required"
                                                name="Position">
                                     </div>
                                 </div>
@@ -165,16 +165,16 @@
                                     <div class="md:flex-row flex-col md:items-center gap-x-2">
                                         <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Pay Rate/Salary:</h4>
                                         <input type="number"
-                                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges"
-                                               name="PayRate">
+                                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges required"
+                                               name="Pay Rate">
                                     </div>
                                 </div>
                                 <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                     <div class="md:flex-row flex-col md:items-center gap-x-2">
                                         <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Effective Date:</h4>
                                         <input type="date"
-                                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges"
-                                               name="EffectiveDate">
+                                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] siteCardCharges required"
+                                               name="Effective Date">
                                     </div>
                                 </div>
                             </div>

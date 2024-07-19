@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace ECAF.INFRASTRUCTURE.utils
 {
-   public class Helpers
+    public class Helpers
     {
         public static string GetEnumDescription<TEnum>(int value) where TEnum : Enum
         {
@@ -34,6 +34,32 @@ namespace ECAF.INFRASTRUCTURE.utils
 
             return new SelectList(items, "Value", "Text");
         }
+        public static SelectList GetEnumSelectListWithStatus<TEnum>() where TEnum : Enum
+        {
+            var items = Enum.GetValues(typeof(TEnum))
+                            .Cast<TEnum>()
+                            .Select(e => new
+                            {
+                                Value = Convert.ToInt32(e),
+                                Text = SeparateString(e.GetDescription()).Item2
+                            })
+                            .ToList();
+
+            return new SelectList(items, "Value", "Text");
+        }
+        public static Tuple<string, string> SeparateString(string input)
+        {
+            string[] parts = input.Split(':');
+            if (parts.Length == 2)
+            {
+                return new Tuple<string, string>(parts[0], parts[1]);
+            }
+            else
+            {
+                throw new ArgumentException("Input string is not in the correct format.");
+            }
+        }
+
     }
 
     public static class EnumExtensions

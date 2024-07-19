@@ -56,7 +56,7 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                 rec.end = item.ScheduledDate?.AddMinutes
                                     (item.EventLength ?? 0).ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
                 rec.title = item.Title;
-                rec.className = Helpers.GetEnumDescription<Tasks>(item.Status ?? 1);
+                rec.className = Helpers.SeparateString(Helpers.GetEnumDescription<Tasks>(item.Status ?? 1)).Item1;
                 result.Add(rec);
             }
 

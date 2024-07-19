@@ -9,11 +9,11 @@ namespace ECAF.INFRASTRUCTURE.Enums
 {
     public enum Tasks
     {
-        [Description("GREEN")]
-        Green = 1,
-        [Description("RED")]
-        RED,
-        [Description("BLUE")]
-        Red
+        [Description("GREEN:InProgress")]
+        InProgress = 1,
+        [Description("BLUE:Completed")]
+        Completed,
+        [Description("RED:Due")]
+        Due
     }
 }

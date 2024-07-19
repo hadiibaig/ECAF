@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\ecaf\ecaf\Publish</_PublishTargetUrl>
-    <History>True|2024-07-14T15:40:45.3647664Z;True|2024-07-11T14:23:44.2514934-07:00;True|2024-07-11T14:13:16.0588959-07:00;True|2024-07-06T17:50:45.3102492-07:00;True|2024-06-30T15:44:04.6915572-07:00;True|2024-06-26T14:36:24.0503463-07:00;True|2024-06-26T14:34:21.1790331-07:00;True|2024-06-20T13:07:43.6828044-07:00;</History>
+    <History>True|2024-07-17T22:26:57.2392619Z;False|2024-07-17T15:26:04.5506338-07:00;False|2024-07-17T15:19:15.1113036-07:00;False|2024-07-17T15:16:47.9540825-07:00;True|2024-07-14T08:40:45.3647664-07:00;True|2024-07-11T14:23:44.2514934-07:00;True|2024-07-11T14:13:16.0588959-07:00;True|2024-07-06T17:50:45.3102492-07:00;True|2024-06-30T15:44:04.6915572-07:00;True|2024-06-26T14:36:24.0503463-07:00;True|2024-06-26T14:34:21.1790331-07:00;True|2024-06-20T13:07:43.6828044-07:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Assets/img/logo.jpg">
@@ -18,19 +18,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/05/2024 15:09:52</publishTime>
     </File>
     <File Include="bin/ECAF.dll">
-      <publishTime>07/14/2024 08:40:43</publishTime>
+      <publishTime>07/17/2024 15:26:55</publishTime>
     </File>
     <File Include="bin/ECAF.INFRASTRUCTURE.dll">
-      <publishTime>07/14/2024 08:40:43</publishTime>
+      <publishTime>07/17/2024 15:16:46</publishTime>
     </File>
     <File Include="bin/ECAF.INFRASTRUCTURE.dll.config">
       <publishTime>06/05/2024 15:09:51</publishTime>
     </File>
     <File Include="bin/ECAF.INFRASTRUCTURE.pdb">
-      <publishTime>07/14/2024 08:40:43</publishTime>
+      <publishTime>07/17/2024 15:16:46</publishTime>
     </File>
     <File Include="bin/ECAF.pdb">
-      <publishTime>07/14/2024 08:40:43</publishTime>
+      <publishTime>07/17/2024 15:26:55</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>06/05/2024 15:09:52</publishTime>
@@ -46,6 +46,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
       <publishTime>06/05/2024 15:09:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
+      <publishTime>01/13/2022 18:40:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.Core.pdb">
+      <publishTime>01/13/2022 18:32:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.SystemWeb.dll">
+      <publishTime>01/13/2022 18:40:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.SystemWeb.pdb">
+      <publishTime>01/13/2022 18:34:16</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>06/05/2024 15:09:53</publishTime>
@@ -312,13 +324,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/05/2024 15:09:52</publishTime>
     </File>
     <File Include="libman.json">
-      <publishTime>06/17/2024 08:33:58</publishTime>
+      <publishTime>07/17/2024 15:08:57</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>06/05/2024 15:09:52</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
       <publishTime>06/05/2024 15:09:52</publishTime>
+    </File>
+    <File Include="Scripts/custom/notifications.js">
+      <publishTime>07/17/2024 14:50:11</publishTime>
     </File>
     <File Include="Scripts/fullcalendar/index.global.js">
       <publishTime>06/17/2024 06:48:38</publishTime>
@@ -352,6 +367,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Scripts/jquery-ui.min.js">
       <publishTime>06/17/2024 08:33:59</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-2.4.3.js">
+      <publishTime>07/16/2024 12:59:30</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-2.4.3.min.js">
+      <publishTime>07/16/2024 12:59:30</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
       <publishTime>06/05/2024 15:09:52</publishTime>
@@ -438,7 +459,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/12/2024 10:38:53</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>07/13/2024 08:41:19</publishTime>
+      <publishTime>07/17/2024 15:10:39</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>06/05/2024 15:09:52</publishTime>
@@ -468,25 +489,25 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/05/2024 15:09:52</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/05/2024 15:09:52</publishTime>
+      <publishTime>07/17/2024 14:47:06</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutCalender.cshtml">
-      <publishTime>06/17/2024 09:29:37</publishTime>
+      <publishTime>07/17/2024 15:10:54</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutDashboard.cshtml">
-      <publishTime>07/14/2024 08:12:55</publishTime>
+      <publishTime>07/17/2024 15:07:41</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutLogin.cshtml">
       <publishTime>06/05/2024 15:07:46</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutMainNav.cshtml">
-      <publishTime>06/05/2024 15:07:46</publishTime>
+      <publishTime>07/17/2024 15:10:27</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutSetupSiteCardSuccess.cshtml">
       <publishTime>06/05/2024 15:07:46</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutSiteCard.cshtml">
-      <publishTime>06/05/2024 15:07:46</publishTime>
+      <publishTime>07/17/2024 15:11:08</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>06/05/2024 15:09:52</publishTime>
@@ -513,7 +534,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/05/2024 15:09:52</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/11/2024 14:23:43</publishTime>
+      <publishTime>07/17/2024 15:26:03</publishTime>
     </File>
   </ItemGroup>
 </Project>

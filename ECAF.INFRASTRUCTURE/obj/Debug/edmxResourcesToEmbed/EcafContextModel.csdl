@@ -89,10 +89,9 @@
     <Property Name="SiteCardId" Type="Int64" />
     <Property Name="EcafFormId" Type="Int64" />
     <Property Name="UserId" Type="Int64" />
-    <NavigationProperty Name="Forms1" Relationship="Self.FK_Forms_Forms" FromRole="Forms" ToRole="Forms1" />
-    <NavigationProperty Name="Form1" Relationship="Self.FK_Forms_Forms" FromRole="Forms1" ToRole="Forms" />
     <NavigationProperty Name="Comments" Relationship="ECAFModel.FK_Comments_Forms" FromRole="Form" ToRole="Comment" />
     <NavigationProperty Name="EcafForms" Relationship="ECAFModel.FK_EcafForms_Forms" FromRole="Form" ToRole="EcafForm" />
+    <Property Name="AssignedUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="SiteCardAmount">
     <Key>
@@ -158,18 +157,6 @@
     <NavigationProperty Name="SiteCardCharges" Relationship="ECAFModel.FK_SiteCardCharges_SiteCards" FromRole="SiteCard" ToRole="SiteCardCharge" />
     <NavigationProperty Name="SiteCardDatas" Relationship="ECAFModel.FK_SiteCardDatas_SiteCards" FromRole="SiteCard" ToRole="SiteCardData" />
   </EntityType>
-  <Association Name="FK_Forms_Forms">
-    <End Role="Forms" Type="Self.Form" Multiplicity="1" />
-    <End Role="Forms1" Type="Self.Form" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Forms">
-        <PropertyRef Name="FormId" />
-      </Principal>
-      <Dependent Role="Forms1">
-        <PropertyRef Name="FormId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="ECAFEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="Comments" EntityType="Self.Comment" />
@@ -182,10 +169,6 @@
     <EntitySet Name="SiteCardCharges" EntityType="Self.SiteCardCharge" />
     <EntitySet Name="SiteCardDatas" EntityType="Self.SiteCardData" />
     <EntitySet Name="SiteCards" EntityType="Self.SiteCard" />
-    <AssociationSet Name="FK_Forms_Forms" Association="Self.FK_Forms_Forms">
-      <End Role="Forms" EntitySet="Forms" />
-      <End Role="Forms1" EntitySet="Forms" />
-    </AssociationSet>
     <AssociationSet Name="FK_Comments_Forms" Association="ECAFModel.FK_Comments_Forms">
       <End Role="Form" EntitySet="Forms" />
       <End Role="Comment" EntitySet="Comments" />
@@ -241,6 +224,7 @@
     </AssociationSet>
     <EntitySet Name="Events" EntityType="ECAFModel.Event" />
     <EntitySet Name="Questions" EntityType="ECAFModel.Question" />
+    <EntitySet Name="FormPdfs" EntityType="ECAFModel.FormPdf" />
   </EntityContainer>
   <Association Name="FK_Comments_Forms">
     <End Type="ECAFModel.Form" Role="Form" Multiplicity="0..1" />
@@ -458,5 +442,17 @@
     <Property Name="Id" Type="Int64" Nullable="false" />
     <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="FormId" Type="Int64" />
+    <Property Name="CreatorId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="AssignedUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="FormPdf">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FormId" Type="Int64" />
+    <Property Name="PdfPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SubmitterId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>

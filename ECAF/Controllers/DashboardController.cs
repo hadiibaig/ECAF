@@ -11,9 +11,11 @@ namespace ECAF.Controllers
     public class DashboardController : Controller
     {
         private readonly SiteCardRepository siteCardRepository;
+        private readonly FormRepository FormRepository;
         public DashboardController()
         {
             siteCardRepository = new SiteCardRepository();
+            FormRepository = new FormRepository();
         }
         public ActionResult Index()
         {
@@ -37,12 +39,12 @@ namespace ECAF.Controllers
         {
             return PartialView("Partial_Home");
         }
-        [Authorize(Roles = "payroll,payroll1,payroll2,Admin")]
+        [Authorize(Roles = "payroll,payroll1,payroll2,Admin,AccountManager")]
         public PartialViewResult Forms()
         {
             string userId = User.Identity.GetUserId();
             ViewBag.UserId = userId;
-            var data = siteCardRepository.LoadFormsData();
+            var data = FormRepository.LoadFormsData(userId);
             return PartialView("Partial_Forms" , data);
         }
     }

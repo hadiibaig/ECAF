@@ -12,12 +12,12 @@ namespace ECAF.INFRASTRUCTURE
     using System;
     using System.Collections.Generic;
     
-    public partial class Question
+    public partial class FormPdf
     {
         public long Id { get; set; }
-        public string Text { get; set; }
         public Nullable<long> FormId { get; set; }
-        public string CreatorId { get; set; }
-        public string AssignedUserId { get; set; }
+        public string PdfPath { get; set; }
+        public string SubmitterId { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
     }
 }

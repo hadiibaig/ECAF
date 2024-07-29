@@ -31,6 +31,10 @@ namespace ECAF.Controllers
         {
             return View();
         }
+        public ActionResult CompletedForms()
+        {
+            return View();
+        }
         public ActionResult ECAFForm()
         {
             return View();

@@ -11,3 +11,4 @@
 *.user
 /ECAF/Properties/PublishProfiles
 /ECAF.INFRASTRUCTURE/Scripts
+*.pdf

@@ -31,7 +31,8 @@ namespace ECAF.INFRASTRUCTURE.utils
                 using (var mess = new MailMessage(senderEmail, receiverEmail)
                 {
                     Subject = sub,
-                    Body = body
+                    Body = body,
+                    IsBodyHtml = true
                 })
                 {
                     smtp.Send(mess);

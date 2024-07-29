@@ -142,6 +142,16 @@
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="SiteCardId" Type="bigint" />
   </EntityType>
+  <EntityType Name="FormPdfs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FormId" Type="bigint" />
+    <Property Name="PdfPath" Type="nvarchar(max)" />
+    <Property Name="SubmitterId" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedAt" Type="datetime" />
+  </EntityType>
   <EntityType Name="Forms">
     <Key>
       <PropertyRef Name="FormId" />
@@ -154,14 +164,17 @@
     <Property Name="SiteCardId" Type="bigint" />
     <Property Name="EcafFormId" Type="bigint" />
     <Property Name="UserId" Type="bigint" />
+    <Property Name="AssignedUser" Type="nvarchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="Questions">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="bigint" Nullable="false" />
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Text" Type="nvarchar(max)" />
     <Property Name="FormId" Type="bigint" />
+    <Property Name="CreatorId" Type="nvarchar" MaxLength="128" />
+    <Property Name="AssignedUserId" Type="nvarchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="SiteCardAmounts">
     <Key>
@@ -331,18 +344,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Forms_Forms">
-    <End Role="Forms" Type="Self.Forms" Multiplicity="1" />
-    <End Role="Forms1" Type="Self.Forms" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Forms">
-        <PropertyRef Name="FormId" />
-      </Principal>
-      <Dependent Role="Forms1">
-        <PropertyRef Name="FormId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_SiteCardAmounts_SiteCards">
     <End Role="SiteCards" Type="Self.SiteCards" Multiplicity="0..1" />
     <End Role="SiteCardAmounts" Type="Self.SiteCardAmounts" Multiplicity="*" />
@@ -393,6 +394,7 @@
     <EntitySet Name="EcafForms" EntityType="Self.EcafForms" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FacilitiesManagers" EntityType="Self.FacilitiesManagers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FormPdfs" EntityType="Self.FormPdfs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Forms" EntityType="Self.Forms" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SiteCardAmounts" EntityType="Self.SiteCardAmounts" Schema="dbo" store:Type="Tables" />
@@ -434,10 +436,6 @@
     <AssociationSet Name="FK_FacilitiesManagers_SiteCards" Association="Self.FK_FacilitiesManagers_SiteCards">
       <End Role="SiteCards" EntitySet="SiteCards" />
       <End Role="FacilitiesManagers" EntitySet="FacilitiesManagers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Forms_Forms" Association="Self.FK_Forms_Forms">
-      <End Role="Forms" EntitySet="Forms" />
-      <End Role="Forms1" EntitySet="Forms" />
     </AssociationSet>
     <AssociationSet Name="FK_SiteCardAmounts_SiteCards" Association="Self.FK_SiteCardAmounts_SiteCards">
       <End Role="SiteCards" EntitySet="SiteCards" />

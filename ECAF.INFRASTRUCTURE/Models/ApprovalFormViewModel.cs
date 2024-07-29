@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ECAF.INFRASTRUCTURE.Models
 {
-   public class DashboardViewModel
+    public class ApprovalFormViewModel
     {
+        public long FormId { get; set; }
         public List<Comment> Comments { get; set; }
-        public List<Form> Forms { get; set; }
     }
 }

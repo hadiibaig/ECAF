@@ -14,5 +14,7 @@ namespace ECAF.INFRASTRUCTURE.Enums
         InProgress = 1,
         [Description("Completed")]
         Completed,
+        [Description("Rejected")]
+        Rejected,
     }
 }

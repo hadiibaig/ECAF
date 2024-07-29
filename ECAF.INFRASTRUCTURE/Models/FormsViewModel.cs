@@ -10,5 +10,6 @@ namespace ECAF.INFRASTRUCTURE.Models
     {
         public List<EcafForm> EcafForms { get; set; }
         public  List<SiteCard> SiteCards { get; set; }
+        public  List<Form> AssignedToMeForms { get; set; }
     }
 }

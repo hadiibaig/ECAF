@@ -16,7 +16,6 @@
         <EntityTypeShape EntityType="ECAFModel.SiteCardCharge" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ECAFModel.SiteCardData" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ECAFModel.SiteCard" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="ECAFModel.FK_Forms_Forms" ManuallyRouted="false" />
         <AssociationConnector Association="ECAFModel.FK_Comments_Forms" />
         <AssociationConnector Association="ECAFModel.FK_CustomerFinances_Customers" />
         <AssociationConnector Association="ECAFModel.FK_Customers_SiteCards" />
@@ -36,6 +35,7 @@
         <AssociationConnector Association="ECAFModel.AspNetUserRoles" />
         <EntityTypeShape EntityType="ECAFModel.Event" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="ECAFModel.Question" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ECAFModel.FormPdf" Width="1.5" PointX="5.375" PointY="3.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

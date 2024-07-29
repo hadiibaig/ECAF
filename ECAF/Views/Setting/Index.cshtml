@@ -1,53 +1,148 @@
-﻿@model List<string>
+﻿@model ECAF.INFRASTRUCTURE.Models.SettingsViewModel
+@using ECAF.INFRASTRUCTURE.Config
 
 <div class="flex h-[100vh]" id="partialForms">
     <div class="lg:w-[100%] w-full">
-        <div class="grid grid-cols-12 gap-6" style="margin-left:5%;margin-top:5%">
-            <div class="lg:col-span-4 md:col-span-6 col-span-12">
-                <div class="flex md:flex-row flex-col md:items-center gap-x-2">
-                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Email:</h4>
-                    <input type="text" id="createUser_EmailId"
-                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                           name="Email">
+        @if (User.IsInRole(RoleNames.Admin))
+        {
+            <div class="grid grid-cols-12 gap-6" style="margin-left:5%;margin-top:5%">
+                <div class="lg:col-span-4 md:col-span-6 col-span-12">
+                    <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                        <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Email:</h4>
+                        <input type="text" id="createUser_EmailId"
+                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                               name="Email">
+                    </div>
                 </div>
-            </div>
-            <div class="lg:col-span-5 md:col-span-6 col-span-12">
-                <div class="flex md:flex-row flex-col md:items-center gap-x-2">
-                    <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Password:</h4>
-                    <input type="password" id="createUser_PasswordId"
-                           class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                           name="Password">
-                    <input type="checkbox" onclick="togglePassword()">Show Password
+                <div class="lg:col-span-5 md:col-span-6 col-span-12">
+                    <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                        <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Password:</h4>
+                        <input type="password" id="createUser_PasswordId"
+                               class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                               name="Password">
+                        <input type="checkbox" onclick="togglePassword()">Show Password
+                    </div>
                 </div>
-            </div>
-            <div class="lg:col-span-5 md:col-span-6 col-span-12">
-                <div class="flex md:flex-row flex-col md:items-center gap-x-2">
-                    <select class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                            id="createUser_RoleId" name="SelectRoles">
-                        <option value="">Select a Role</option>
-                        @foreach (var item in Model)
-                        {
-                    <option value="@item">@item</option>
-                        }
-                    </select>
+                <div class="lg:col-span-5 md:col-span-6 col-span-12">
+                    <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                        <select class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                                id="createUser_RoleId" name="SelectRoles">
+                            <option value="">Select a Role</option>
+                            @foreach (var item in Model.Roles)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="lg:col-span-5 md:col-span-6 col-span-12">
-                <div class="flex md:flex-row flex-col md:items-center gap-x-2">
-                    <button id="createUserId" class="md:w-auto w-full ml-auto flex items-center justify-center gap-x-6 bg-secondaryDark px-4 py-2 rounded-full submit-btn">
-                        <span class="md:text-lg text-base font-medium ">Register</span>
-                        <svg width="24" height="25" viewBox="0 0 41 25" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                  d="M3.29395 14.2085L32.4621 14.2085L23.5309 21.6569C22.6607 22.3812 22.8033 23.4592 23.8456 24.0622C24.8904 24.6669 26.4392 24.5679 27.3069 23.8435L39.5986 13.5935C39.6945 13.5132 39.7437 13.4193 39.8149 13.3304C39.8739 13.2587 39.9452 13.1972 39.9895 13.1186C40.1001 12.9222 40.1665 12.7154 40.1665 12.507C40.1665 12.5053 40.1689 12.5019 40.1689 12.5002C40.1689 12.4985 40.1665 12.4951 40.1665 12.4934C40.1665 12.2849 40.1001 12.0782 39.9895 11.8818C39.9452 11.8032 39.8739 11.7417 39.8149 11.6699C39.7437 11.5811 39.6945 11.4872 39.5986 11.4069L27.3069 1.15686C26.8202 0.751984 26.122 0.541858 25.4189 0.541858C24.8634 0.541858 24.3053 0.671692 23.8456 0.938192C22.8033 1.54123 22.6607 2.61919 23.5309 3.34353L32.4621 10.7919L3.29395 10.7919C1.93695 10.7919 0.835616 11.5572 0.835616 12.5002C0.835616 13.4432 1.93695 14.2085 3.29395 14.2085"
-                                  fill="white" />
-                        </svg>
-                    </button>
+                <div class="lg:col-span-5 md:col-span-6 col-span-12">
+                    <div class="flex md:flex-row flex-col md:items-center gap-x-2">
+                        <button id="createUserId" class="md:w-auto w-full ml-auto flex items-center justify-center gap-x-6 bg-secondaryDark px-4 py-2 rounded-full submit-btn">
+                            <span class="md:text-lg text-base font-medium ">Register</span>
+                            <svg width="24" height="25" viewBox="0 0 41 25" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M3.29395 14.2085L32.4621 14.2085L23.5309 21.6569C22.6607 22.3812 22.8033 23.4592 23.8456 24.0622C24.8904 24.6669 26.4392 24.5679 27.3069 23.8435L39.5986 13.5935C39.6945 13.5132 39.7437 13.4193 39.8149 13.3304C39.8739 13.2587 39.9452 13.1972 39.9895 13.1186C40.1001 12.9222 40.1665 12.7154 40.1665 12.507C40.1665 12.5053 40.1689 12.5019 40.1689 12.5002C40.1689 12.4985 40.1665 12.4951 40.1665 12.4934C40.1665 12.2849 40.1001 12.0782 39.9895 11.8818C39.9452 11.8032 39.8739 11.7417 39.8149 11.6699C39.7437 11.5811 39.6945 11.4872 39.5986 11.4069L27.3069 1.15686C26.8202 0.751984 26.122 0.541858 25.4189 0.541858C24.8634 0.541858 24.3053 0.671692 23.8456 0.938192C22.8033 1.54123 22.6607 2.61919 23.5309 3.34353L32.4621 10.7919L3.29395 10.7919C1.93695 10.7919 0.835616 11.5572 0.835616 12.5002C0.835616 13.4432 1.93695 14.2085 3.29395 14.2085"
+                                      fill="white" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-            </div>
 
+            </div>
+        }
+        @if (User.IsInRole(RoleNames.Admin) || User.IsInRole(RoleNames.Payroll2))
+        {
+            <div class="grid grid-cols-6 gap-6" style="margin-left:5%;margin-top:5%">
+                <div class="col-span-12 mb-4">
+                    <input type="text" id="formSearch" placeholder="Search" class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px]">
+                </div>
+                <div class="col-span-12">
+                    <table class="w-full">
+                        @*<thead class="bg-secondaryDark text-white">
+                            <tr>
+                                <th class="w-1/3 py-2">Form ID</th>
+                                <th class="w-1/3 py-2">Form Description</th>
+                                <th class="w-1/3 py-2">Actions</th>
+                            </tr>
+                        </thead>*@
+                        <tbody class="text-gray-700" id="formTableBody">
+                            @foreach (var item in Model.Forms)
+                            {
+                                <tr>
+                                    <td class="w-1/3 py-2">@item.FormId</td>
+                                    <td class="w-1/3 py-2">@item.Description</td>
+                                    <td class="w-1/3 py-2">
+                                        <button class="viewForm bg-secondary px-4 py-2 rounded-full text-white mr-2" data-id="@item.FormId">View</button>
+                                        @*<button class="deleteForm bg-secondary px-4 py-2 rounded-full text-white" data-id="@item.FormId">Delete</button>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+        </div>
+</div>
+
+
+
+
+<div id="attached_adhocPop" class="bg-secondary border border-primary md:w-[90%] w-full p-5"
+     style="display: none;">
+    <div class="bg-secondaryDark md:px-12 px-6 py-6">
+        <h2 class="text-3xl font-bold text-center mb-12">
+            Add Questions To Form
+        </h2>
+        <div class="">
+            <form id="EventForm" class="well">
+                    <div class="grid grid-cols-12 gap-6" style="display:ruby-text; padding-bottom : 2%">
+                        <div class="lg:col-span-4 md:col-span-6 col-span-12">
+                            <div class="md:flex-row flex-col md:items-center gap-x-2">
+                                <select class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] "
+                                        id="usersSelect" name="Select Users">
+                                    <option value="">Select Account Manager</option>
+                                    @if (Model.Users != null)
+                                    {
+                                        foreach (var item in Model.Users)
+                                        {
+                                            <option value="@item.Id">@item.UserName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                <div id="QuestionContainer">
+                    <div class="grid grid-cols-12 gap-6 QuestionsContainer" id="QuestionsContainer" style="display:ruby-text; padding-bottom : 2%">
+                        <div class="lg:col-span-4 col-span-12">
+                            <div class="lg:flex-row flex-col lg:items-center gap-x-2">
+                                <h4 class="text-base font-medium whitespace-nowrap md:mb-0 mb-2">Question:</h4>
+                                <input type="text"
+                                       class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] question"
+                                       name="Question">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button style="margin-top:3%" class="bg-secondaryDark px-4 py-2 rounded-full md:mb-0 mb-3" id="AddQuestionToUsers">Add Question</button>
+                <button style="margin-top:3%" class="bg-secondaryDark px-4 py-2 rounded-full md:mb-0 mb-3" id="RemoveQuestionToUsers">Remove Question</button>
+            </form>
+        </div>
+        <input id="formId" hidden value="" />
+        <div class="flex justify-end pt-5">
+            <button 
+                    class="ml-auto flex items-center justify-center gap-x-6 bg-secondary px-4 py-2 rounded-full" id="submitQuestions">
+                <span class="md:text-lg text-base font-medium">Save Form</span>
+            </button>
+            <button id="btnPopupCancel"
+                    class="ml-auto flex items-center justify-center gap-x-6 bg-primary px-4 py-2 rounded-full">
+                <span class="md:text-lg text-base font-medium ">Cancel</span>
+            </button>
         </div>
     </div>
+
 </div>
 <script>
     $(document).ready(function() {
@@ -71,7 +166,200 @@
                 }
             });
         });
+        $('#formSearch').on('keyup', function () {
+            var value = $(this).val().toLowerCase();
+            $('#formTableBody tr').filter(function () {
+                $(this).toggle($(this).find('td:nth-child(2)').text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+        $('#btnPopupCancel').click(function () {
+            $('#attached_adhocPop').hide();
+
+        });
+        var initialModalHtml = $('#attached_adhocPop').html();
+        $('.viewForm').click(function () {
+
+            //if (modal == null) {
+            //    modal = $('#QuestionsContainer').clone();
+            //}
+            //else {
+            //    $('#attached_adhocPop').find('#QuestionContainer').empty();
+            //    $('#attached_adhocPop').find('#usersSelect').val('');
+
+            //    $('#QuestionContainer').append(modal);
+            //}
+
+          //  $('#attached_adhocPop').html(initialModalHtml);
+
+            var id = $(this).data('id');
+            $('#formId').val(id)
+            $.ajax({
+                type: "GET",
+                url: '/Setting/GetQuestions?' + 'FormId=' + id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.Questions) {
+                        $('#usersSelect').val(response.UserId);
+                        addQuestions(response.Questions)
+                        $('#attached_adhocPop').show();
+                    }
+                    else {
+                        $('#usersSelect').val('');
+                        $('#QuestionContainer .QuestionsContainer:not(:first)').remove();
+                        $('#QuestionContainer').find('.QuestionsContainer').each(function (index, element) {
+                            var input = $(element).find('input.question');
+                            $(input).val('');
+                        });
+                        $('#attached_adhocPop').show();
+                    }
+                },
+                error: function (e) {
+                    alertify.error("An error occured, Please contact admin");
+                }
+            });
+        });
+        //$('.usersSelect').select2({
+        //    placeholder: "Select Users",
+        //    allowClear: false
+        //});
+        $("#AddQuestionToUsers").click(function (e) {
+            e.preventDefault();
+            debugger;
+
+            var clonedDiv = $('#QuestionsContainer').clone();
+            var inputs = $(clonedDiv).find('input, select');
+            $(inputs).each(function (i, input) {
+                if (input) {
+                    $(input).val('')
+                }
+            });
+            $('#QuestionContainer').append(clonedDiv);
+            updateRemoveButton();
+
+            //var clonedDiv = $('#QuestionsContainer').clone();
+
+            //var inputs = $(clonedDiv).find('input, select');
+            //$(inputs).each(function (i, input) {
+            //    if ($(input).is('select')) {
+            //        if ($(input).prop('multiple')) {
+            //            $(input).val([]).trigger('change');
+            //        } else {
+            //            $(input).val('').trigger('change'); 
+            //        }
+            //    } else {
+            //        $(input).val('');
+            //    }
+            //});
+            //$(clonedDiv).find('select').select2('destroy');
+            //$(clonedDiv).find('select').siblings('span.select2').remove();
+            //$(clonedDiv).find('select').each(function () {
+            //    var oldId = $(this).attr('id');
+            //    var newId = oldId + '_' + new Date().getTime();
+            //    $(this).attr('id', newId);
+            //});
+            //$('#QuestionContainer').append(clonedDiv);
+
+            //$(clonedDiv).find('select').select2({
+            //    placeholder: "Select User",
+            //    allowClear: true
+            //});
+            //updateRemoveButton();
+
+            //$('.usersSelect').select2({
+            //    placeholder: "Select User",
+            //    allowClear: true
+            //});
+
+        });
+        $('#RemoveQuestionToUsers').click(function (e) {
+            e.preventDefault();
+            $('#QuestionContainer .QuestionsContainer').last().remove();
+            updateRemoveButton();
+        });
+        $("#submitQuestions").click(function (e) {
+            e.preventDefault();
+            debugger;
+
+            var list = [];
+            var userId = $('#usersSelect').val();
+            $('#QuestionContainer').find('.QuestionsContainer').each(function () {
+
+                $(this).find('input').each(function () {
+                    var $input = $(this);
+                    if ($input.is('input')) {
+                        list.push($input.val());
+                    }
+                });
+            });
+            $('#submitQuestions').prop('disabled', true);
+
+            //    var obj = {};
+            //    $(this).find('input, select').each(function () {
+            //        var $input = $(this);
+            //        if ($input.is('select')) {
+            //            obj['UserIds'] = $input.val(); 
+            //        } else {
+            //            obj['Question'] = $input.val();
+            //        }
+            //    });
+            //    if (obj['UserIds'] && obj['Question']) {
+            //        list.push(obj);
+            //    }
+
+            //});
+            //$('#submitQuestions').prop('disabled', true);
+            let model = { Questions: list, FormId: parseInt($('#formId').val()), UserId: userId }
+            $.ajax({
+                type: "POST",
+                url: '/Setting/SubmitQuestions',
+                data: JSON.stringify(model),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $('#submitQuestions').prop('disabled', false);
+                    if (response) {
+                        alertify.success("Questions have been submitted");
+                    }
+                    else {
+                        alertify.error("Questions have not been submitted");
+                    }
+                    $('#attached_adhocPop').hide();
+                },
+                error: function (e) {
+                    $('#submitQuestions').prop('disabled', false);
+                    alertify.error("An error occured, Please contact admin");
+                }
+            });
+
+        });
     });
+    function addQuestions(questions) {
+        $('#QuestionContainer .QuestionsContainer:not(:first)').remove();
+        $('#QuestionContainer').find('.QuestionsContainer').each(function (index, element) {
+            var input = $(element).find('input.question');
+                $(input).val('');
+        });
+        var questionContainer = $('#QuestionContainer');
+        for (var i = 0; i < questions.length -1; i++) {
+            var clonedDiv = $('#QuestionsContainer').clone().removeAttr('id').show();
+            questionContainer.append(clonedDiv);
+        }
+        $('#QuestionContainer').find('.QuestionsContainer').each(function (index, element) {
+            var input = $(element).find('input.question');
+            if (questions[index]) {
+                $(input).val(questions[index]);
+            }
+        });
+        updateRemoveButton();
+    }
+    function updateRemoveButton() {
+        if ($('#QuestionContainer .QuestionsContainer').length > 1) {
+            $('#RemoveQuestionToUsers').show();
+        } else {
+            $('#RemoveQuestionToUsers').hide();
+        }
+    }
     function togglePassword() {
         var x = document.getElementById("createUser_PasswordId");
         if (x.type === "password") {

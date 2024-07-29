@@ -1,6 +1,7 @@
 ﻿using ECAF.INFRASTRUCTURE.Models;
 using ECAF.INFRASTRUCTURE.Repositories;
 using ECAF.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,21 @@ namespace ECAF.Controllers
         // GET: Setting
         public PartialViewResult Index()
         {
-            var roles = _settingRepository.GetRoleNames();
-            return PartialView(roles);
+            var model = _settingRepository.GetSettingPageModels();
+            return PartialView(model);
+        }
+
+        public JsonResult SubmitQuestions(SubmitQuestions model)
+        {
+            var userId = User.Identity.GetUserId();
+            var result = _settingRepository.SaveUsersQuestions(model , userId);
+            return Json(result);
+        }
+        [HttpGet]
+        public JsonResult GetQuestions(long FormId)
+        {
+            var result = _settingRepository.GetQuestions(FormId);
+            return Json(result , JsonRequestBehavior.AllowGet);
         }
     }
 }

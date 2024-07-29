@@ -76,7 +76,7 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                         Status = (int)FormStatus.InProgress,
                         AssignedToMe = false,
                         DueDate = siteCard.CreatedDate.Value.AddDays(2),
-                        SiteCardId = siteCard.SiteCardId
+                        SiteCardId = siteCard.SiteCardId,
                     };
                     _db.Forms.Add(form);
                     _db.SaveChanges();
@@ -191,74 +191,13 @@ namespace ECAF.INFRASTRUCTURE.Repositories
             try
             {
                 var comments = _db.Comments.AsEnumerable();
-                var siteCards = _db.SiteCards.AsEnumerable();
-                return new DashboardViewModel() { Comments = comments.Count() > 0 ? comments.ToList() : null, SiteCards = siteCards.Count() > 0 ? siteCards.ToList() : null };
+                var forms = _db.Forms.AsEnumerable();
+                return new DashboardViewModel() { Comments = comments.Count() > 0 ? comments.ToList() : null, Forms = forms.Count() > 0 ? forms.ToList() : null };
             }
             catch (Exception e)
             {
                 return null;
             }
-        }
-        public FormsViewModel LoadFormsData()
-        {
-            try
-            {
-                var forms = _db.EcafForms.AsEnumerable();
-                var siteCards = _db.SiteCards.AsEnumerable();
-                return new FormsViewModel() { EcafForms = forms.Count() > 0 ? forms.ToList() : null, SiteCards = siteCards.Count() > 0 ? siteCards.ToList() : null };
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-        public FormDetailsViewModel GetFormBYCardId(long Id)
-        {
-            try
-            {
-                var form = _db.Forms.FirstOrDefault(x => x.SiteCardId == Id);
-                var comments = _db.Comments.Where(commet => commet.FormId == form.FormId);
-                var siteCard = _db.SiteCards.FirstOrDefault(x => x.SiteCardId == Id);
-                var questions = _db.Questions.Where(x => x.FormId == form.FormId);
-                return new FormDetailsViewModel()
-                {
-                    Form = form,
-                    Comments = comments != null && comments.Count() > 0 ? comments.ToList() : null,
-                    Category = Helpers.GetEnumDescription<Categories>(siteCard?.CategoryId ?? 1),
-                    Name = siteCard.Name,
-                    Status = Helpers.GetEnumDescription<FormStatus>(form?.Status ?? 1),
-                    Questions = questions != null && questions.Count() > 0 ? questions.ToList() : null
-                };
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-        public bool SaveComment(long id, string text, string userId)
-        {
-            using (DbContextTransaction transaction = _db.Database.BeginTransaction())
-            {
-                try
-                {
-                    Comment comment = new Comment()
-                    {
-                        Text = text,
-                        FormId = id,
-                        UserId = userId
-                    };
-                    _db.Comments.Add(comment);
-                    _db.SaveChanges();
-                    transaction.Commit();
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    transaction.Rollback();
-                    return false;
-                }
-            }
-
         }
     }
 }

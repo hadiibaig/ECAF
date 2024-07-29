@@ -43,5 +43,6 @@ namespace ECAF.INFRASTRUCTURE
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<FormPdf> FormPdfs { get; set; }
     }
 }

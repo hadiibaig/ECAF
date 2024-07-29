@@ -1,0 +1,171 @@
+﻿@model ECAF.INFRASTRUCTURE.Models.ApprovalFormViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutSiteCard.cshtml";
+}
+
+<div class="lg:w-[100%] w-full" id="partialFormDetails">
+    <div class="lg:w-[100%] w-full">
+        <div class="p-4">
+            <div class="bg-secondary h-full px-4 relative">
+                <div class="flex md:flex-row flex-col md:items-start items-center px-4 py-8">
+                    <div class="lg:w-[90%] md:w-[80%] w-full">
+                        <h1 class="md:text-3xl text-xl font-bold text-primary text-center md:pt-0 pt-3 mx-auto">
+                            Form Approval
+                        </h1>
+                    </div>
+                </div>
+                <div class="pb-28" id="firstScreen">
+                    <div class="text-primary md:pt-0 pt-3 mx-auto">
+                        <div class="grid grid-cols-2 gap-4">
+                            <button id="ApproveForm" class="text-base font-semibold bg-secondaryDark px-8 py-2 rounded-full" data-id="@Model.FormId">
+                                <span class="md:text-lg text-base font-medium ">Approve</span> 
+                            </button>                                               <button id="RejectForm" class="text-base font-semibold bg-secondaryDark px-8 py-2 rounded-full" data-id="@Model.FormId">
+                                <span class="md:text-lg text-base font-medium ">Reject</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="pb-28" id="secondScreen">
+                    <div class="grid grid-cols-2 gap-4" style="margin-left:20%">
+                    </div>
+                    <div style="margin-top:10%">
+                        <div class="flex" style="padding-left: 5%; margin-bottom:5%">
+                            <span style="font-weight:bold ; font-size:larger; margin-right:2%"> Comments : </span>
+                            <button id="commentPopupId" class="text-base font-semibold bg-secondaryDark px-8 py-2 rounded-full">
+                                <span class="md:text-lg text-base font-medium ">add comment</span>
+                            </button>
+
+                        </div>
+                        <div style="max-height: 400px; overflow-y: auto; padding-left: 5%; padding-right: 5%;">
+                            <ul>
+                                @{ if (Model.Comments != null && Model.Comments.Count > 0)
+                                    {
+                                        foreach (var item in Model.Comments)
+                                        {
+                                            <li style="margin-bottom: 1rem;">
+                                                <textarea disabled class="rounded-lg bg-secondaryDark w-full placeholder:text-secondaryDark h-[125px] text-white px-3 py-[4px]"
+                                                          placeholder="comment">
+                                @item.Text
+                            </textarea>
+                                            </li>
+                                        }
+                                    }
+
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lg:w-[80%] md:w-[90%] w-[98%] border border-primary bg-secondaryDark rounded-lg lg:px-24 md:px-16 px-6 lg:pt-24 md:pt-16 pt-12 pb-12" id="commentPopup">
+    <div class="">
+        <div class="flex items-center gap-x-2 mb-16">
+            <h4 class="text-base font-medium whitespace-nowrap">Notify:</h4>
+            <input type="text"
+                   class="rounded-lg bg-white w-full placeholder:text-secondaryDark text-black px-3 py-2"
+                   name="name">
+        </div>
+        <div class="flex items-center gap-x-2 mb-6">
+            <textarea class="rounded-lg bg-white w-full placeholder:text-secondaryDark h-[250px] placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                      name="" placeholder="comment" id="commentTextArea"></textarea>
+        </div>
+        <div class="flex md:flex-row flex-col gap-x-4 justify-center gap-x-8">
+            <button class="text-base font-semibold bg-secondary px-8 py-2 rounded-full md:mb-0 mb-3" id="commentPopupClose">
+                Cancel
+            </button>
+            <button class="text-base font-semibold bg-secondary px-8 py-2 rounded-full" data-id="@Model.FormId" id="saveComment">
+                <span class="md:text-lg text-base font-medium ">Add Comment</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#commentPopupId').on('click', function () {
+            $('#commentPopup').show();
+        });
+        $('#commentPopupClose').on('click', function () {
+            $('#commentPopup').hide();
+        });
+        $('#saveComment').on('click', function () {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("SaveComment", "Form")',
+                type: 'GET',
+                data: { id: id, text: $('#commentTextArea').val() },
+                success: function (result) {
+                    debugger;
+                    if (result) {
+                        alert("Comment has been added!")
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Could not add comment. Please contact Administrator");
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error loading child partial view: " + error);
+                }
+            });
+        });
+
+        $('#ApproveForm').on('click', function () {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("ApproveForm", "Form")',
+                type: 'GET',
+                data: { Id: id, Approved: true },
+                success: function (result) {
+                    debugger;
+                    if (result) {
+                        alert("Form has been completed!")
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Form has been rejected");
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error loading child partial view: " + error);
+                }
+            });
+        });
+        $('#RejectForm').on('click', function () {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("ApproveForm", "Form")',
+                type: 'GET',
+                data: { Id: id, Approved: true },
+                success: function (result) {
+                    debugger;
+                    if (result) {
+                        alert("Form has been completed!")
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Form has been rejected");
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error loading child partial view: " + error);
+                }
+            });
+        });
+
+
+    })
+
+
+</script>

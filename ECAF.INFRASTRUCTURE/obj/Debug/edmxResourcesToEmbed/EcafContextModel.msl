@@ -81,6 +81,7 @@
     <EntitySetMapping Name="Forms">
       <EntityTypeMapping TypeName="IsTypeOf(ECAFModel.Form)">
         <MappingFragment StoreEntitySet="Forms">
+          <ScalarProperty Name="AssignedUser" ColumnName="AssignedUser" />
           <ScalarProperty Name="FormId" ColumnName="FormId" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Status" ColumnName="Status" />
@@ -229,8 +230,21 @@
     <EntitySetMapping Name="Questions">
       <EntityTypeMapping TypeName="ECAFModel.Question">
         <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="AssignedUserId" ColumnName="AssignedUserId" />
+          <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
           <ScalarProperty Name="FormId" ColumnName="FormId" />
           <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormPdfs">
+      <EntityTypeMapping TypeName="ECAFModel.FormPdf">
+        <MappingFragment StoreEntitySet="FormPdfs">
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="SubmitterId" ColumnName="SubmitterId" />
+          <ScalarProperty Name="PdfPath" ColumnName="PdfPath" />
+          <ScalarProperty Name="FormId" ColumnName="FormId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -26,13 +26,11 @@
 
 $(function () {
     console.log("Document ready function...");
-    debugger;
     // Reference the auto-generated proxy for the hub
     var notificationHub = $.connection.notificationHub;
 
 
     notificationHub.client.broadcastNotification = function (message) {
-        debugger
         console.log("Received notification: " + message);
         alertify.success(message);
     };

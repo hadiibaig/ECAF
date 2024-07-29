@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ECAF.INFRASTRUCTURE.Models
 {
-   public class DashboardViewModel
+    public class SettingsViewModel
     {
-        public List<Comment> Comments { get; set; }
+        public List<string> Roles { get; set; }
         public List<Form> Forms { get; set; }
+        public List<AspNetUser> Users { get; set; }
     }
 }

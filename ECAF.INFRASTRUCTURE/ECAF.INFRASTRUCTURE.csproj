@@ -111,6 +111,7 @@
     <Compile Include="Comment.cs">
       <DependentUpon>EcafContextModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Config\RoleNames.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>EcafContextModel.tt</DependentUpon>
     </Compile>
@@ -151,7 +152,11 @@
     <Compile Include="Form.cs">
       <DependentUpon>EcafContextModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FormPdf.cs">
+      <DependentUpon>EcafContextModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
+    <Compile Include="Models\ApprovalFormViewModel.cs" />
     <Compile Include="Models\CreateEvent.cs" />
     <Compile Include="Models\CreateSiteCard.cs" />
     <Compile Include="Models\CreateUserViewModel.cs" />
@@ -159,7 +164,11 @@
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\FormDetailsViewModel.cs" />
     <Compile Include="Models\FormsViewModel.cs" />
+    <Compile Include="Models\GetQuestionsForAdminViewModel.cs" />
+    <Compile Include="Models\SaveFormModel.cs" />
+    <Compile Include="Models\SettingsViewModel.cs" />
     <Compile Include="Models\SiteCardCodes.cs" />
+    <Compile Include="Models\SubmitQuestions.cs" />
     <Compile Include="Models\TerminateSiteCard.cs" />
     <Compile Include="Models\UpdateSiteCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -167,6 +176,7 @@
       <DependentUpon>EcafContextModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repositories\EventsRepository.cs" />
+    <Compile Include="Repositories\FormRepository.cs" />
     <Compile Include="Repositories\SettingRepository.cs" />
     <Compile Include="Repositories\SiteCardRepository.cs" />
     <Compile Include="SiteCard.cs">

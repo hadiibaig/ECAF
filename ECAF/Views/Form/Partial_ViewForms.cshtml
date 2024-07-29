@@ -1,11 +1,12 @@
 ﻿@model ECAF.INFRASTRUCTURE.Models.FormDetailsViewModel
+@using ECAF.INFRASTRUCTURE.Config
 <div class="flex h-[100vh]" id="partialFormDetails">
     <div class="lg:w-[100%] w-full">
         <div class="p-4">
             <div class="bg-secondary h-full px-4 relative">
                 <div class="flex md:flex-row flex-col md:items-start items-center px-4 py-8">
                     <div class="lg:w-[10%] md:w-[20%] w-full">
-                        <a href="@Url.Action("Index" ,"Dashboard")">
+                        <a href="@Url.Action("Index", "Dashboard")">
                             <div class="flex items-center items-center gap-x-2">
                                 <svg width="14" height="14" viewBox="0 0 21 21" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -47,9 +48,13 @@
                     <div style="margin-top:10%">
                         <div class="flex" style="padding-left: 5%; margin-bottom:5%">
                             <span style="font-weight:bold ; font-size:larger; margin-right:2%"> Comments : </span>
-                            <button id="commentPopupId" class="text-base font-semibold bg-secondaryDark px-8 py-2 rounded-full">
-                                <span class="md:text-lg text-base font-medium ">add comment</span>
-                            </button>
+                            @if (User.IsInRole(RoleNames.AccountManager) || User.IsInRole(RoleNames.Admin))
+                            {
+                                <button id="commentPopupId" class="text-base font-semibold bg-secondaryDark px-8 py-2 rounded-full">
+                                    <span class="md:text-lg text-base font-medium ">add comment</span>
+                                </button>
+                            }
+
                         </div>
                         <div style="max-height: 400px; overflow-y: auto; padding-left: 5%; padding-right: 5%;">
                             <ul>
@@ -72,146 +77,153 @@
                     </div>
                 </div>
                 <div class="pb-28" id="thirdScreen" style="display: none;">
+                    <div class="flex md:flex-row flex-col gap-x-4 justify-between">
+                        <button class="md:w-auto w-full ml-auto flex items-center justify-center gap-x-6 bg-secondaryDark px-4 py-2 rounded-full" id="saveForm" data-id="@Model.Form.FormId">
+                            <svg class="mx-auto" width="50" height="50" viewBox="0 0 72 71" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M44.3827 0.00134277C44.8254 0.119911 45.2756 0.221805 45.711 0.360752C48.8086 1.35376 50.8446 4.1049 50.8668 7.49891C50.9057 13.3458 50.8817 19.1927 50.8668 25.0395C50.8668 26.1252 50.3111 26.768 49.407 26.7847C48.4807 26.7995 47.8878 26.1419 47.886 25.0303C47.886 19.2279 47.886 13.4273 47.886 7.62674C47.886 5.38692 46.6707 3.71585 44.6735 3.13783C44.1582 3.00126 43.6261 2.93888 43.0932 2.95257C31.4699 2.95257 19.8453 2.95257 8.21945 2.95257C5.31083 2.95257 3.43042 4.82372 3.42857 7.72122C3.42857 23.2746 3.42857 38.8286 3.42857 54.3832C3.42857 57.3215 5.30342 59.1778 8.26206 59.1815C14.3979 59.1815 20.5345 59.1815 26.6716 59.1815C28.0073 59.1815 28.6798 59.6725 28.6817 60.6433C28.6835 61.614 27.9981 62.1254 26.6827 62.1254C20.5468 62.1254 14.4091 62.0753 8.27318 62.1439C3.93063 62.1902 1.00163 59.0611 0.579231 55.9154C0.579231 55.8561 0.510685 55.8024 0.473633 55.7468V6.37992C0.525659 6.2831 0.56786 6.18132 0.59961 6.07609C1.04053 3.8233 2.26697 2.14112 4.23816 0.964706C5.05517 0.473761 5.97963 0.29591 6.86518 0.00134277H44.3827Z"
+                                      fill="url(#paint0_linear_51_353)" />
+                                <path d="M71.6159 53.3921C71.3677 54.4666 71.2787 55.5689 70.9897 56.6379C68.6017 65.4693 60.615 71.3347 51.452 70.9883C42.2389 70.6419 34.3134 63.3314 33.2499 54.2035C32.068 44.066 38.554 35.0326 48.5322 32.9187C59.0644 30.6882 69.7059 38.0264 71.351 48.6383C71.4307 49.1607 71.527 49.6813 71.6159 50.2019V53.3921ZM51.917 68.0389C60.767 68.3983 68.283 61.2824 68.648 52.199C68.9963 43.5472 61.91 35.8959 53.1953 35.5124C44.16 35.116 36.455 42.0448 36.0604 50.9207C35.6509 60.1134 42.6483 67.6684 51.917 68.0389Z"
+                                      fill="url(#paint1_linear_51_353)" />
+                                <path d="M25.6951 23.6797H39.8621C40.1177 23.6797 40.3734 23.6797 40.6254 23.6982C40.9863 23.7261 41.324 23.8872 41.5729 24.1501C41.8218 24.4131 41.9641 24.7591 41.9722 25.121C41.9758 25.4726 41.855 25.814 41.6313 26.0852C41.4076 26.3564 41.0953 26.5398 40.7495 26.6031C40.5432 26.631 40.3349 26.6403 40.127 26.6309H11.2353C10.9354 26.6557 10.6334 26.6224 10.3461 26.5327C10.0395 26.4206 9.77844 26.2103 9.60357 25.9346C9.4287 25.6589 9.34976 25.3332 9.37901 25.008C9.41378 24.6728 9.56401 24.3602 9.80398 24.1236C10.044 23.887 10.3587 23.7412 10.6944 23.7112C10.9483 23.692 11.2031 23.6858 11.4577 23.6927L25.6951 23.6797Z"
+                                      fill="url(#paint2_linear_51_353)" />
+                                <path d="M19.7609 38.4469C16.8467 38.4469 13.9307 38.4581 11.0165 38.4469C9.7882 38.4469 9.05641 37.4558 9.49178 36.4331C9.78079 35.7532 10.331 35.5068 11.0461 35.5068C13.4971 35.5068 15.95 35.5068 18.4029 35.5068C21.7376 35.5068 25.0686 35.5068 28.3959 35.5068C29.3223 35.5068 29.9188 35.9292 30.0633 36.6536C30.2689 37.6466 29.602 38.4414 28.4997 38.4469C25.5911 38.4581 22.675 38.4469 19.7609 38.4469Z"
+                                      fill="url(#paint3_linear_51_353)" />
+                                <path d="M18.307 11.8229C20.5968 11.8229 22.8861 11.8229 25.1747 11.8229C25.4288 11.8157 25.6831 11.8319 25.9343 11.8711C26.28 11.9257 26.5944 12.1036 26.8192 12.3719C27.0439 12.6403 27.1639 12.981 27.157 13.331C27.1539 13.6693 27.0326 13.9958 26.814 14.254C26.5954 14.5122 26.2933 14.6857 25.9602 14.7445C25.7101 14.7882 25.4563 14.8068 25.2025 14.8001C20.5783 14.8001 15.9542 14.8001 11.33 14.8001C11.2133 14.8001 11.0984 14.8001 10.9836 14.8001C10.0202 14.7501 9.39218 14.1702 9.38291 13.318C9.37365 12.4658 10.0035 11.8711 10.9539 11.8174C11.1392 11.8174 11.3245 11.8174 11.5097 11.8174L18.307 11.8229Z"
+                                      fill="url(#paint4_linear_51_353)" />
+                                <path d="M57.7545 53.2532C56.6429 53.2532 55.5314 53.2792 54.4198 53.2403C53.914 53.2236 53.8121 53.3959 53.8158 53.8646C53.8393 56.0877 53.8393 58.3053 53.8158 60.5174C53.8066 61.7123 52.7617 62.4478 51.7539 61.9995C51.1092 61.7086 50.8628 61.1787 50.8665 60.4896C50.8757 58.3183 50.8479 56.147 50.8831 53.9776C50.8924 53.4033 50.7386 53.2365 50.1588 53.2365C47.9597 53.2717 45.7606 53.2606 43.5634 53.2365C42.5334 53.2365 41.8831 52.5085 41.9961 51.5562C42.0869 50.7948 42.6686 50.3057 43.5616 50.3001C45.7366 50.2872 47.9134 50.2686 50.0865 50.3113C50.7498 50.3242 50.8924 50.1075 50.8831 49.4924C50.8461 47.4378 50.8665 45.3814 50.8702 43.325C50.8702 42.0615 51.3815 41.415 52.3634 41.4279C53.3064 41.4409 53.8196 42.0986 53.8214 43.3028C53.8214 45.4037 53.8381 47.5064 53.8103 49.6017C53.8103 50.1353 53.9326 50.3113 54.4921 50.302C56.6911 50.2705 58.8902 50.2835 61.0874 50.302C61.9526 50.302 62.5176 50.7374 62.6806 51.4599C62.7242 51.6759 62.719 51.8989 62.6655 52.1127C62.6119 52.3264 62.5114 52.5256 62.3712 52.6956C62.231 52.8656 62.0547 53.0022 61.855 53.0954C61.6554 53.1887 61.4374 53.2363 61.2171 53.2347C60.061 53.2643 58.9032 53.2347 57.7453 53.2347L57.7545 53.2532Z"
+                                      fill="url(#paint5_linear_51_353)" />
+                                <defs>
+                                    <linearGradient id="paint0_linear_51_353" x1="25.6808" y1="0.00134277"
+                                                    x2="25.6808" y2="62.1444" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#C59C42" />
+                                        <stop offset="1" stop-color="#EDD8A3" />
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_51_353" x1="52.3636" y1="32.5182"
+                                                    x2="52.3636" y2="71.0029" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#C59C42" />
+                                        <stop offset="1" stop-color="#EDD8A3" />
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_51_353" x1="25.6727" y1="23.6797"
+                                                    x2="25.6727" y2="26.6389" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#C59C42" />
+                                        <stop offset="1" stop-color="#EDD8A3" />
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_51_353" x1="19.7328" y1="35.5068"
+                                                    x2="19.7328" y2="38.4519" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#C59C42" />
+                                        <stop offset="1" stop-color="#EDD8A3" />
+                                    </linearGradient>
+                                    <linearGradient id="paint4_linear_51_353" x1="18.27" y1="11.8174" x2="18.27"
+                                                    y2="14.8014" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#C59C42" />
+                                        <stop offset="1" stop-color="#EDD8A3" />
+                                    </linearGradient>
+                                    <linearGradient id="paint5_linear_51_353" x1="52.3466" y1="41.4277"
+                                                    x2="52.3466" y2="62.1322" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#C59C42" />
+                                        <stop offset="1" stop-color="#EDD8A3" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <span class="md:text-lg text-base font-medium ">Submit</span>
+                        </button>
+                    </div>
                     <div class="accordion">
-                        <div class="accordion-item mb-6">
-                            <div class="accordion-title bg-secondaryDark rounded-[12px] px-4 py-2 inline-block relative z-10 mb-[-20px]">
-                                Question 1
-                                <span class="accordion-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
-                                         height="32" fill="rgba(255,255,255,1)">
-                                        <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
-                                        </path>
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="accordion-content bg-secondaryDark rounded-[12px] px-6 pb-6">
-                                <div class="pt-8">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor
-                                        incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet,
-                                        consectetur
-                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                        eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
-                                    </p>
-                                    <div class="text-end pt-2">
-                                        <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item mb-6">
-                            <div class="accordion-title bg-secondaryDark rounded-[12px] px-4 py-2 inline-block relative z-10 mb-[-20px]">
-                                Question 2
-                                <span class="accordion-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
-                                         height="32" fill="rgba(255,255,255,1)">
-                                        <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
-                                        </path>
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="accordion-content bg-secondaryDark rounded-[12px] px-6 pb-6">
-                                <div class="pt-8">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor
-                                        incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet,
-                                        consectetur
-                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                        eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
-                                    </p>
-                                    <div class="text-end pt-2">
-                                        <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item mb-6">
-                            <div class="accordion-title bg-secondaryDark rounded-[12px] px-4 py-2 inline-block relative z-10 mb-[-20px]">
-                                Question 3
-                                <span class="accordion-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
-                                         height="32" fill="rgba(255,255,255,1)">
-                                        <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
-                                        </path>
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="accordion-content bg-secondaryDark rounded-[12px] px-6 pb-6">
-                                <div class="pt-8">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor
-                                        incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet,
-                                        consectetur
-                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                        eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
-                                    </p>
-                                    <div class="text-end pt-2">
-                                        <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @{
+                            if (Model.Questions != null && Model.Questions.Count > 0)
+                            {
+                                foreach (var (value, index) in Model.Questions.Select((v, i) => (v, i)))
+                                {
+                                    {
+                                        int questionNumber = index + 1;
+                                        <div class="accordion-item mb-6 formQuestions">
+                                            <div class="accordion-title bg-secondaryDark rounded-[12px] px-4 py-2 inline-block relative z-10 mb-[-20px]">
+                                                Question @questionNumber
+                                                <span class="accordion-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                                         height="32" fill="rgba(255,255,255,1)">
+                                                        <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
+                                                        </path>
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            <div class="accordion-content bg-secondaryDark rounded-[12px] px-6 pb-6">
+                                                <div class="pt-8">
+                                                    <p class="form-questions">
+                                                        @value.Text
+                                                    </p>
+                                                    @*<input class="form-questions" value="@value.Text" />*@
+                                                    @*<div class="text-end pt-2">
+                <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
+            </div>*@
+                                                </div>
+                                                @if (User.IsInRole(RoleNames.AccountManager) || User.IsInRole(RoleNames.Admin))
+                                                {
+                                                    <div class="pt-8">
+                                                        <textarea class="bg-white w-full placeholder:text-secondaryDark text-black px-3 py-[4px] required form-answers"
+                                                                  name="Form Answers"> </textarea>
+                                                    </div>
+                                                }
+
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        }
                     </div>
                 </div>
-                <div class="grid grid-cols-12 absolute bottom-0 left-0 w-full">
-                    <div class="md:col-span-4 col-span-6">
-                        <a href="javascript:void(0);" id="overviewBtn">
-                            <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
-                                Overview
-                            </h3>
-                        </a>
-                    </div>
-                    <div class="md:col-span-4 col-span-6">
-                        <a href="javascript:void(0);" id="detailBtn">
-                            <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
-                                Details
-                            </h3>
-                        </a>
-                    </div>
-                    <div class="md:col-span-4 col-span-12">
-                        <a href="javascript:void(0);" id="signOffBtn">
-                            <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
-                                Sign Off
-                            </h3>
-                        </a>
-                    </div>
+            </div>
+            <div class="grid grid-cols-12 absolute bottom-0 left-0 w-full">
+                <div class="md:col-span-4 col-span-6">
+                    <a href="javascript:void(0);" id="overviewBtn">
+                        <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
+                            Overview
+                        </h3>
+                    </a>
+                </div>
+                <div class="md:col-span-4 col-span-6">
+                    <a href="javascript:void(0);" id="detailBtn">
+                        <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
+                            Details
+                        </h3>
+                    </a>
+                </div>
+                <div class="md:col-span-4 col-span-12">
+                    <a href="javascript:void(0);" id="signOffBtn">
+                        <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
+                            Sign Off
+                        </h3>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    <div class="lg:w-[80%] md:w-[90%] w-[98%] border border-primary bg-secondaryDark rounded-lg lg:px-24 md:px-16 px-6 lg:pt-24 md:pt-16 pt-12 pb-12" id="commentPopup">
-        <div class="">
-            <div class="flex items-center gap-x-2 mb-16">
-                <h4 class="text-base font-medium whitespace-nowrap">Notify:</h4>
-                <input type="text"
-                       class="rounded-lg bg-white w-full placeholder:text-secondaryDark text-black px-3 py-2"
-                       name="name">
-            </div>
-            <div class="flex items-center gap-x-2 mb-6">
-                <textarea class="rounded-lg bg-white w-full placeholder:text-secondaryDark h-[250px] placeholder:text-secondaryDark text-black px-3 py-[4px]"
-                          name="" placeholder="comment" id="commentTextArea"></textarea>
-            </div>
-            <div class="flex md:flex-row flex-col gap-x-4 justify-center gap-x-8">
-                <button class="text-base font-semibold bg-secondary px-8 py-2 rounded-full md:mb-0 mb-3" id="commentPopupClose">
-                    Cancel
-                </button>
-                <button class="text-base font-semibold bg-secondary px-8 py-2 rounded-full" data-id="@Model.Form.FormId" id="saveComment">
-                    <span class="md:text-lg text-base font-medium ">Add Comment</span>
-                </button>
-            </div>
+</div>
+<div class="lg:w-[80%] md:w-[90%] w-[98%] border border-primary bg-secondaryDark rounded-lg lg:px-24 md:px-16 px-6 lg:pt-24 md:pt-16 pt-12 pb-12" id="commentPopup">
+    <div class="">
+        <div class="flex items-center gap-x-2 mb-16">
+            <h4 class="text-base font-medium whitespace-nowrap">Notify:</h4>
+            <input type="text"
+                   class="rounded-lg bg-white w-full placeholder:text-secondaryDark text-black px-3 py-2"
+                   name="name">
+        </div>
+        <div class="flex items-center gap-x-2 mb-6">
+            <textarea class="rounded-lg bg-white w-full placeholder:text-secondaryDark h-[250px] placeholder:text-secondaryDark text-black px-3 py-[4px]"
+                      name="" placeholder="comment" id="commentTextArea"></textarea>
+        </div>
+        <div class="flex md:flex-row flex-col gap-x-4 justify-center gap-x-8">
+            <button class="text-base font-semibold bg-secondary px-8 py-2 rounded-full md:mb-0 mb-3" id="commentPopupClose">
+                Cancel
+            </button>
+            <button class="text-base font-semibold bg-secondary px-8 py-2 rounded-full" data-id="@Model.Form.FormId" id="saveComment">
+                <span class="md:text-lg text-base font-medium ">Add Comment</span>
+            </button>
         </div>
     </div>
-    <script>
+</div>
+<script>
         $(document).ready(function () {
         var section = '@ViewBag.section';
             if (section == "comments") {
@@ -232,7 +244,7 @@
         $('#saveComment').on('click', function () {
            var id = $(this).data('id');
             $.ajax({
-                url: '@Url.Action("SaveForm", "Form")',
+                url: '@Url.Action("SaveComment", "Form")',
                 type: 'GET',
                 data: { id: id, text: $('#commentTextArea').val() },
                 success: function (result) {
@@ -244,7 +256,7 @@
                         $.ajax({
                             url: '@Url.Action("ViewForm", "Form")',
                             type: 'GET',
-                            data: { id: id },
+                            data: { id: id, section : 'comments'},
                             success: function (result) {
                                 $('#commentPopup').hide();
                                 $('#partialFormDetails').replaceWith(result);
@@ -257,6 +269,37 @@
                     }
                     else {
                         alert("Could not add comment. Please contact Administrator");
+                    }
+
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error loading child partial view: " + error);
+                }
+            });
+        });
+        $('#saveForm').on('click', function () {
+            var id = $(this).data('id');
+            var data = [];
+
+            $('.formQuestions').each(function () {
+                var question = $(this).find('.form-questions').text().trim();
+                var answer = $(this).find('.form-answers').val().trim();
+                data.push({
+                    Question: question,
+                    Answer: answer
+                });
+            });
+            $.ajax({
+                url: '@Url.Action("SaveForm", "Form")',
+                type: 'POST',
+                data: { FormId: id, QuestionsAnswers: data },
+                success: function (result) {
+                    debugger;
+                    if (result) {
+                        alert("Form has been Submitted!")
+                    }
+                    else {
+                        alert("Could not submit form. Please contact Administrator");
                     }
 
                 },
@@ -282,4 +325,8 @@
             $('#secondScreen').hide();
             $('#thirdScreen').show();
         });
-    });</script>
+});
+
+
+
+</script>

@@ -18,7 +18,7 @@
                     <div class="text-primary md:pt-0 pt-3 mx-auto">
                         <div class="grid grid-cols-2 gap-4">
                             <button id="ApproveForm" class="text-base font-semibold bg-secondaryDark px-8 py-2 rounded-full" data-id="@Model.FormId">
-                                <span class="md:text-lg text-base font-medium ">Approve</span> 
+                                <span class="md:text-lg text-base font-medium ">Approve</span>
                             </button>                                               <button id="RejectForm" class="text-base font-semibold bg-secondaryDark px-8 py-2 rounded-full" data-id="@Model.FormId">
                                 <span class="md:text-lg text-base font-medium ">Reject</span>
                             </button>
@@ -67,9 +67,17 @@
     <div class="">
         <div class="flex items-center gap-x-2 mb-16">
             <h4 class="text-base font-medium whitespace-nowrap">Notify:</h4>
-            <input type="text"
-                   class="rounded-lg bg-white w-full placeholder:text-secondaryDark text-black px-3 py-2"
-                   name="name">
+            <select class="w-full text-black px-3 py-[4px]" multiple 
+                    id="notifyUsers" name="Select Users">
+                <option value="">Select Account Manager</option>
+                @if (Model.Users != null)
+                {
+                    foreach (var item in Model.Users)
+                    {
+                        <option value="@item.Id">@item.UserName</option>
+                    }
+                }
+            </select>
         </div>
         <div class="flex items-center gap-x-2 mb-6">
             <textarea class="rounded-lg bg-white w-full placeholder:text-secondaryDark h-[250px] placeholder:text-secondaryDark text-black px-3 py-[4px]"
@@ -88,6 +96,7 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#commentPopupId').on('click', function () {
@@ -96,12 +105,19 @@
         $('#commentPopupClose').on('click', function () {
             $('#commentPopup').hide();
         });
+        $('#notifyUsers').select2({
+            placeholder: "Select Users",
+            allowClear: true
+        });
         $('#saveComment').on('click', function () {
             var id = $(this).data('id');
+            var notifyUsers = $('#notifyUsers').val();
             $.ajax({
                 url: '@Url.Action("SaveComment", "Form")',
-                type: 'GET',
-                data: { id: id, text: $('#commentTextArea').val() },
+                type: 'POST',
+                data: JSON.stringify({ id: id, text: $('#commentTextArea').val(), NotifyUsers: notifyUsers }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 success: function (result) {
                     debugger;
                     if (result) {
@@ -118,9 +134,9 @@
                 }
             });
         });
-
         $('#ApproveForm').on('click', function () {
             var id = $(this).data('id');
+            $(this).prop('disabled' , true);
             $.ajax({
                 url: '@Url.Action("ApproveForm", "Form")',
                 type: 'GET',
@@ -143,6 +159,7 @@
         });
         $('#RejectForm').on('click', function () {
             var id = $(this).data('id');
+            $(this).prop('disabled', true);
             $.ajax({
                 url: '@Url.Action("ApproveForm", "Form")',
                 type: 'GET',

@@ -37,10 +37,10 @@ namespace ECAF.Controllers
             ViewBag.section = section;
             return PartialView("Partial_ViewForms" , data);
         }
-        public JsonResult SaveComment(long Id , string text)
+        public JsonResult SaveComment(SaveComment model)
         {
-            var data = FormRepository.SaveComment(Id , text , User.Identity.GetUserId());
-            return Json(data, JsonRequestBehavior.AllowGet);
+            var data = FormRepository.SaveComment(model, User.Identity.GetUserId());
+            return Json(data);
         }
         public JsonResult SaveForm(SaveFormModel model)
         {
@@ -101,8 +101,8 @@ namespace ECAF.Controllers
         [HttpGet]
         public ActionResult ApprovalForm(int formId)
         {
-            var data = FormRepository.GetCommentByFormId(formId);
-            return View(new ApprovalFormViewModel() { FormId = formId , Comments = data });
+            var data = FormRepository.GetApprovalForm(formId);
+            return View(data);
         }
 
         [HttpGet]

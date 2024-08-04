@@ -168,7 +168,7 @@
           <Property Name="DueDate" Type="datetime" />
           <Property Name="SiteCardId" Type="bigint" />
           <Property Name="EcafFormId" Type="bigint" />
-          <Property Name="UserId" Type="bigint" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="AssignedUser" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Questions">
@@ -547,7 +547,7 @@
           <Property Name="DueDate" Type="DateTime" Precision="3" />
           <Property Name="SiteCardId" Type="Int64" />
           <Property Name="EcafFormId" Type="Int64" />
-          <Property Name="UserId" Type="Int64" />
+          <Property Name="UserId" Type="String" />
           <NavigationProperty Name="Comments" Relationship="ECAFModel.FK_Comments_Forms" FromRole="Form" ToRole="Comment" />
           <NavigationProperty Name="EcafForms" Relationship="ECAFModel.FK_EcafForms_Forms" FromRole="Form" ToRole="EcafForm" />
           <Property Name="AssignedUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />

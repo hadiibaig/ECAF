@@ -163,7 +163,7 @@
     <Property Name="DueDate" Type="datetime" />
     <Property Name="SiteCardId" Type="bigint" />
     <Property Name="EcafFormId" Type="bigint" />
-    <Property Name="UserId" Type="bigint" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" />
     <Property Name="AssignedUser" Type="nvarchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="Questions">

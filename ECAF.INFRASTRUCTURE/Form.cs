@@ -28,7 +28,7 @@ namespace ECAF.INFRASTRUCTURE
         public Nullable<System.DateTime> DueDate { get; set; }
         public Nullable<long> SiteCardId { get; set; }
         public Nullable<long> EcafFormId { get; set; }
-        public Nullable<long> UserId { get; set; }
+        public string UserId { get; set; }
         public string AssignedUser { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -155,8 +155,8 @@
                                                     </p>
                                                     @*<input class="form-questions" value="@value.Text" />*@
                                                     @*<div class="text-end pt-2">
-                <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
-            </div>*@
+                                                            <h3 class="font-semibold text-lg">Simeon Obigbesan</h3>
+                                                        </div>*@
                                                 </div>
                                                 @if (User.IsInRole(RoleNames.AccountManager) || User.IsInRole(RoleNames.Admin))
                                                 {
@@ -175,22 +175,22 @@
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-12 absolute bottom-0 left-0 w-full">
-                <div class="md:col-span-4 col-span-6">
+            <div class="grid grid-cols-12 bottom-0 w-full">
+                <div class="md:col-span-4 col-span-2">
                     <a href="javascript:void(0);" id="overviewBtn">
                         <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
                             Overview
                         </h3>
                     </a>
                 </div>
-                <div class="md:col-span-4 col-span-6">
+                <div class="md:col-span-4 col-span-2">
                     <a href="javascript:void(0);" id="detailBtn">
                         <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
                             Details
                         </h3>
                     </a>
                 </div>
-                <div class="md:col-span-4 col-span-12">
+                <div class="md:col-span-4 col-span-2">
                     <a href="javascript:void(0);" id="signOffBtn">
                         <h3 class="bgGredient text-center text-secondaryDark text-lg font-bold py-6">
                             Sign Off
@@ -205,9 +205,20 @@
     <div class="">
         <div class="flex items-center gap-x-2 mb-16">
             <h4 class="text-base font-medium whitespace-nowrap">Notify:</h4>
-            <input type="text"
-                   class="rounded-lg bg-white w-full placeholder:text-secondaryDark text-black px-3 py-2"
-                   name="name">
+            <select class="w-full text-black px-3 py-[4px]" multiple
+                    id="notifyUsers" name="Select Users">
+                <option value="">Select Account Manager</option>
+                @if (Model.Users != null)
+                {
+                    foreach (var item in Model.Users)
+                    {
+                        <option value="@item.Id">@item.UserName</option>
+                    }
+                }
+            </select>
+            @*<input type="text"
+                class="rounded-lg bg-white w-full placeholder:text-secondaryDark text-black px-3 py-2"
+                name="name">*@
         </div>
         <div class="flex items-center gap-x-2 mb-6">
             <textarea class="rounded-lg bg-white w-full placeholder:text-secondaryDark h-[250px] placeholder:text-secondaryDark text-black px-3 py-[4px]"
@@ -223,6 +234,7 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
         $(document).ready(function () {
         var section = '@ViewBag.section';
@@ -235,18 +247,26 @@
             $(this).next('.accordion-content').slideToggle();
             $(this).find('.accordion-icon svg').toggleClass('rotate-180');
         });
+
         $('#commentPopupId').on('click', function () {
             $('#commentPopup').show();
         });
+            $('#notifyUsers').select2({
+                placeholder: "Select Users",
+                allowClear: true
+            });
         $('#commentPopupClose').on('click', function () {
             $('#commentPopup').hide();
         });
         $('#saveComment').on('click', function () {
-           var id = $(this).data('id');
+            var id = $(this).data('id');
+            var notifyUsers = $('#notifyUsers').val();
             $.ajax({
                 url: '@Url.Action("SaveComment", "Form")',
-                type: 'GET',
-                data: { id: id, text: $('#commentTextArea').val() },
+                type: 'POST',
+                data: JSON.stringify({ id: id, text: $('#commentTextArea').val(), NotifyUsers: notifyUsers }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 success: function (result) {
                     debugger;
                     if (result) {

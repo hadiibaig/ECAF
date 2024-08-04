@@ -165,6 +165,7 @@
     <Compile Include="Models\FormDetailsViewModel.cs" />
     <Compile Include="Models\FormsViewModel.cs" />
     <Compile Include="Models\GetQuestionsForAdminViewModel.cs" />
+    <Compile Include="Models\SaveComment.cs" />
     <Compile Include="Models\SaveFormModel.cs" />
     <Compile Include="Models\SettingsViewModel.cs" />
     <Compile Include="Models\SiteCardCodes.cs" />

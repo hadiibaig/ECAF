@@ -14,6 +14,7 @@ namespace ECAF.INFRASTRUCTURE.Models
         public string Name { get; set; }
         public string Status { get; set; }
         public List<Question> Questions { get; set; }
+        public List<AspNetUser> Users { get; set; }
 
     }
 }

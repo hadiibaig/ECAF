@@ -62,6 +62,7 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                 var comments = _db.Comments.Where(commet => commet.FormId == form.FormId);
                 var siteCard = _db.SiteCards.FirstOrDefault(x => x.SiteCardId == Id);
                 var questions = _db.Questions.Where(x => x.FormId == Id);
+                var users = _db.AspNetUsers.Where(x => x.AspNetRoles.Any(y => y.Name != RoleNames.Admin));
                 return new FormDetailsViewModel()
                 {
                     Form = form,
@@ -70,6 +71,7 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                     Name = siteCard.Name,
                     Status = Helpers.GetEnumDescription<FormStatus>(form?.Status ?? 1),
                     Questions = questions != null && questions.Count() > 0 ? questions.ToList() : null,
+                    Users = users.ToList()
                 };
             }
             catch (Exception e)
@@ -93,16 +95,17 @@ namespace ECAF.INFRASTRUCTURE.Repositories
 
         }
 
-        public List<Comment> GetCommentByFormId(long Id)
+        public ApprovalFormViewModel GetApprovalForm(long Id)
         {
             var comments = _db.Comments.Where(commet => commet.FormId == Id);
-            if (comments.Any())
+            var users = _db.AspNetUsers.Where(x => x.AspNetRoles.Any(y => y.Name != RoleNames.Admin));
+            if (comments != null && comments.Count() > 0)
             {
-                return comments.ToList();
+                return new ApprovalFormViewModel() { FormId = Id, Comments = comments.ToList() , Users = users.ToList() };
             }
             else
             {
-                return null;
+                return new ApprovalFormViewModel() { FormId = Id, Comments = null, Users = users.ToList() };
             }
 
         }
@@ -116,7 +119,25 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                 {
                     form.Status =(int) FormStatus.Completed;
                     _db.SaveChanges();
+                    var accountManager = _db.AspNetUsers.FirstOrDefault(x => x.Id == form.AssignedUser);
+                    var formsSiteCard = _db.SiteCards.FirstOrDefault(x => x.SiteCardId == form.SiteCardId);
+                    //Task.Run(() => EmailService.SendEmail(accountManager.Email,
+                    //    "form has been approved in ECAF",
+                    //    $"A form with reference number {formsSiteCard.ReferenceNumber} has been approved."));
+                    EmailService.SendEmail(accountManager.Email,
+                        "form has been approved in ECAF",
+                        $"A form with reference number {formsSiteCard.ReferenceNumber} has been approved.");
 
+                    Form newManagerForm = new Form()
+                    {
+                        Description = "Updating " +  formsSiteCard.Name + " - " + formsSiteCard.ReferenceNumber,
+                        AssignedToMe = false,
+                        SiteCardId = formsSiteCard.SiteCardId,
+                        Status = (int)FormStatus.InProgress,
+                        UserId = form.AssignedUser,
+                    };
+                    _db.Forms.Add(newManagerForm);
+                    _db.SaveChanges();
 
                     return true;
                 }
@@ -135,7 +156,7 @@ namespace ECAF.INFRASTRUCTURE.Repositories
             }
 
         }
-        public bool SaveComment(long id, string text, string userId)
+        public bool SaveComment(SaveComment model, string userId)
         {
             using (DbContextTransaction transaction = _db.Database.BeginTransaction())
             {
@@ -143,13 +164,24 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                 {
                     Comment comment = new Comment()
                     {
-                        Text = text,
-                        FormId = id,
+                        Text = model.Text,
+                        FormId = model.Id,
                         UserId = userId
                     };
                     _db.Comments.Add(comment);
                     _db.SaveChanges();
                     transaction.Commit();
+                    if (model.NotifyUsers != null && model.NotifyUsers.Count > 0)
+                    {
+                        var user = _db.AspNetUsers.FirstOrDefault(x => x.Id == userId);
+                        var form = _db.Forms.FirstOrDefault(x => x.FormId == model.Id);
+                        _db.AspNetUsers.Where(x => model.NotifyUsers.Contains(x.Id))?.ToList().ForEach(x => {
+
+                            EmailService.SendEmail(x.Email,
+                                    "A Commnt has been added in in ECAF",
+                                    $"{user.Email} has added a comment on form {form.Description}");
+                        });
+                    }
                     return true;
                 }
                 catch (Exception e)

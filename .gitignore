@@ -12,3 +12,7 @@
 /ECAF/Properties/PublishProfiles
 /ECAF.INFRASTRUCTURE/Scripts
 *.pdf
+/ECAF/Properties/PublishProfiles
+*.user
+ECAF/Properties/PublishProfiles/FolderProfile.pubxml.user
+*.user

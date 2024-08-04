@@ -1,5 +1,4 @@
 ﻿@model ECAF.INFRASTRUCTURE.Models.DashboardViewModel
-
 <div style="width: 63%; margin: 3%; height: 250px; overflow-y: scroll" class="p-4 bg-secondary">
     <h2 class="text-2xl font-semibold text-primary pb-2">Recent Messages.</h2>
     <div class="grid">
@@ -89,7 +88,24 @@
                                     </div>
                                     <h4 style="margin-left:20%;white-space:nowrap;">@item.Description</h4>
                                 </div>
-                                <p>@item.DueDate.Value.ToString("dd MMMM yyyy")</p>
+                                @{
+
+
+                                    if (item.DueDate.HasValue)
+                                    {
+
+                                        <p>
+                                            @item.DueDate.Value.ToString("dd MMMM yyyy")
+                                        </p>
+
+                                    }
+                                    else
+                                    {
+                                        <p>
+                                            -
+                                        </p>
+                                    }
+                                }
 
                             </div>
                         </li>
@@ -162,8 +178,25 @@
                                     </div>
                                     <h4 style="margin-left: 20%; white-space: nowrap;">@item.Description</h4>
                                 </div>
-                                <p>@item.DueDate.Value.ToString("dd MMMM yyyy")</p>
 
+                                @{
+
+
+                                    if (item.DueDate.HasValue)
+                                    {
+
+                                        <p>
+                                            @item.DueDate.Value.ToString("dd MMMM yyyy")
+                                        </p>
+
+                                    }
+                                    else
+                                    {
+                                        <p>
+                                            -
+                                        </p>
+                                    }
+                                }
                             </div>
                         </li>
                     }

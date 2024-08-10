@@ -77,6 +77,14 @@
     <Property Name="FormId" Type="bigint" />
     <Property Name="UserId" Type="nvarchar" MaxLength="128" />
   </EntityType>
+  <EntityType Name="CommentsView">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CommentId" Type="bigint" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+  </EntityType>
   <EntityType Name="CustomerFinances">
     <Key>
       <PropertyRef Name="CustomerFinanceId" />
@@ -389,6 +397,7 @@
     <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CommentsView" EntityType="Self.CommentsView" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerFinances" EntityType="Self.CustomerFinances" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EcafForms" EntityType="Self.EcafForms" Schema="dbo" store:Type="Tables" />

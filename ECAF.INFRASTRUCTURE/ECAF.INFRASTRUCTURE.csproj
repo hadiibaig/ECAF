@@ -111,6 +111,9 @@
     <Compile Include="Comment.cs">
       <DependentUpon>EcafContextModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CommentsView.cs">
+      <DependentUpon>EcafContextModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Config\RoleNames.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>EcafContextModel.tt</DependentUpon>

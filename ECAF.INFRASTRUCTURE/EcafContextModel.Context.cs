@@ -44,5 +44,6 @@ namespace ECAF.INFRASTRUCTURE
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<FormPdf> FormPdfs { get; set; }
+        public virtual DbSet<CommentsView> CommentsViews { get; set; }
     }
 }

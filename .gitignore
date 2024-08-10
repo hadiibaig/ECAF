@@ -16,3 +16,4 @@
 *.user
 ECAF/Properties/PublishProfiles/FolderProfile.pubxml.user
 *.user
+/ECAF/Properties/PublishProfiles

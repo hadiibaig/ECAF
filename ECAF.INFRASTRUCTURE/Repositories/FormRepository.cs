@@ -60,6 +60,12 @@ namespace ECAF.INFRASTRUCTURE.Repositories
             {
                 var form = _db.Forms.FirstOrDefault(x => x.SiteCardId == Id);
                 var comments = _db.Comments.Where(commet => commet.FormId == form.FormId);
+                if (comments != null && comments.Count() > 0)
+                {
+                    var commentsIds = comments.Select(y => y.CommentId).ToList();
+                    var commentsAllowedToView = _db.CommentsViews.Where(x => commentsIds.Contains(x.CommentId.Value))?.Where(z => z.UserId == userId); // Comments that can be viewed by the current user
+                    comments = comments.Where(x => commentsAllowedToView.Select(y => y.CommentId).Contains(x.CommentId));
+                }
                 var siteCard = _db.SiteCards.FirstOrDefault(x => x.SiteCardId == Id);
                 var questions = _db.Questions.Where(x => x.FormId == Id);
                 var users = _db.AspNetUsers.Where(x => x.AspNetRoles.Any(y => y.Name != RoleNames.Admin));
@@ -95,9 +101,16 @@ namespace ECAF.INFRASTRUCTURE.Repositories
 
         }
 
-        public ApprovalFormViewModel GetApprovalForm(long Id)
+        public ApprovalFormViewModel GetApprovalForm(long Id , string userId)
         {
             var comments = _db.Comments.Where(commet => commet.FormId == Id);
+            if (comments != null && comments.Count() > 0)
+            {
+                var commentsIds = comments.Select(y => y.CommentId).ToList();
+                var commentsAllowedToView = _db.CommentsViews.Where(x => commentsIds.Contains(x.CommentId.Value))?.Where(z => z.UserId == userId); // Comments that can be viewed by the current user
+                comments = comments.Where(x => commentsAllowedToView.Select(y => y.CommentId).Contains(x.CommentId));
+            }
+
             var users = _db.AspNetUsers.Where(x => x.AspNetRoles.Any(y => y.Name != RoleNames.Admin));
             if (comments != null && comments.Count() > 0)
             {
@@ -170,9 +183,27 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                     };
                     _db.Comments.Add(comment);
                     _db.SaveChanges();
-                    transaction.Commit();
                     if (model.NotifyUsers != null && model.NotifyUsers.Count > 0)
                     {
+                        var commentsViewsList = new List<CommentsView>();
+                        model.NotifyUsers.ForEach(x => commentsViewsList.Add(new CommentsView() {
+                            UserId = x,
+                            CommentId = comment.CommentId
+                        }));
+                        commentsViewsList.Add(new CommentsView()
+                        {
+                            UserId = userId,
+                            CommentId = comment.CommentId
+                        });
+                        var payroll2Users = _db.AspNetRoles.Where(x => x.Name == RoleNames.Payroll2)?.Select(y => y.AspNetUsers)?.SelectMany(t => t);
+                        payroll2Users.Select(x => x.Id).ToList().ForEach(x => commentsViewsList.Add(new CommentsView()
+                        {
+                            UserId = x,
+                            CommentId = comment.CommentId
+                        }));
+                        _db.CommentsViews.AddRange(commentsViewsList);
+                        _db.SaveChanges();
+                        transaction.Commit();
                         var user = _db.AspNetUsers.FirstOrDefault(x => x.Id == userId);
                         var form = _db.Forms.FirstOrDefault(x => x.FormId == model.Id);
                         _db.AspNetUsers.Where(x => model.NotifyUsers.Contains(x.Id))?.ToList().ForEach(x => {
@@ -181,6 +212,25 @@ namespace ECAF.INFRASTRUCTURE.Repositories
                                     "A Commnt has been added in in ECAF",
                                     $"{user.Email} has added a comment on form {form.Description}");
                         });
+                    }
+                    else
+                    {
+                        var commentsViewsList = new List<CommentsView>();
+                        commentsViewsList.Add(new CommentsView()
+                        {
+                            UserId = userId,
+                            CommentId = comment.CommentId
+                        });
+                        var payroll2Users = _db.AspNetRoles.Where(x => x.Name == RoleNames.Payroll2)?.Select(y => y.AspNetUsers)?.SelectMany(t => t);
+                        payroll2Users.Select(x => x.Email).ToList().ForEach(x => commentsViewsList.Add(new CommentsView()
+                        {
+                            UserId = x,
+                            CommentId = comment.CommentId
+                        }));
+                        _db.CommentsViews.AddRange(commentsViewsList);
+                        _db.SaveChanges();
+                        transaction.Commit();
+
                     }
                     return true;
                 }

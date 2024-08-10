@@ -88,7 +88,7 @@
     <Property Name="DueDate" Type="DateTime" Precision="3" />
     <Property Name="SiteCardId" Type="Int64" />
     <Property Name="EcafFormId" Type="Int64" />
-    <Property Name="UserId" Type="String" />
+    <Property Name="UserId" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Comments" Relationship="ECAFModel.FK_Comments_Forms" FromRole="Form" ToRole="Comment" />
     <NavigationProperty Name="EcafForms" Relationship="ECAFModel.FK_EcafForms_Forms" FromRole="Form" ToRole="EcafForm" />
     <Property Name="AssignedUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
@@ -225,6 +225,7 @@
     <EntitySet Name="Events" EntityType="ECAFModel.Event" />
     <EntitySet Name="Questions" EntityType="ECAFModel.Question" />
     <EntitySet Name="FormPdfs" EntityType="ECAFModel.FormPdf" />
+    <EntitySet Name="CommentsViews" EntityType="ECAFModel.CommentsView" />
   </EntityContainer>
   <Association Name="FK_Comments_Forms">
     <End Type="ECAFModel.Form" Role="Form" Multiplicity="0..1" />
@@ -454,5 +455,13 @@
     <Property Name="PdfPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="SubmitterId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CommentsView">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CommentId" Type="Int64" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

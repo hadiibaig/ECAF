@@ -101,7 +101,12 @@ namespace ECAF.Controllers
         [HttpGet]
         public ActionResult ApprovalForm(int formId)
         {
-            var data = FormRepository.GetApprovalForm(formId);
+            var userId = User.Identity.GetUserId();
+            if(string.IsNullOrEmpty(userId))
+            {
+                throw new Exception("Please login first before proceed");
+            }
+            var data = FormRepository.GetApprovalForm(formId , userId);
             return View(data);
         }
 
